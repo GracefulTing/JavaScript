@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淘宝</title>
+</head>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+<body>
+	<div id="wrap"></div>
+	<div id="pages"></div>
+</body>
+<script>
+	var wrap = $('#wrap');
+	wrap.css({
+		width:"1150px",
+		// border:"1px solid",
+		margin:"0 auto",
+		overflow:"hidden"
+	})
+	var pages = $('#pages');
+	pages.css({
+		width:"1150px",
+		height:"30px",
+		margin:"20px auto",
+		textAlign:"center"
+	})
+
+	var data = '[{"img":"img/qun.png","price":"¥79.00","num":"1人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"2人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"3人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"4人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"5人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"6人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"7人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"8人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"9人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"}]';
+
+	var arr = JSON.parse(data);
+	// console.log(arr);
+	// $(arr).each(function(i){
+	// 	// console.log(this);
+	// 	create(this);
+	// })
+	// $.each(arr,function(i,obj){
+	// 	create(this);
+	// })
+
+	page(9,4,arr);
+	//分页处理
+	function page(allNum,perNum,array){
+		var count = Math.ceil(allNum/perNum);
+		for(var i=0;i<count;i++){
+			var btn = createTag("button",pages,"btn");
+			btn.css({
+				width:"30px",
+				height:"30px",
+				textAlign: "center",
+				marginLeft:"10px"
+			})
+			btn.html(i+1);
+			//btn.attr("index",i);
+			btn.click(function(){
+				//console.log($(this).html());
+				wrap.html('');
+				var inner = $(this).html();
+				// var inner = $(this).attr("index");
+				// console.log(inner);
+				show(inner,perNum,array);
+			})
+		}
+	}
+	show(1,4,arr);
+	//点击显示
+	function show(inner,perNum,array){		
+		var begin = (inner - 1) * perNum;
+		var end = inner *  perNum;
+		if(end > array.length){
+			end = array.length;
+		}
+		for(var i=begin;i<end;i++){
+			create(array[i]);
+		}
+	}
+
+
+	//创建标签的封装函数
+	function createTag(name,parent,classname){
+		var n = $("<"+name+">").appendTo(parent);
+		n.addClass(classname);
+		return n;
+	}
+
+	//创建标签
+	function create(obj){
+		var item = createTag("div",wrap,"item");
+		item.css({
+			width:"248px",
+			minHeight:"400px",
+			border:"1px solid #ccc",
+			float:"left",
+			overflow: "hidden",
+			display: "inline-block",
+			marginLeft:"25px",
+			marginRight:"10px"
+		})
+
+
+		item.mouseover(function(){
+			item.css({
+				border:"1px solid red"
+			})
+			item.mouseout(function(){
+				item.css({
+					border:"1px solid"
+				})
+			})
+		})
+		var timeout ; 
+		item.mousedown(function() { 
+		    timeout = setTimeout(function() {
+		       alert("已经长按3s了,确定要删除吗?"); 
+		       item.remove(); 
+		    }, 3000); 
+		}); 
+		item.mouseup(function() { 
+		    clearTimeout(timeout); 
+		}); 
+		item.mouseout(function() { 
+		    clearTimeout(timeout); 
+		}); 
+
+		var img = createTag("img",item,"");
+		img.css({
+			width:"100%",
+			height:"100%"
+		})
+		// img.attr("src","img/qun.png");
+		img.attr("src",obj.img);
+		var detail = createTag("div",item,"detail");
+		detail.css({
+			width:"248px",
+			height:"30px"
+		})
+		var price = createTag("span",detail,"pri");
+		price.html(obj.price);
+		price.css({
+			float:"left",
+			color:"red",
+			marginLeft:"10px"
+		})
+		var num = createTag("span",detail,"num");
+		num.html(obj.num);
+		
+		var name = createTag("div",item,"name");
+		name.html(obj.name);
+		var bot = createTag("div",item,"bot");
+		bot.css({
+			height:"20px",
+			marginTop:"10px"
+		})
+		var com = createTag("span",bot,"name");
+		com.html(obj.compony);
+		var addr = createTag("div",bot,"num");
+		addr.html(obj.address);
+		$(".name").css({
+			height:"50px",
+			marginTop:"10px",
+			fontSize:"15px"
+		})
+		$(".num").css({
+			float:"right",
+			marginRight:"10px",
+			color:"#ccc"
+		})
+		var del =  createTag('button',item,"del");
+		del.html('delete');
+		del.click(function(){
+			$(this).parent().remove();
+		})
+		var add = createTag("button",item,'add');
+		add.html('add');
+		add.click(function(){
+			// $(this).parent().clone(true).insertAfter(this);
+			$(this).parent().after($(this).parent().clone(true));
+		})
+	}
+
+
+	
+</script>
+</html>

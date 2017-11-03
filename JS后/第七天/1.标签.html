@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		ul{
+			width:1100px;
+			height:103px;
+			border:1px solid;
+			background:black;
+			margin: 0 auto;
+			text-align: center;
+		}
+		ul li{
+			border:1px solid red;
+			float:left;
+			list-style:none;
+			width:150px;
+			/*padding:10px 50px;*/
+			font-size:20px;
+			text-align: center;
+			color:#ccc;
+			line-height:32px;
+		}
+		.eh{
+			margin-top:-20px;
+			font-size:12px;
+		}
+	</style>
+</head>
+<body>
+	
+		<!-- <ul>
+			<li><p class="ch">首页</p><p class="eh">HOME</p></li>
+			<li><p class="ch">首页</p><p class="eh">HOME</p></li>
+			
+		</ul> -->
+	
+	<!-- <img src="img/coat.jpg" alt="">
+	<img src="img/mm.jpg" alt="">
+	<img src="img/qun.png" alt=""> -->
+	<script>
+		//标签的自定义属性
+		// var imgs = document.getElementsByTagName('img');
+		// for(var i = 0;i < imgs.length; i++){
+		// 	imgs[i].index = i;
+		// 	imgs[i].onclick = function(){
+		// 		console.log(this.index);
+		// 	}
+		// }
+
+		// var str = '[{"title":"官方活动","data":[{"img":"img/1.jpg","state":1,"detail":"新战役推出"},{"img":"img/2.jpg","state":2,"detail":"神秘商店的夏夜秘赠"},{"img":"img/3.jpg","state":2,"detail":"T17神秘商店开张"},{"img":"img/4.jpg","state":2,"detail":"破泞之战推出"}]},{"title":"赛事活动","data":[{"img":"img/1.jpg","detail":"2017国际邀请赛线上观战"},{"img":"img/2.jpg","detail":"2017国际邀请赛线下观战活动"},{"img":"img/3.jpg","detail":"2017国际邀请赛预选"},{"img":"img/4.jpg","detail":"2017国际邀请赛中国区"}]},{"title":"推广活动","data":[{"img":"img/1.jpg","detail":"贴吧电竞"},{"img":"img/2.jpg","detail":"联想拯救者"},{"img":"img/3.jpg","detail":"京东游戏玩家惠"},{"img":"img/4.jpg","detail":"亚洲邀请赛"}]},{"title":"商城特选","data":[{"img":"img/1.jpg","state":1,"detail":"新战役推出"},{"img":"img/2.jpg","state":2,"detail":"神秘商店的夏夜秘赠"}]}]';
+
+		// var str = '{"title":"官方活动","data":[{"img":"img/1.jpg","state":1,"detail":"新战役推出"},{"img":"img/2.jpg","state":2,"detail":"神秘商店的夏夜秘赠"},{"img":"img/3.jpg","state":2,"detail":"T17神秘商店开张"},{"img":"img/4.jpg","state":2,"detail":"破泞之战推出"}]}'
+		// var arr = JSON.parse(str);
+		// console.log(arr);
+
+		var nav = '[\
+			{\
+				"title":"首页",\
+				"tit":"HOME"\
+			},{\
+				"title":"资讯",\
+				"tit":"NEWS"\
+			},{\
+				"title":"赛事",\
+				"tit":"MATCH"\
+			},{\
+				"title":"互动",\
+				"tit":"INTERACTION"\
+			},{\
+				"title":"资料",\
+				"tit":"DATA"\
+			},{\
+				"title":"服务",\
+				"tit":"SERVICE"\
+			},{\
+				"title":"下载",\
+				"tit":"DOWN"\
+			}\
+		]';
+		var arrNav = JSON.parse(nav);
+		console.log(arrNav);
+
+		fn(arrNav);
+		function fn(array){
+			var ul = createEle("ul",document.body);
+			for(var i = 0; i < array.length; i++){
+				var obj = array[i];
+				var li = createEle("li",ul);
+				var ch = createEle("p",li);
+				ch.className = 'ch';
+				ch.innerHTML = obj.title;
+				var eh = createEle("p",li);
+				eh.className = 'eh';
+				eh.innerHTML = obj.tit;
+			}
+		}
+
+		function createEle(name,parent){
+			var n = document.createElement(name);
+			parent.appendChild(n);
+			return n;
+		}
+	</script>
+</body>
+</html>

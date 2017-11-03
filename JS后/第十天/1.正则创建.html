@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则创建</title>
+</head>
+<body>
+	<script>
+		//var re = new RegExp("C","i");
+		//i代表不区分大小写,C是规则字符串
+
+		//创建正则的方式一:可拼接字符串
+		var reg = new RegExp("hi"+"hello");
+		console.log(reg);
+
+		//创建正则方式二
+		var reg = /hi/;
+		console.log(reg);
+
+	</script>
+</body>
+</html>

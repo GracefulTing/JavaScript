@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>代码的5种调试方法</title>
+</head>
+<body>
+	<script>
+		// alert弹窗
+		// var a=1;
+		// var b=2;
+		// alert(a,b);  不能将两个同时显示出来
+		// alert(hello);
+		// alert('string');
+		// 当括号里面不加引号时,意味着要弹出变量的值.	
+
+		// console.log控制台   常用
+		// console.log(1);
+		// var a=1,b=2;
+		// console.log(a,b);
+
+		// prompt
+		// prompt("请输入银行卡密码",3123);
+
+		// confirm
+		//confirm("感谢您对我们的反馈");
+
+		//document.write
+		// document.write('任何数据类型');
+		// document.write('<h1>this is h1</h1>');
+		// document.write(1);
+
+		//提示用户输入密码,然后再提示用户确认密码,再将用户所输入的密码展示出来.
+		var a=0;
+		a=prompt("请输入密码");
+		prompt("请输入密码",a);
+		// confirm("请确认密码"+a);
+		document.write(a);
+	</script>
+</body>
+</html>

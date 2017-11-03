@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<!-- 题目:
+	1.将网址：http://www.baidu.com?name=nihao&pwd=88&id=99转换为{name:"nihao",pwd:"88",id:"99"}格式	 
+	-->
+	<script>
+		var str = 'http://www.baidu.com?name=nihao&pwd=88&id=99';
+
+		var s1 = str.substring(26,31);
+		var s2 = str.substring(36,38);
+		var s3 = str.substring(42);
+		// console.log(s1,s2,s3);
+
+		var obj = new Object();
+		obj.name = s1;
+		obj.pwd = s2;
+		obj.id = s3;
+		console.log(obj);
+
+		// var a = JSON.stringify(str);
+		// console.log(a);
+		
+	</script>
+</body>
+</html>

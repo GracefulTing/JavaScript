@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>火狐滚轮</title>
+	<style>
+		#a{
+			width:100px;
+			height:600px;
+			background: pink;
+		}
+	</style>
+</head>
+<body>
+	<div id="a"></div>
+	<script>
+		var a = document.querySelector("#a");
+		//火狐添加
+		a.addEventListener("DOMMouseScroll",function(ev){
+			var e = ev || window.event;
+		//	console.log(e);
+			if(e.detail<0){
+				console.log("滚轮向上");
+			}else{
+				console.log("滚轮向下");
+			}
+		},false);
+	</script>
+</body>
+</html>

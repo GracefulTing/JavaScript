@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单事件</title>
+	
+</head>
+<body>
+	<input type="text" id="inp" value="我是">
+</body>
+<script>
+	var inp = document.getElementById('inp');
+	// inp.onfocus = function(){
+	// 	console.log('onfocus');
+	// }
+	// inp.onblur = function(){
+	// 	console.log('onblur');
+	// }
+	// inp.onchange = function(){       //内容改变时发生
+	// 	console.log('onchange');
+	// }
+	// inp.oninput = function(){       //在用户输入时触发
+	// 	console.log('oninput');     
+	// }
+
+	inp.oninput = function(ev){
+		var e = ev || window.event;
+		if(e.data == "@"){
+			this.value = this.value.substring(0,this.value.length-1);
+			alert('不能写@');
+		}
+	}
+	inp.focus();
+	inp.blur();
+</script>
+</html>

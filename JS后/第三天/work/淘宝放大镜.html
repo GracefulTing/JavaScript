@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淘宝放大镜</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		#l,#r{
+			width:400px;
+			height:400px;
+			background: url('img/taobao.jpeg') ;
+			display: inline-block;
+		}
+		#l{
+			background-size: 400px 400px;
+		}
+		#r{
+			display: none;
+		}
+		#box{
+			width:200px;
+			height:200px;
+			background:black;
+			opacity:0.3;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"> 
+		<div id="l">
+			<div id="box"></div>
+		</div>
+		<div id="r"></div>
+	<div>
+	<script>
+		var box = document.getElementById('box');
+		var r = document.getElementById('r');
+
+		move(box);
+
+		function move(ac){
+			ac.onmouseover = function(a){
+				r.style.display = "inline-block";
+				var curX = a.clientX;
+				var curY = a.clientY;
+				var offX = this.offsetLeft;
+				var offY = this.offsetTop;
+				document.onmousemove = function(b){
+					var endX = b.clientX - curX;
+					var endY = b.clientY - curY;
+
+					var x = endX + offX;
+					var y = endY + offY;
+					
+					if(x <= 0){
+						x = 0;
+					}
+					if(x >= 200){
+						x = 200;
+					}
+					if(y <= 0){
+						y = 0;
+					}
+					if(y >= 200){
+						y =200;
+					}
+
+					ac.style.left = x+ "px";
+					ac.style.top = y + "px";
+
+					var curL = ac.offsetLeft;
+					var curT = ac.offsetTop;
+
+					change(curL,curT);
+				}
+				// ac.onmouseout = function(){
+				// 	document.onmousemove = null;
+				// }
+			}
+		}
+
+		function change(m,n){
+			r.style.backgroundPosition=-2*m+"px "+-2*n+"px";
+		}
+
+	</script>
+</body>
+</html>

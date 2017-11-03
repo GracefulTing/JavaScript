@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标事件</title>
+	<style>
+		#wrap{
+			width:100px;
+			height:100px;
+			background: red;
+		}
+		#bor{
+			width:200px;
+			height:200px;
+			border:1px solid;
+		}
+	</style>
+</head>
+<body>
+	<div id="bor">
+	</div>
+	<div id="wrap"></div>
+	
+</body>
+<script>
+	// 鼠标事件
+	// onmousedown
+	// onmouseup
+	// onmousemove
+	// onmouseover
+	// onmouseout
+	// onclick
+	// ondblclick:双击
+	// oncontextmenu:右键
+
+	var wrap = document.getElementById('wrap');
+	wrap.onmousedown = function(a){
+		console.log("down");
+		console.log(a);
+	}
+	wrap.onmouseup = function(b){
+		console.log("up");
+		console.log(b);
+	}
+	bor.onmousemove = function(c){
+		console.log("move");
+		console.log(c);
+	}
+	wrap.onmouseover = function(d){
+		console.log("over");
+		console.log(d);
+	}
+	wrap.onmouseout = function(e){
+		console.log("out");
+		console.log(e);
+	}
+	wrap.onclick = function(f){
+		this.style.background = "green";
+		console.log(f);
+	}
+	wrap.ondblclick = function(m){
+		console.log("double");
+		console.log(m);
+	}
+	wrap.oncontextmenu = function(n){
+		console.log("右键");
+		console.log(n);
+	}
+</script>
+</html>

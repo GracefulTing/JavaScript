@@ -1,0 +1,58 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享</title>
+</head>
+<body>
+	<form action="">
+		<span>name:</span><input type="text" id="thename"><br>
+		<span>password:</span><input type="password" id="pwd"><br>
+		<input type="button" id="btn" value="按钮"><br>
+		<span>加密后:</span>
+		<input type="text" id="result">
+	</form>
+</body>
+<script src="md5.js"></script>
+<script>
+	var name = document.getElementById('thename');
+	var pwd = document.getElementById('pwd');
+	var btn = document.getElementById('btn');
+	var result = document.getElementById('result');
+
+	btn.onclick = function(){
+		var a = hex_md5(pwd.value);     //调用方法
+		pwd.value = a;
+		result.value = a;
+	}
+</script>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>zepto</title>
+</head>
+<body>
+	
+</body>
+<script src="zepto.js"></script>
+<!-- <script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script> -->
+<script>
+	var a = $("<div>hello</div>",{id:"box"});  //创建标签
+	$("body").append(a);       //将标签插入到body中
+	a.attr({id:"box"});
+	a.css({
+		width:"100px",
+		height:"100px",
+		background:"red",
+		border:"1px solid",
+		padding:"20px"
+	})
+	console.log(a.offset());     //返回top和left
+	console.log(a.width());     //包含border,padding,而jq不包含	
+	console.log($.camelCase("acksl-dfa"));  //驼峰命名
+	console.log($.contains($("body")[0],a[0]));   //同一节点或兄弟节点返回false,父子节点返回true
+</script>
+</html>

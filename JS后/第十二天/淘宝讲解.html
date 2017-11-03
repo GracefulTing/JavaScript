@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style media="screen">
+        #wrap{
+            width: 200px;
+            height: 300px;
+            background: url();
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <!-- <div class="box">
+            <img src="" alt="">
+            <div class="price">
+                <div class="price_money"></div>
+                <div class="price_fukuan"></div>
+            </div>
+            <div class="detail"></div>
+            <div class="shop">
+                <div class="shop_title"></div>
+                <div class="shop_addr"></div>
+            </div>
+        </div> -->
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+    var data = '[{"img":"img/qun.png","price":"¥79.00","num":"1人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"2人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"3人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"4人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"5人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"6人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"7人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"8人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"9人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"}]';
+    var arr = JSON.parse(data);
+
+    function createGoods(myarr) {
+        $("#wrap").html("");
+        $.each(myarr,function (i,obj) {
+            var box = $("<div>");
+            $("#wrap").append(box);
+            box.addClass("box");
+            var myimg = $("<img>");
+            myimg.attr("src",this.img);
+            box.append(myimg);
+        })
+    }
+    createPage(arr,2);
+    function createPage(myArr,perNum) {
+        var num = Math.ceil(myArr.length / perNum);
+        var ul = $("<ul>");
+        $(document.body).append(ul);
+        for (var i = 0; i < num; i++) {
+            var li = $("<li>");
+            ul.append(li);
+            li.text(i + 1);
+            li.attr("index",i);
+            li.on("click",function () {
+                var myIndex = Number($(this).attr("index"));
+
+                // 封装新的数组
+                createArr(myArr,myIndex,perNum);
+            })
+        }
+    }
+    function createArr(myArr,myIndex,perNum) {
+        var myNewArr = [];
+        myNewArr = myArr.slice(myIndex*perNum,(myIndex + 1) * perNum);
+        createGoods(myNewArr);
+    }
+    createArr(arr,0,2);
+
+    // var item = $('<div>');
+    // var con = item.html();
+    // item.html(con+'<div class="item">\
+    //  <img src="" alt="" class="pic">\
+    //  <div class="detail">\
+    //      <span class="pri"></span>\
+    //      <span class="num"></span>\
+    //  </div>\
+    //  <div class="name"></div>\
+    //  <div class="bot">\
+    //      <span class="com"></span>\
+    //      <span class="addr"></span>\
+    //  </div>\
+    // </div>')
+</script>
+</html>

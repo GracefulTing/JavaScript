@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>继承</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function People(name,age,sex){
+		this.name = name;
+		this.age = age;
+		this.sex = sex;
+	}
+	function Student(score){
+		this.score = score;   //this指向stu
+		People.call(this,name,age,sex);
+	}
+	function college(interest){
+		this.interest = interest;
+		Student.call(this,name,age,sex,score,interest);
+	}
+	var stu = new college("w",20,"男",90,"唱歌");
+	console.log(stu)
+	//instanceof:用来判断对象变量是哪个构造函数构造出来的.
+	var value = stu instanceof college;
+	console.log(value);
+</script>
+</html>

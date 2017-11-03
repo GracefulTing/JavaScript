@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM-NODE类型</title>
+</head>
+<body>
+	<ul id="list"> 
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+	</ul>
+	<p id="page">
+		<span id="icon"></span>
+		<i id="font">Node</i>
+	</p>
+	<script>
+		var list=document.getElementById('list');
+		var lis=list.getElementsByTagName('li');
+		var page=document.getElementById('page');
+		var icon=document.getElementById('icon');
+		var font=document.getElementById('font');
+
+		//nodeType
+		//console.log(list.nodeType);     //1
+		//nodeName:获取节点名称
+		//获取节点名称时,先判断该节点是不是一个元素
+		// if(list.nodeType==1){
+		// 	console.log(list.nodeName);    //UL
+		// }
+	//	console.log(list.nodeName);     //UL
+
+		//标准浏览器下会把空格和换行当做文本节点,ie9以下版本则会直接忽略.
+		// console.log(list.childNodes);
+		// console.log(list.childNodes.length);      //13
+		// console.log(list.childNodes[0].nodeType);   //3
+		// console.log(list.childNodes[0].nodeName);  //#text
+
+		//firstChild:返回空格,文本节点,返回list里面第一个节点.
+		//console.log(list.firstChild);    //#text
+		//lastChild:返回空格,文本节点,返回list里面最后一个节点.
+		//console.log(list.lastChild);   //#text
+
+		//获取上一个节点
+		//console.log(font.previousSibling);   //#text
+		//获取下一个节点
+		//console.log(icon.nextSibling);    //#text 
+		//获取第一个父级节点
+		//console.log(icon.parentNode);
+		//检查元素是否有子节点
+		//console.log(list.hasChildNodes());      //true
+
+		//appendChild():接受一个节点对象作为参数,可以创建新的节点,但是如果参数是现有节点,会从原来的位置移动到新位置,返回子节点.
+		//用法:父级.appendChild(子级);方法向父节点里添加最后一个子节点.
+	//	console.log(page.appendChild(list));    //<ul></ul>
+
+
+		//insertBefore():在指定的已有子节点之前,紧邻的位置插入节点.返回新的子节点.
+		//用法:父级.insertBefore(新的子节点,插入到哪个节点的前面);
+	//	console.log(page.insertBefore(font,icon));
+
+		//replaceChild():用一个新节点替换父级中的某个原有节点.返回的是被替换掉的.
+		//用法:父级.replaceChild(主动替换别人的,被替换掉的);
+	//	console.log(list.replaceChild(lis[1],lis[4]));    //<li>5</li>
+
+		//removeChild():删除某一个子节点,返回被删除的节点.
+		//用法:父级.removeChild(删除的子节点)
+	//	console.log(list.removeChild(lis[3]));
+
+
+		//cloneNode():参数如果为true,那么克隆的内容包含文本;如果为false,那么不包含.复制后的节点副本,存在了缓存里,如果不把其放入结构,那么无法展现在页面中.
+		//用法:目标节点.cloneNode(true/false);
+	//	console.log(lis[0].cloneNode(true));
+	//	console.log(lis[0].cloneNode(false));
+	//	console.log(page.cloneNode(true));
+		// var newObj=lis[0].cloneNode(true);
+		// list.appendChild(newObj);
+		// list.insertBefore(newObj,lis[0]);
+
+
+
+		//节点类型有几种呢?
+		//1 Element 代表元素
+		//2 Attr    代表属性
+		//3 Text    代表元素或属性中的文本内容
+		//4 CDATASection  代表文档中的CDATA部分(不会由解析器解析的文本)
+		//5 EnityReference  代表实体引用
+		//6 Enity   代表实体
+		//7 ProcessingInstruction 代表处理指令
+		//8 Comment 代表注释
+		//9 Document  代表整个文档
+		//10 Document Type  
+		//11 DocumentFragment  代表轻量级的Document的对象,能够容纳文档的某个部分
+		//12 Notation 代表DTD中声明的符号
+	</script>
+</body>
+</html>

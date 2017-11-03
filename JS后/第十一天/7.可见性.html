@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>可见性</title>
+</head>
+<body>
+	<table>
+		<tr style="display: none"><td>value 1</td></tr>
+		<tr><td>value 2</td></tr>
+	</table>
+
+	<form action="">
+		<input type="text" name="email">
+		<input type="hidden" name="id">
+	</form>
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+<script>
+	//:hidden---所有不可见元素,或者type为hidden的元素
+	var obj = $("tr:hidden");
+	console.log(obj,obj[0]);
+
+	var obj1 = $("input:hidden");
+	console.log(obj1,obj1[0]);
+
+	//:visible---所有可见元素
+	var obj2 = $("tr:visible");
+	console.log(obj2,obj2[0]);
+</script>
+</html>

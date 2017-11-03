@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>属性</title>
+	<style>
+		span{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<img src="img/taobao.jpeg" alt="">
+
+	<input type="checkbox" checked="checked" >
+	<input type="checkbox">
+	<input type="checkbox">
+
+	<p></p>
+
+	<ul>
+		<li>1</li>
+		<li class="a">2</li>
+		<li class="a">3</li>
+	</ul>
+
+	<div class="par">
+		<div class="child"></div>
+	</div>
+
+	<strong>jquery代码</strong>
+
+	<span></span>
+	<span></span>
+	<span></span>
+	<span></span>
+	<span></span>
+
+	<input type="text">
+
+	<script src="jquery.js"></script>
+	<script>
+		var obj = $("img").attr("src");
+		console.log(obj);
+		$("img").attr({
+			src:"test.jpg",
+			alt:"Test Image"
+		});
+		$("img").attr("src","test.jpg");
+		$("img").attr("title",function(){
+			return this.src;
+		})
+		$("img").removeAttr("src");
+
+		var obj = $("input[type='checkbox']").prop("checked");
+		console.log(obj);
+
+		$("input[type='checkbox']").prop({
+			disabled:true
+		})
+
+		$("input[type='checkbox']").prop("checked",function(i,val){
+			return !val;
+		})
+
+		var $para = $("p");
+		$para.prop("luggageCode",1234);
+		$para.append("The secret luggage code is: ", String($para.prop("luggageCode")), ". ");
+		$para.removeProp("luggageCode");
+		$para.append("Now the secret luggage code is:",String($para.prop("luggageCode")),'.');
+		console.log($para,$para[0]);
+
+		$('ul li:last').addClass(function(){
+			return 'item-'+$(this).index();
+		})
+		$('ul li:last').removeClass(function(){
+			return $(this).prev().attr('class');
+		})
+
+		//toggleClass:如果存在就删除一个类,不存在就添加一个类
+		$("p").toggleClass("selected");
+
+		var count=0;
+		$("strong").click(function(){
+			$(this).toggleClass("highlight",count % 3 ==0)
+		})
+
+		$('div.child').toggleClass(function(){
+			if($(this).parent().is('.par')){
+				return 'happy';
+			}else{
+				return 'sad';
+			}
+		})
+
+		//使用函数来设置所有匹配元素的文本内容
+		$('span').html(function(n){
+			return "这个span元素的index是:"+n;
+		})
+		var obj1 = $('span').text();
+		console.log(obj1);
+
+		//使用函数来设置所有匹配元素的文本内容
+		$('span').text(function(n){
+			return "这个div元素的index是:"+n;
+		})
+
+		var re = $("input:text").val("123243");
+		console.log(re);
+
+		$("p").attr("class","aaa");
+		$("p").attr("a","lll");
+		$("p").attr({b:"b",c:"c"});
+
+		//html(),val(),text(),没有参数相当于获取值,有参数相当于设置值.
+	</script>
+</body>
+</html>

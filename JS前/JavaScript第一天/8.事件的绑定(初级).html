@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#thediv{
+			width:100px;
+			height:100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<button onclick="alert('点击某个元素,触发某个方法')">
+		点击
+	</button>
+	<div id="thediv"></div>
+	<script>
+		/*
+			onclick:点击事件,当鼠标点击某个元素的时候,触发了某个方法.
+		*/
+		var thediv=document.getElementById('thediv');
+		thediv.onclick=function(){
+			thediv.style.background='green';
+		}
+	</script>
+</body>
+</html>

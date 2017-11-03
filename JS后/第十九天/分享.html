@@ -1,0 +1,129 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享1:选项卡</title>
+	<style>
+		ul li{
+			list-style:none;
+			width:60px;
+			height:30px;
+			line-height:30px;
+			border:1px solid red;
+			text-align: center;
+			display: inline-block;
+		}
+		#wrap div{
+			width:400px;
+			height:300px;
+			border:1px solid red;
+			font-size: 30px;
+			display: none;
+		}
+		.active_li{
+			background: red;
+			color:white;
+		}
+		.active_div{
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<ul>
+			<li rel='t1' class='selectActive'>A</li>
+			<li rel='t2'>B</li>
+			<li rel='t3'>C</li>
+		</ul>
+		<div rel='t1'>aaaaaaaaaaaa</div>
+		<div rel='t2'>bbbbbbbbbbbb</div>
+		<div rel='t3'>cccccccccccc</div>
+	</div>	
+</body>
+<script src="tabs.js"></script>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script>
+	// var lis = document.querySelectorAll('li');
+	// var divs = document.querySelectorAll('div');
+
+	// for(var i=0;i<lis.length;i++){
+	// 	lis[i].onclick = function(){
+	// 		for(var j=0;j<lis.length;j++){
+	// 			if(this == lis[j]){
+	// 				lis[j].className = 'active_li';
+	// 				divs[j].className = 'active_div';
+	// 			}else{
+	// 				lis[j].className = '';
+	// 				divs[j].className = '';
+	// 			}
+	// 		}
+	// 	}
+	// }
+
+
+	tabs_takes.init("wrap");
+	
+</script>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享2:</title>
+	<link rel="stylesheet" href="jquery-picZoomer.css">
+	<style>
+		.small{
+			width:450px;
+			height:450px;
+			border:1px solid;
+			background-image:url(img/1.jpg);
+			background-size:450px 450px;
+		}
+		ul li{
+			list-style:none;
+			width:50px;
+			height:50px;
+			border:1px solid;
+			display: inline-block;
+		}
+		.big{
+			position: absolute;
+			top:8px;
+			left:600px;
+			width:450px;
+			height:450px;
+			border:1px solid;
+		}
+	</style>
+</head>
+<body>
+	<div class="small"></div>
+	<ul>
+		<li class="smallcube"></li>
+		<li class="smallcube"></li>
+		<li class="smallcube"></li>
+		<li class="smallcube"></li>
+		<li class="smallcube"></li>
+	</ul>
+	<div class="big"></div>
+</body>
+<script type="text/javascript" src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="jquery.picZoomer.js"></script>
+<script>
+	var a = $('.smallcube');
+	for(var i=0;i<a.length;i++){
+		a[i].index = i;
+		a.on("mouseover",function(){
+			var x = this.index+1;
+			$('.small').css({
+				"background-image":"url(img/"+x+".jpg)"
+			})
+			$('.big').css({
+				"background-image":"url(img/"+x+".jpg)"
+			})
+		})
+	}
+</script>
+</html>

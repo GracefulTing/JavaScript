@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var str = '{"name":"tt"}';
+		var obj = JSON.parse(str);
+		console.log(obj.name);
+
+
+		var tel1 = '[{"name":"zz","tel":"135454674848","photo":"img/1.jpg"},{"name":"tt","tel":"46546546465","photo":"img/2.jpg"}]';
+		var obj1 = JSON.parse(tel1);
+		console.log(obj1);
+		for(var i=0;i<obj1.length;i++){
+			var obj = obj1[i];
+			console.log(obj.name);
+		}
+
+
+		var arr = '[\
+			{\
+				"class":1,\
+				"students":\
+				[{"name":"qq","age":20,"sex":"男"},\
+				{"name":"ww","age":20,"sex":"男"},\
+				{"name":"rr","age":20,"sex":"男"}]\
+			},{\
+				"class":2,\
+				"students":\
+				[{"name":"qq","age":20,"sex":"男"},\
+				{"name":"ww","age":20,"sex":"男"},\
+				{"name":"rr","age":20,"sex":"男"}]\
+			},{\
+				"class":3,\
+				"students":\
+				[{"name":"qq","age":20,"sex":"男"},\
+				{"name":"ww","age":20,"sex":"男"},\
+				{"name":"rr","age":20,"sex":"男"}]\
+			}\
+		]';
+		var obj = JSON.parse(arr);
+		for(var i=0;i<obj.length;i++){
+			var o = obj[i];
+		//	console.log(o);
+			var a = o.students;
+			for(var j=0;j<a.length;j++){
+				var oo = a[j];
+				console.log(oo.name);
+			}
+		}
+	//	console.log(obj);
+
+	//	var s = {name:"tt"}; //js类型--对象类型
+	</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>碰撞检测</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		div{
+			width:100px;
+			height:100px;
+			position: absolute;
+			text-align: center;
+			line-height: 100px;
+			font-size:25px;
+		}
+		#box1{
+			background: pink;
+			left:0;
+			top:0;
+		}
+		#box2{
+			background: yellow;
+			left:300px;
+			top:200px;
+		}
+	</style>
+</head>
+<body>
+	<div id="box1">1</div>
+	<div id="box2">2</div>
+</body>
+<script>
+
+	var box1 = document.getElementById('box1');
+	var box2 = document.getElementById('box2');
+
+	move(box1);
+	move(box2);
+
+	
+	//方框移动函数
+	function move(box){
+		box.onmousedown = function(a){
+			var curX = a.clientX;
+			var curY = a.clientY;
+			var offX = this.offsetLeft;
+			var offY = this.offsetTop;
+
+			document.onmousemove = function(b){
+				var endX = b.clientX - curX;
+				var endY = b.clientY - curY;
+				box.style.left = endX + offX + "px";
+				box.style.top = endY + offY + "px";
+
+				var val = comp(box1,box2);
+				//console.log(val);
+				if(val){
+					document.onmousemove = null;
+					alert('警告!');
+				}
+
+			}
+
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			}
+
+		}
+
+	}
+
+	//确认形参的类型;如果有return要用变量接收并打印
+	//判断是否碰撞的函数
+	function comp(k1,k2){
+		var xoffLeft = k1.offsetLeft - k2.offsetWidth;
+		var xoffRight = k1.offsetLeft + k1.offsetWidth;
+		var yoffTop = k1.offsetTop - k2.offsetHeight;
+		var yoffBottom = k1.offsetTop + k1.offsetHeight;
+
+		if(k2.offsetLeft >= xoffLeft && k2.offsetLeft <= xoffRight && k2.offsetTop >= yoffTop && k2.offsetTop <= yoffBottom){
+			return true;
+		}
+		return false;
+	}
+</script>
+</html>

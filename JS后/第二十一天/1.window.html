@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>window</title>
+	<style>
+		div{
+			width:50px;
+			height:50px;
+			background:red;
+			margin-top:10px;
+			line-height:50px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">open</div>
+	<div id="move">move</div>
+	<div id="size">size</div>
+</body>
+<script>
+	var wrap = document.getElementById('wrap');
+	var move = document.getElementById('move');
+	var size = document.getElementById('size');
+	wrap.onclick = function(){
+		newWindow = window.open("http://www.baidu.com","","width=200,height=200");
+		newWindow.document.write("hello");
+		// window.close();   //关闭当前页
+		// window.moveTo(100,100);
+	}
+	move.onclick = function(){
+		newWindow.moveTo(100,200);
+	}
+	size.onclick = function(){
+		newWindow.resizeTo(500,500);
+	}
+</script>
+</html>

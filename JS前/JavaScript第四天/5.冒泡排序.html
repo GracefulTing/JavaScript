@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>冒泡排序</title>
+</head>
+<body>
+	<script>
+		var arr=[1,5,3,7,8,2,9];
+		for(var i=0;i<arr.length-1;i++){
+			for(var j=0;j<arr.length-1-i;j++){
+				if(arr[j]>arr[j+1]){
+					temp=arr[j+1];
+					arr[j+1]=arr[j];
+					arr[j]=temp;
+				}
+			}
+		}
+		console.log(arr);
+		//共6趟  外层i决定趟数,内层j决定次数
+		//第一趟目的:确定最后一位 6次
+		//第二趟目的:确定倒数第二位 5次
+		//...
+
+	</script>
+</body>
+</html>

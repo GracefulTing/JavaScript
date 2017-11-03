@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#wrap{
+			width:900px;
+			height:500px;
+			margin:0 auto;
+			border:1px solid;
+		}
+		.content{
+			height:400px;
+			background:url(./img/background.jpg);
+			background-size:100% 140%;
+			background-position: 0 -95px;
+			position: relative;
+		}
+		.hero{
+			width:50px;
+			height:50px;
+			position: absolute;
+			left:0;
+			bottom:0;
+			background:url(./img/ma.jpg) no-repeat;
+			background-size: 100% 100%;
+		}
+		.road{
+			height:100px;
+			background: url(./img/road.png);
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div class="content">
+			<div class="hero"></div>
+		</div>
+		<div class="road"></div>
+	</div>
+</body>
+<script>
+	var myHero = new Hero({
+		selector:".hero",
+		moveFn:function(){
+			judge(this.element,document.querySelector('.content'));
+		}
+	})
+	function judge(son,father){
+		if(son.offsetLeft <= 0){
+			son.style.left = 0;
+		}
+		if(son.offsetLeft >= 500){
+			son.style.left = 500 + "px";
+			changePos(father);
+		}
+	}
+	function changePos(ele){
+		var a = getVal(ele,"backgroundPosition");
+		var re = a.replace(/px/g,"");
+		var arr = re.split(" ");
+		var x = Number(arr[0]);
+		x -= 5;
+		ele.style.backgroundPosition = x + "px -95px";
+	}
+	function getVal(ele,cssname){
+		if(ele.currentStyle){
+			return ele.currentStyle[cssname];
+		}else{
+			return getComputedStyle(ele,null)[cssname];
+		}
+	}
+	press();
+	function press(){
+		window.onkeydown = function(ev){
+			var e = ev || window.event;
+			switch(e.keyCode){
+				case 65:
+					myHero.direction = "left";
+					myHero.move();
+					break;
+				case 68:
+					myHero.direction = "right";
+					myHero.move();
+					break;
+				case 32:
+					myHero.jump();
+					break;
+			}
+		}
+		window.onkeyup = function(ev){
+			var e = ev || window.event;
+			switch(e.keyCode){
+				case 65:
+				case 68:
+					myHero.stop();
+					break;
+			}
+		}
+	}
+	function Hero(obj){
+		this.element = document.querySelector(obj.selector);
+		this.timer = null;
+		this.direction = "right";
+		this.maxTop = obj.maxTop?obj.maxTop:100;
+		this.count = 0;
+		this.currentTop = this.element.offsetTop;
+		this.move = function(){
+			this.stop();
+			var temp = this;
+			var val = this.direction == "right"?5:-5;
+			this.timer = setInterval(function(){
+				var offLeft = temp.element.offsetLeft;
+				temp.element.style.left = offLeft + val + 'px';
+				if(obj.moveFn){
+					obj.moveFn.call(temp);
+				}
+			},10)
+		}
+		this.stop = function(){
+			clearInterval(this.timer);
+		}
+		this.jump = function(){
+			this.count++;
+			if(this.count>2){
+				return ;
+			}
+			clearInterval(this.jumpTimer);
+			var currentTop = this.element.offsetTop;
+			var temp = this;
+			var val = -1;
+			this.jumpTimer = setInterval(function(){
+				var nowTop = temp.element.offsetTop;
+				temp.element.style.top = nowTop + val + "px";
+				if(Math.abs(nowTop - currentTop)>temp.maxTop){
+					val = 1;
+				}
+				if(temp.element.offsetTop == temp.currentTop && val>0){
+					temp.count = 0;
+					clearInterval(temp.jumpTimer);
+				}
+			})
+		}
+	}
+</script>
+</html>

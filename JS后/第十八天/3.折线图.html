@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" width="500" height="500" style="border:1px solid lightgray"></canvas>
+</body>
+<script>
+	var arr = [100,115,150,120,160];
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	fn(ctx,50,460,450,460);
+	fn(ctx,50,460,50,60);
+	var xWidth = count(450,50,arr);
+	var yWidth = count(460,60,arr);
+	var scale = 400/160;
+	paint(arr);
+	function paint(arr){
+		for(var i=0;i<arr.length;i++){
+			fn(ctx,(i+1)*xWidth,450-scale*arr[i]+50,(i+2)*xWidth,450-scale*arr[i+1]+50);
+		}
+	}
+	function fn(ctx,mx,my,lx,ly){
+		ctx.beginPath();
+		ctx.moveTo(mx,my);
+		ctx.lineTo(lx,ly);
+		ctx.stroke();
+		ctx.closePath();
+	}
+	function count(x,y,arr){
+		var width = Math.abs((y - x)/arr.length);
+		return width;
+	}
+</script>
+</html>

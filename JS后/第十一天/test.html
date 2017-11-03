@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ajax</title>
+</head>
+<body>
+	
+</body>
+<script src="./js/jquery.js"></script>
+<script>
+	$.get("../php/code/news.php",function(data){
+		console.log("data loaded:" + data);
+		var obj = JSON.parse(data);
+		console.log(obj);
+	});
+</script>
+</html>

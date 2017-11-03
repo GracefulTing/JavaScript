@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>查询</title>
+	<style>
+		#wrap{
+			width:600px;
+			min-height:350px;
+			border:1px solid;
+			margin:0 auto;
+		}
+		span{
+			font-size:20px;
+			color:lightblue;
+			margin-left:10px;
+		}
+		input{
+			width:220px;
+			height:30px;
+			border-radius:5px;
+		}
+		button{
+			background:lightblue;
+			border-radius:5px;
+			padding:5px 20px;
+		}
+		table{
+			width:560px;
+			border:1px solid;
+			margin:0 auto;
+			border-collapse: collapse;
+			margin:20px;
+			text-align: center;
+		}
+		tr,th{
+			border:1px solid;
+		}
+		td{
+			border:1px solid;
+			text-align: center;
+		}
+		.active{
+			background:pink;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<span>添加</span>
+		<input type="text" placeholder="姓名" id="thename" class="thename">
+		<input type="text" placeholder="年龄" id="theage">
+		<button id="add">添加</button>
+		<table id="table">
+			<tr>
+				<th>ID</th>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>操作</th>
+			</tr>
+
+		</table>
+		<span>搜索</span>
+		<input type="text" placeholder="姓名" id="thename1">
+		<button id="find">搜索</button>
+		<span>排序</span>
+		<button id="rank">年龄从小到大</button>
+	</div>
+	<script>
+		var add=document.getElementById('add');
+		var find=document.getElementById('find');
+		var rank=document.getElementById('rank');
+		var thename=document.getElementById('thename');
+		var thename1=document.getElementById('thename1');
+		var theage=document.getElementById('theage');
+		var table=document.getElementById('table');
+		var index=0;
+		var rows=table.rows;
+
+		//添加内容
+		add.onclick=function(){
+			var nameVal=thename.value;
+			var ageVal=theage.value;
+
+			index++;
+			var tr=document.createElement('tr');
+			tr.innerHTML="<td>"+index+"</td>"+"<td>"+nameVal+"</td>"+"<td>"+ageVal+"</td>"+"<a>删除</a>";
+			table.appendChild(tr);
+			var aBtn=tr.getElementsByTagName('a');
+			aBtn[0].onclick=function(){
+				table.removeChild(tr);
+			}
+		}
+		
+		//搜索姓名
+		find.onclick=function(){
+			var nameval1=thename1.value;
+			for(var i=1;i<rows.length;i++){
+			 	var nameVal=rows[i].cells[1].innerHTML;
+			 	if(nameval1==nameVal){
+					rows[i].className='active';
+				}
+				else{
+					rows[i].className='';
+				}
+			}
+		}
+
+		//排序
+		rank.onclick=function(){
+			var arr=[];
+
+			for(i=0;i<rows.length;i++){
+	          	arr[i]=rows[i];
+	        }
+	        for(var i=0;i<arr.length-1;i++)
+		 	{
+                for(var j=0;j<arr.length-i-1;j++)
+                {
+                	if(parseInt(arr[j].cells[2].innerHTML)>parseInt(arr[j+1].cells[2].innerHTML))
+                	{
+                		var temp=arr[j];
+                		arr[j]=arr[j+1];
+                		arr[j+1]=temp;
+                	}
+                }    
+		 	}
+	        // arr.sort(function(tr1,tr2){
+		       //  var n1=parseInt(tr1.cells[2].innerHTML);  
+		       //  var n2=parseInt(tr2.cells[2].innerHTML);
+		       //  return n1-n2;
+	        // })
+	        for(i=0;i<arr.length;i++){
+	          	table.appendChild(arr[i]);
+	        }
+		}
+	</script>
+</body>
+</html>
+<!-- 
+渲染界面的方法:
+appendChild();
+removeChild();
+replaceChild();
+insertBefore();
+querySelector:静态,不支持修改数据  需要重新获取才能修改
+getElement...:动态
+-->

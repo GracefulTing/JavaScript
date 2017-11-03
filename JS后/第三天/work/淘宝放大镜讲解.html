@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淘宝放大镜</title>
+	<style>
+		#wrap{
+			overflow: hidden;
+		}
+		#little{
+			width:400px;
+			height:400px;
+			background: url('img/taobao.jpeg');
+			float:left;
+			background-size: 400px 400px;
+			position: relative;
+		}
+		#big{
+			float:left;
+			width:400px;
+			height:400px;
+			background: url('img/taobao.jpeg') no-repeat;
+			background-size:800px 800px;
+			display: none;
+		}
+		#move{
+			width:200px;
+			height:200px;
+			background:black;
+			opacity:0.3;
+			position: absolute;
+			top:0;
+			left:0;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="little">
+			<div id="move"></div>
+		</div>
+		<div id="big"></div>
+	</div>
+</body>
+<script>
+	
+	var move = document.getElementById('move');
+	var little = document.getElementById('little');
+	var big = document.getElementById('big');
+	var flag = 1;     //2表示方框已经显示,1表示方框未显示
+	
+	little.onmouseover = function(ev){
+		big.style.display = 'block';
+		var e = ev || window.event;
+		if(flag == 1){
+			move.style.display = 'block';
+			move.style.left = e.offsetX - 100 + "px";
+			move.style.top = e.offsetY - 100 + "px";
+		}
+		flag = 2;             	
+		var offX = move.offsetLeft;
+		var offY = move.offsetTop;
+		var curX = e.clientX;
+		var curY = e.clientY;
+
+		document.onmousemove = function(ev){
+			var e = ev || window.event;
+			var endX = e.clientX;
+			var endY = e.clientY;
+
+			//move.style.left = endX - curX + offX + "px";
+			//move.style.top = endY - curY + offY + "px";
+
+			//判断是否超出范围,超出范围移除标签
+			if(e.clientX < little.offsetLeft || e.clientX > little.offsetLeft + little.offsetWidth || e.clientY < little.offsetTop || e.clientY > little.offsetTop + little.offsetHeight){
+				flag = 1;
+				document.onmousemove = null;
+				move.style.display = 'none';
+				big.style.display = 'none';
+
+			}
+
+			var x = endX - curX + offX;
+			var y = endY - curY + offY ;
+			
+			if(x < 0){
+				x = 0;
+			}
+			if(x > little.offsetWidth - move.offsetLeft){
+				x = 200; 
+			}
+			if(y < 0){
+				y = 0;
+			}
+			if(y > little.offsetHeight - move.offsetTop){
+				y = 200;
+			}
+
+			move.style.left = x+ "px";
+			move.style.top = y + "px";
+
+			change(x,y);
+		}
+	}
+
+	function change(m,n){
+		big.style.backgroundPosition=-2*m+"px "+-2*n+"px";
+	}
+</script>
+</html>

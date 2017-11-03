@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>选择器层级</title>
+</head>
+<body>
+	<div>this is div</div>
+	<p class="a">this is pa</p>
+	<span>this is span</span>
+	<p class="b">this is pb</p>
+
+	<form action="">
+		<label for="">Name:</label>
+		<input type="text" value="name">
+		<fieldset>
+			<label for="">psw:</label>
+			<input type="text" value="pwd">
+		</fieldset>
+	</form>
+	<input type="text">
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+<script>
+	//任意多个选择器
+	var re = $('div,p.a,span');
+	console.log(re,re[0],re[1],re[2]);
+
+	//在给定的祖先元素下匹配所有的后代元素
+	var obj = $('form input');
+	console.log(obj,obj[0],obj[1]);
+
+	//父子
+	var obj1 = $('form > input');
+	console.log(obj1,obj1[0]);
+
+	//紧邻元素
+	var obj2 = $('label + input');
+	console.log(obj2,obj2[0],obj2[1]);
+
+	//匹配所有兄弟元素
+	var obj3 = $('form ~ input');
+	console.log(obj3,obj3[0]);
+</script>
+</html>

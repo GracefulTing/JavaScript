@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>swiper</title>
+	<link rel="stylesheet" href="swiper-3.4.2.min.css">
+	<style>
+		.swiper-container{
+			width:500px;
+		}
+		#bigPic{
+			height:300px;
+			margin-bottom:30px;
+			background:pink;
+		}
+		#smallPic{
+			height:100px;
+			background:lightblue;
+		}
+		.font1{
+			color:white;
+			font-size:50px;
+			text-align: center;
+			line-height:300px;
+		}
+		.font2{
+			color:white;
+			font-size:30px;
+			text-align: center;
+			line-height:100px;
+		}
+	</style>
+</head>
+<body>
+	<div class="swiper-container" id="bigPic">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide font1">slide1</div>
+			<div class="swiper-slide font1">slide2</div>
+			<div class="swiper-slide font1">slide3</div>
+		</div>
+	</div>
+	<div class="swiper-container" id="smallPic">
+		<div class="swiper-wrapper">
+			<div class="swiper-slide font2">slide1</div>
+			<div class="swiper-slide font2">slide2</div>
+			<div class="swiper-slide font2">slide3</div>
+		</div>
+	</div>
+</body>
+<script src="swiper-3.4.2.min.js"></script>
+<script>
+	var bswiper = new Swiper('#bigPic',{
+		loop:true,
+	})
+	var sswiper = new Swiper("#smallPic",{
+		slidesPerView:3   //当前显示几个
+	})
+	//on只能修改回调函数,其他的进行修改需要用params
+	sswiper.slides[0].style.background = 'pink';
+	sswiper.on("slideChangeEnd",function (sss) {
+		// console.log(sss.realIndex);
+		sswiper.slideTo(sss.realIndex,1000,false);
+		// 修改外框
+		for(var i=0;i<sswiper.params.slidesPerView;i++){
+			sswiper.slides[i].style.background = '';
+		}
+		sswiper.slides[sss.realIndex].style.background = "pink";
+	})
+
+
+	//有loop,用activeIndex
+	//没有loop,用realIndex
+	// var bswiper = new Swiper('#bigPic',{
+	// 	onSlideChangeEnd:function(aaa){
+	// 		sswiper.slideTo(bswiper.realIndex,0,false);
+	// 	}
+	// })
+	// var sswiper = new Swiper('#smallPic',{
+	// 	onSlideChangeEnd:function(bbb){
+	// 		bswiper.slideTo(bswiper.realIndex,0,false);
+	// 	}
+	// })
+</script>
+</html>

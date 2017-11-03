@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#wrap{
+			width:200px;
+			height:300px;
+			/*border:10px solid pink;*/
+			position: relative;
+			overflow: hidden;
+		}
+		#wrap::after{
+			content:"";
+			display: block;
+			clear:both;
+		}
+		#con{
+			width:170px;
+			float:left;
+			position: absolute;
+			left:0;
+			top:0;
+		}
+		#roll{
+			width:30px;
+			float:right;
+			height:100%;
+			background:#ccc;
+			position: relative;
+		}
+		#move{
+			width:100%;
+			border-radius:10px;
+			background:lightgreen;
+			height:40px;
+			position: absolute;
+			left:0 ;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="con">
+			秋日，收获的歌，静秋，蓝天一般的灿烂。轻轻道一声：秋日安好!远方的你亦安好如初!此刻，我仿佛听见窗外的风呢喃着心事，九月天的浪漫，正踏过我的指尖，一幅生命的静美图，在灯火阑珊的夜，温暖而璀璨地铺展开来.又一个任思绪飞扬的夜晚，记忆带走了我无法入眠的睡意，走出窗门仰望天空，夜空中闪烁的星星，能否知道那仰望的人，心底的孤独和叹息，想起你曾与我同行，消失在风里的身影，我是多么希望能拥有一颗透明的心灵和一双会流泪的眼睛，每当我找不到存在的意义，每当我迷失在黑夜里，夜空中都仿佛有一颗最亮的星指引我找到你.突然想写一封信，给我最思念的你，看着你这么多年对困苦的无畏惧，一股傻傻的倔强，有时真的怜惜。又是一个无眠的夜里，无声眼泪惊天动地，我牵挂你，为何如此坚强和执迷，半梦半醒之中，回想着你说过，再多打击，也不放弃，只要我们心是想念的，再多困难险阻，也不畏惧，只要我们走在一起。回想这些年，也曾失望伤过心，你总相信，那片心灵的乌云会散去，从没变得孩子气，常让我生气而变得放弃，那些年，就算冷眼伤了你，可你也从不曾逃避，坚信，我会守护你那颗炽热的心，永远不分离。
+		</div>
+		<div id="roll">
+			<div id="move"></div>
+		</div>
+	</div>
+	<script src="move.js"></script>
+	<script>
+		var move = document.getElementById('move');
+		var roll = document.getElementById('roll');
+		var con = document.getElementById('con');
+		var wrap = document.getElementById('wrap');
+
+		
+		mo(con,wrap,roll,move);
+		
+
+	</script>
+</body>
+</html>

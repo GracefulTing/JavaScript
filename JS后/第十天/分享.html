@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+			list-style:none;
+		}
+		#wrap{
+			width:200px;
+			margin:20px auto;
+			text-align: center;
+		}
+		#title{
+			height:80px;
+			line-height:80px;
+			font-size:30px;
+			border:3px solid red;
+		}
+		ul{
+			display: none;
+		}
+		ul li{
+			height:50px;
+			line-height:50px;
+			border:3px solid red;
+		}
+		.active{
+			background:lightgreen;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="title">隐藏</div>
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+	</div>
+</body>
+<script>
+	var wrap = document.getElementById('wrap');
+	var title = document.getElementById('title');
+	var ul = document.getElementsByTagName('ul')[0];
+	var aLi = document.getElementsByTagName('li');
+	var judge = true;
+
+	title.onclick = function(){
+		if(judge == true){
+			ul.style.display = 'block';
+			title.innerHTML = '展开';
+			click(aLi);
+			judge = false;
+		}else{
+			ul.style.display = 'none';
+			title.innerHTML = '隐藏';
+			judge = true;
+		}
+	}
+
+	function click(arr){
+		for(var i=0;i<arr.length;i++){
+			arr[i].judge = true;
+			arr[i].onclick = function(){
+				console.log(this);
+				if(this.judge == true){
+					this.className = 'active';
+					this.judge = false;
+				}else{
+					this.className = '';
+					this.judge = true;
+				}
+			}
+		}
+	}
+</script>
+</html>

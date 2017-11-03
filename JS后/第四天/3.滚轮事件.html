@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>滚轮事件</title>
+	<style>
+		#wrap{
+			width:400px;
+			height:600px;
+			background:red;
+		}
+		#a{
+			width:100px;
+			height:100px;
+			background: yellow;
+			position: absolute;
+			left:500px;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"></div>
+	<div id="a"></div>
+	<script>
+		var wrap=document.getElementById('wrap');
+		var a=document.getElementById("a");
+		// wrap.onmousewheel=function(ev){
+		// 	var e = ev || window.event;
+		// 	console.log(e);
+		// 	if(e.wheelDelta>0){
+		// 		console.log("向上");
+		// 	}else{
+		// 		console.log("向下");
+		// 	}
+		// }
+		// a.onmousewheel=function(ev){
+		// 	var e = ev || window.event;
+		// 	console.log(e);
+		// 	if(e.wheelDelta>0){
+		// 		console.log("向上");
+		// 	}else{
+		// 		console.log("向下");
+		// 	}
+		// }
+
+		wrap.onmousewheel=function(ev){
+		 	var e = ev || window.event;
+
+			var val = judge(e);
+
+			if(val == true){
+				alert('向上');
+			}else{
+				alert('向下');
+			}
+		}
+		a.onmousewheel=function(ev){
+		 	var e = ev || window.event;
+
+			var val = judge(e);
+
+			if(val == true){
+				console.log('向上');
+			}else{
+				console.log('向下');
+			}
+		}
+		function judge(obj){
+
+			if(obj.wheelDelta>0){
+				//console.log("向上");
+				return true;
+			}else{
+				//console.log("向下");
+				return false;
+			}
+		}
+
+
+
+	</script>
+
+</body>
+</html>

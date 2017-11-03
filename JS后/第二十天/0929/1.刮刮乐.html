@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style media="screen">
+        #canvas{
+            background: gray;
+            position: absolute;
+            top:0;
+            left:0;
+        }
+        img{
+            position: absolute;
+            top:0;
+            left:0;
+        }
+    </style>
+</head>
+<body>
+    <img src="beautiful.jpg" alt="">
+    <canvas id="canvas" width="300" height="300"></canvas>
+</body>
+<script type="text/javascript">
+    var canvas = document.querySelector("#canvas");
+    var ctx = canvas.getContext("2d");
+    ctx.beginPath();
+    ctx.moveTo(0,0);
+    ctx.lineTo(100,100);
+    ctx.strokeStyle = "#fff";
+    ctx.stroke();
+    ctx.closePath();
+
+    var scale = bili();
+    if(scale > 0.3) {
+        canvas.style.display = "none";
+    }
+    function bili() {
+        var imageData = ctx.getImageData(0,0,canvas.width,canvas.height);
+        var count = 0;
+        var allCount = imageData.data.length / 4;
+        for (var i = 0; i < imageData.data.length; i+=4) {
+            if(imageData.data[i + 3] < 128) {
+                count++;
+            }
+        }
+        return count/allCount;
+    }
+
+
+</script>
+</html>

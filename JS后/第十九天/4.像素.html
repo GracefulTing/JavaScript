@@ -1,0 +1,100 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>像素</title>
+	<style>
+		#canvas{
+			background: pink;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="520" height="690" style="border:1px solid pink;"></canvas>
+</body>
+<script>
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+
+	var img = new Image();
+	img.src = "img/1.jpg";
+	img.onload = function(){
+		ctx.beginPath();
+		ctx.drawImage(img,0,0,canvas.width,canvas.height);
+		var imgData = ctx.getImageData(10,10,1,1);
+		ctx.closePath();
+	}
+</script>
+</html> -->
+
+
+<!-- 需要放在服务器下 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>像素</title>
+	<style>
+		#canvas{
+			background: pink;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="520" height="690" style="border:1px solid pink;"></canvas>
+</body>
+<script>
+	// var canvas = document.getElementById('canvas');
+	// var ctx = canvas.getContext('2d');
+	// var img = new Image();
+	// img.src = '1.jpg';
+	// img.onload = function(){
+	// 	ctx.beginPath();
+	// 	ctx.drawImage(img,0,0,canvas.width,canvas.height);
+	// 	var imgData = ctx.getImageData(20,20,1,1);
+	// 	console.log(imgData.data);
+	// 	imgData.data[0] = 255;
+	// 	imgData.data[1] = 0;
+	// 	imgData.data[2] = 0;
+	// 	imgData.data[3] = 255;
+	// 	ctx.putImageData(imgData,20,20);
+	// 	ctx.closePath();
+	// }
+
+
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	var img = new Image();
+	img.src = '1.jpg';
+	img.onload = function(){
+		ctx.beginPath();
+		ctx.drawImage(img,0,0,300,400);
+		var imgData = ctx.getImageData(20,20,canvas.width,canvas.height);
+		//灰度图片
+		for(var i=0;i<imgData.data.length;i+=4){
+			var r = imgData.data[i];
+			var g = imgData.data[i+1];
+			var b = imgData.data[i+2];
+			var av = parseInt((r+g+b)/3);      //取平均值
+			imgData.data[i] = av+50;
+			imgData.data[i+1] = av;
+			imgData.data[i+2] = 255-av;
+		}
+		ctx.putImageData(imgData,250,250);
+		ctx.closePath();
+
+		//颜色反转
+		// ctx.beginPath();
+		// ctx.drawImage(img,0,0,300,400);
+		// var imgData = ctx.getImageData(20,20,canvas.width,canvas.height);
+		// for(var i=0;i<imgData.data.length;i+=4){
+		// 	imgData.data[i] = 255-imgData.data[i];
+		// 	imgData.data[i+1] = 255-imgData.data[i+1];
+		// 	imgData.data[i+2] = 255-imgData.data[i+2];
+		// }
+		// ctx.putImageData(imgData,250,250);
+		// ctx.closePath();
+
+	}
+</script>
+</html>

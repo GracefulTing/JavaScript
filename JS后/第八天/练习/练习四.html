@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>BJH170705通讯录</title>
+	<style>
+		#wrap{
+			width:350px;
+			border:1px solid #ccc;
+		}
+		.letter{
+			background:#f0f0f0;
+		}
+		#title{
+			font-size:25px;
+			text-align: center;
+		}
+		.peoples{
+			height:30px;
+			line-height:30px;
+		}
+		a{
+			text-decoration: none;
+			color:black;
+			float:right;
+			margin-right:10px;
+		}
+		input{
+			border:none;
+		}
+	</style>
+</head>
+<body>
+	<!-- 实现通讯录的增加、删除、修改 -->
+	<div id="wrap">
+		<div id="title">通讯录</div>
+		<!-- 
+		<div class="info">
+			<div class="letter">A</div>
+			<div class="peoples">
+				<span></span>
+				<a href="">修改</a>
+				<a href="">删除</a>
+			</div> 
+		</div>
+		-->
+	</div>
+</body>
+<script>
+	//JSON数据
+	var info = '[{"letter":"A","peoples":[{"name":"艾林","tel":12145447}]},{"letter":"C","peoples":[{"name":"崔颖星","tel":12145447}]},{"letter":"G","peoples":[{"name":"郭晓霞","tel":12145447},{"name":"郜超","tel":12145447}]},{"letter":"L","peoples":[{"name":"李晓芮","tel":12145447},{"name":"李晓凤","tel":12145447},{"name":"李梦月","tel":12145447}]},{"letter":"M","peoples":[{"name":"苗婕","tel":12145447}]},{"letter":"Q","peoples":[{"name":"全莹","tel":12145447}]},{"letter":"S","peoples":[{"name":"宋传永","tel":12145447},{"name":"孙帅","tel":12145447},{"name":"孙晓忱","tel":12145447}]},{"letter":"T","peoples":[{"name":"田志东","tel":12145447}]},{"letter":"W","peoples":[{"name":"王浩亮","tel":12145447},{"name":"王子豪","tel":12145447},{"name":"武超敏","tel":12145447},{"name":"王津柳","tel":12145447},{"name":"王玉","tel":12145447},{"name":"王彦昆","tel":12145447}]},{"letter":"X","peoples":[{"name":"许飞","tel":12145447}]},{"letter":"Y","peoples":[{"name":"尹子涛","tel":12145447},{"name":"游洲","tel":12145447},{"name":"宇文斌杰","tel":12145447},{"name":"杨婷","tel":12145447}]},{"letter":"Z","peoples":[{"name":"张然","tel":12145447},{"name":"张乐","tel":12145447},{"name":"邹鑫鑫","tel":12145447},{"name":"赵子筠","tel":12145447},{"name":"赵帅","tel":12145447},{"name":"肇鹏","tel":12145447},{"name":"赵双","tel":12145447},{"name":"张云","tel":12145447}]}]';
+
+	//解析为数组
+	var arr = JSON.parse(info);
+	console.log(arr);
+	createTag(arr);
+
+	//创建标签
+	function createTag(array){
+		var wrap = document.getElementById('wrap');
+		for(var i = 0; i < array.length; i ++){
+			create(array,i);
+		}
+	}
+
+	function create(array,i){
+		var obj = array[i];
+		var obj1 = obj.peoples;
+		var info = createEle("div",wrap);
+		info.className = 'info';
+		var letter = createEle("div",info);
+		letter.className = 'letter';
+		var le = createEle("span",letter);
+		le.innerHTML = obj.letter;
+		for(var j = 0 ; j < obj1.length; j++){
+			var peoples = createEle("div",info);
+			peoples.className = 'peoples';
+			var name = createEle("span",peoples);
+			name.innerHTML = obj1[j].name + ":" + obj1[j].tel;
+			var a = createEle("a",peoples);
+			a.innerHTML = "删除";
+			var update = createEle("a",peoples);
+			update.innerHTML = "修改";
+			a.onclick = function(){
+				del(this);
+			}
+			update.onclick = function(){
+				//update(this);
+				var par = this.parentNode;
+				var inp = createEle("input",peoples);
+				console.log(par);
+				console.log()
+				par.removeChild(name);
+				inp.focus();
+			}
+		}
+	}
+
+	//修改功能
+	// function update(obj){
+	// 	obj.focus();
+	// }
+
+	//删除功能
+	function del(a){
+		var cur = a;
+		var index = obj.peoples.indexof()
+		var fa = cur.parentNode;
+		var fa1 = cur.parentNode.parentNode;
+		if(fa1.children.length == 2){
+			wrap.removeChild(fa1);    //修改界面
+			fa.splice();      //修改数组
+		}else{
+			fa1.removeChild(fa);
+		}
+	}
+
+	//创建的公用函数
+	function createEle(name,parent){
+		var n = document.createElement(name);
+		parent.appendChild(n);
+		return n;
+	}
+</script>
+</html>

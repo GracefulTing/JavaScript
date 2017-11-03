@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则练习</title>
+</head>
+<body>
+	<input type="text" id="user">
+	<script>
+		var user = document.getElementById('user');
+		
+		user.oninput = function(){
+			var reg = /[0-9]/g;
+			this.value = this.value.replace(reg,"");
+		}
+
+		user.onchange = function(){
+			var reg = /[0-9]/g;
+			if(reg.test(this.value)){
+				...
+			}
+		}
+	</script>
+</body>
+</html>

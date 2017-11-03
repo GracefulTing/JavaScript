@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>高级绕圈</title>
+	<style>
+		*{
+			padding: 0;
+			margin:0;
+		}
+		.par{
+			width:500px;
+			height:500px;
+			border:1px solid;
+			position: relative;
+		}
+		.son{
+			width:50px;
+			height:50px;
+			background: red;
+			position: absolute;
+			left:0;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div class="par" id="par">
+		<div class="son" id="son"></div>
+	</div>
+	<input type="button" value="顺时针" class="but01 direc">
+	<input type="button" value="逆时针" class="but02 direc">
+	<input type="text" placeholder="速度" class="text01" id="speed">
+	<input type="text" placeholder="圈数" class="text02" id="race">
+	<input type="button" value="确定" class="but03" id="sure">
+	<script>
+		var par=document.getElementById('par');
+		var son=document.getElementById('son');
+		var direc=document.querySelectorAll('.direc');
+		var speed=document.getElementById('speed');
+		var sure=document.getElementById('sure');
+		var race=document.getElementById('race');
+		var iTimer00=null;
+		var raceNum=0;
+		var thedir;
+
+		theClick();
+		//确定按钮绑定事件
+		function theClick(){
+			for(var i=0;i<direc.length;i++){
+				direc[i].onclick=(function(index){
+					return function(){
+						thedir=index;
+					}
+				})(i)
+			}
+			sure.onclick=function(){
+				enter();
+			}
+		}
+
+		//输入信息(确定圈数和速度)
+		function enter(){
+			var raceVue=parseInt(race.value);
+			var speedVue=parseInt(speed.value);
+			timer(speedVue,raceVue,thedir);
+		}
+
+		//运动
+		function move(speed,theraceNum,dir){
+			if(dir==0){
+				direction=true;
+			}
+			else{
+				direction=false;
+			}
+			var theleft=son.offsetLeft;
+			var thetop=son.offsetTop;
+
+			var maxX=par.clientWidth-son.clientWidth;
+			var maxY=par.clientHeight-son.clientHeight;
+
+			//顺时针运动
+			if(direction&&raceNum<theraceNum){
+				if(theleft<maxX&&thetop==0){
+					thetop=0;
+					theleft+=speed;
+					if(theleft>=maxX){
+						theleft=maxX;
+					}
+				}
+				if(theleft==maxX&&thetop<maxY){
+					thetop+=speed;
+					if(thetop>=maxY){
+						thetop=maxY;
+					}
+				}
+				if(theleft<=maxX&&thetop==maxY){
+					theleft-=speed;
+					if(theleft<=0){
+						theleft=0;
+					}
+				}
+				if(theleft==0&&thetop<=maxY){
+					thetop-=speed;
+					if(thetop<=0){
+						thetop=0;
+						raceNum++;
+					}
+				}
+			}
+			//逆时针运动
+			else if(!direction&&raceNum<theraceNum){
+				if(thetop<=maxY&&theleft==0){
+					thetop+=speed;
+					if(thetop>=maxY){
+						thetop=maxY;
+					}
+				}
+				if(theleft<=maxX&&thetop==maxY){
+					theleft+=speed;
+					if(theleft>=maxX){
+						theleft=maxX;
+					}
+				}
+				if(thetop<=maxY&&theleft==maxX){
+					thetop-=speed;
+					if(thetop<=0){
+						thetop=0;
+					}
+				}
+				if(thetop==0&&theleft<=maxX){
+					theleft-=speed;
+					if(theleft<=0){
+						theleft=0;
+						raceNum++;
+					}
+				}
+			}
+			son.style.left=theleft+"px";
+			son.style.top=thetop+"px";
+		}
+
+		
+		//转圈定时器
+		function timer(speed,theraceNum,dir){
+			clearInterval(iTimer00);
+			iTimer00=setInterval(function(){
+				move(speed,theraceNum,dir);
+			},10)
+		}
+		//获取某个元素的left值:offsetLeft;
+		//为某个元素赋left值:style;
+	</script>
+</body>
+</html>

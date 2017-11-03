@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>淘宝翻页</title>
+	<style>
+		#wrap{
+			width:1000px;
+			min-height:400px;
+			border:1px solid;
+			margin:0 auto;
+			text-align: center;
+		}
+		.first{
+			width:248px;
+			min-height:400px;
+			border:1px solid red;
+			float:left;
+			overflow: hidden;
+		}
+		img{
+			width:100%;
+			height:100%;
+		}
+		.btn{
+			width:50px;
+			height:30px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<!-- <div class="first"></div>
+		<div class="first"></div>
+		<div class="first"></div>
+		<div class="first"></div> -->
+		<!-- <input type="button" value="1">
+		<input type="button" value="2">
+		<input type="button" value="3">
+		<input type="button" value="4">  -->
+	</div>
+</body>
+<script>
+	var wrap=document.getElementById('wrap');
+	
+	var arr=[
+		{
+			price:69,
+            detail:"2017秋装新款宽松假两件套头泡泡袖chic卫衣女ulzzang长袖上衣潮",
+            shop:"泡泡旗舰店",
+            add:"广东 揭阳"
+		},
+		{
+			price:79,
+            detail:"秋季大码女装胖mm2017新款200斤显瘦遮肚子秋装长袖减龄v领连衣裙 ",
+            shop:"梦想启动吧",
+            add:"广东 东莞"
+		},
+		{
+			price:79,
+            detail:"情侣装秋装2017新款韩版长袖卫衣男女宽松原宿风bf外套学生班服潮 ",
+            shop:"迪姿旗舰店",
+            add:"广东 广州"
+		},
+		{
+			price:79,
+            detail:"情侣装秋装2017新款韩版长袖卫衣男女宽松原宿风bf外套学生班服潮 ",
+            shop:"迪姿旗舰店",
+            add:"广东 广州"
+		},
+
+	]
+
+	create(4);
+	function create(num){
+		for(var i=0;i<num;i++){
+			var div=document.createElement('div');
+			div.className='first';
+			wrap.appendChild(div);
+
+			var img=document.createElement('img');
+			img.src='img/1.jpg';
+			div.appendChild(img);
+		}
+
+	}
+
+	for(var i=0;i<arr.length;i++){
+		console.log(arr[i]);
+
+	}
+
+</script>
+</html>

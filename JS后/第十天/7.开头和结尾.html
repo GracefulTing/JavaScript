@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>开头和结尾</title>
+</head>
+<body>
+	<script>
+		//以什么开头
+		// ^
+		// var reg = /^http/g;
+		// var str = "http://www";
+		// var val = reg.test(str);
+		// console.log(val);
+
+		// var reg = /^(http|ftp)/g;  //正确写法
+		// //var reg = /^[ftphttp]/g;  //错误写法
+		// var str = "ftp://www";
+		// var val = reg.test(str);
+		// console.log(val);
+
+		// var reg = /h/g;
+		// var str = "helloh";
+		// var val1 = reg.exec(str);
+		// var val2 = reg.exec(str);
+		// console.log(val1);
+		// console.log(val2);
+		//注意:全局,测试两次,分别是每一个,第一次测试完,从当前下标后一个开始继续测试.test和exec同样效果,返回值不同,test为true/false,exec返回数组.
+
+		//以什么结尾
+		//$
+		// var reg = /w$/g;
+		// var str = "hello";
+		// var val = reg.test(str);
+		// console.log(val);
+
+		// var reg = /^(http).{6}(com)$/g;  
+		// var str = "http://ww.com";
+		// var val = reg.test(str);
+		// console.log(val);
+	</script>
+</body>
+</html>

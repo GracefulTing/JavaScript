@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS</title>
+	<style>
+		
+		*{
+			margin:0;
+			padding: 0;
+		}
+		body{
+			height:2500px;
+		}
+		p{
+			position: absolute;
+			border:10px solid pink;
+		}
+		p:nth-child(1){
+			top:0;
+			left:0;
+		}
+		p:nth-child(2){
+			top:300px;
+			left:0;
+		}
+		button{
+			margin-left:500px;
+		}
+		#wrap{
+			width:100px;
+			height:100px;
+			background:red;
+			border:10px solid green;
+			position: relative;
+		}
+		#first{
+			width:50px;
+			height:50px;
+			background:yellow;
+			position: absolute;
+			top:20px;
+			left:20px;
+			margin-top:10px;
+		}
+	</style>
+</head>
+<body>
+	<!-- <p>hello</p>
+	<p>hello2</p>
+
+	<button>click</button> -->
+
+	<div id="wrap">
+		<div id="first"></div>
+	</div>
+</body>
+<script src="jquery.js"></script>
+<script>
+	//offset可以设置值,position不可以设置.
+	//offset():获取匹配元素在当前视口的相对偏移   相对浏览器
+	// var p = $("p:last");
+	// var offset = p.offset();
+	// p.html("left:" + offset.left + ",top:" + offset.top);
+
+	// $("p:last").offset({top:100,left:100});
+
+	//position():获取匹配元素相对父元素的偏移   相对父级
+	// var p = $("p:first");
+	// var position = p.position();
+	// $("p:last").html("left:"+position.left+",top:"+position.top);
+
+	//scrollTop和scrollLeft可以设置值.
+	//scrollTop():获取匹配元素相对滚动条顶部的偏移
+	// var p = $("p:first");
+	// $("p:last").text("scrollTop:"+p.scrollTop());
+	// $("body").scrollTop(200);
+	// console.log($("body").scrollTop())
+
+	//scrollLeft():获取匹配元素相对滚动条左侧的偏移
+	// var p = $("p:first");
+	// $("p:last").text("scrollLeft:"+p.scrollLeft());
+
+	//height():取得匹配元素当前计算的高度值
+	// $("p").height(50);
+
+	// $("button").click(function(){
+	// 	$("p").height(function(n,c){
+	// 		return c+30;
+	// 	})
+	// })
+
+	//width():取得第一个匹配元素当前计算的宽度值
+	// $("p").width(100);
+
+	// $("button").click(function(){
+	// 	$("p").width(function(n,c){
+	// 		return c+10;
+	// 	})
+	// })
+
+	//innerHeight():获取第一个匹配元素内部区域高度(包括补白,不包括边框)
+	// var p = $("p:first");
+	// $("p:last").text("innerHeight:"+p.innerHeight());
+
+	//innerWidth():获取第一个匹配元素内部区域宽度(包括补白,不包括边框);
+	// var p = $("p:first");
+	// $("p:last").text("innerWidth:"+p.innerWidth());
+
+	//outerHeight():获取第一个匹配元素外部高度(默认包括补白和边框),设置为true,计算边距在内
+	// var p = $("p:first");
+	// $("p:last").text("outerHeight:"+p.outerHeight()+",outerHeight(true):"+p.outerHeight(true));
+
+	//outerWidth():获取第一个匹配元素外部宽度
+	// var p = $("p:first");
+	// $("p:last").text("outerWidth:"+p.outerWidth()+",outerWidth(true):"+p.outerWidth(true));
+
+	// var obj = $("#first");
+	// // var div = obj.offset();
+	// var div = obj.position();
+	// obj.html("left:"+div.left+",top:"+div.top);
+</script>
+</html>

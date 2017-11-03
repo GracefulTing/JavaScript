@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>B作业</title>
+	<style>
+		#wrap{
+			width:500px;
+			height:400px;
+			border:1px solid;
+			margin:0px auto;
+			position: relative;
+		}
+		#move{
+			width:50px;
+			height:50px;
+			border:1px solid;
+			background: red;
+			position: absolute;
+			top:0;
+			left:0;
+		}
+		.sel{
+			margin:0px auto;
+			width:500px;
+			/*border:1px solid;*/
+		}
+		#show{
+			width:80px;
+			height:30px;
+			border:1px solid;
+			/*border-radius:50%;*/
+			margin:150px auto;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="move"></div>
+		<div id="show"></div>
+	</div>
+	<div class="sel">
+		<input type="text" id="cir" placeholder="请输入运动的圈数">
+		<input type="text" id="speed" placeholder="请输入运动的速度">
+		<button id="rots">顺时针运动</button>
+		<button id="rotn">逆时针运动</button>
+	</div>
+	<script>
+		var wrap=document.getElementById('wrap');
+		var move=document.getElementById('move');
+		var show=document.getElementById('show');
+		var cir=document.getElementById('cir');
+		var speed=document.getElementById('speed');
+		var rots=document.getElementById('rots');
+		var totn=document.getElementById('rotn');
+
+		var speed_x;
+		var speed_y;
+		var count=-1;
+
+		//顺时针点击事件
+		rots.onclick=function(){
+			var realCir=parseInt(cir.value);
+			var realSpeed=parseInt(speed.value);
+			
+			if(realCir!=''&&realSpeed!=''){
+				moveS(realCir,realSpeed);
+			}
+			if(realCir==''&&realSpeed==''){
+				alert('请输入运动的圈数以及运动速度!');
+			}
+			if(realSpeed==''&&realCir!=''){
+				alert('请输入运动速度!');
+			}
+			if(realCir==''&&realSpeed!=''){
+				alert('请输入运动的圈数');
+			}
+			
+		}
+		//逆时针点击事件
+		rotn.onclick=function(){
+			var realCir=parseInt(cir.value);
+			var realSpeed=parseInt(speed.value);
+			
+			if(realCir!=''&&realSpeed!=''){
+				moveN(realCir,realSpeed);
+			}
+			if(realCir==''&&realSpeed==''){
+				alert('请输入运动的圈数以及运动速度!');
+			}
+			if(realSpeed==''&&realCir!=''){
+				alert('请输入运动速度!');
+			}
+			if(realCir==''&&realSpeed!=''){
+				alert('请输入运动的圈数');
+			}
+			
+		}
+		//顺时针运动函数
+		function moveS(realCir,realSpeed){
+			var movefunc=setInterval(function(){
+				var curpos_x=move.offsetLeft;
+				var curpos_y=move.offsetTop;
+
+				if(curpos_x==0&&curpos_y==0){
+					speed_x=1;
+					speed_y=0;
+					count++;
+					show.innerHTML="还剩"+(realCir-count)+"圈";
+					if(count==realCir){
+						clearInterval(movefunc);
+					}	
+				}
+				if(curpos_y==0&&curpos_x>=wrap.clientWidth-move.offsetWidth){
+					speed_x=0;
+					speed_y=1;
+				}
+				if(curpos_x>=wrap.clientWidth-move.offsetWidth&&curpos_y>wrap.clientHeight-move.offsetHeight){
+					speed_x=-1;
+					speed_y=0;
+				}
+				if(curpos_x==0&&curpos_y>=wrap.clientHeight-move.offsetHeight){
+					speed_x=0;
+					speed_y=-1;
+				}
+
+				curpos_x+=(speed_x*realSpeed);
+				curpos_y+=(speed_y*realSpeed);
+
+				move.style.left=curpos_x+"px";
+				move.style.top=curpos_y+"px";
+			},20);
+		}
+		//逆时针运动函数
+		function moveN(realCir,realSpeed){
+			var movefunc=setInterval(function(){
+				var curpos_x=move.offsetLeft;
+				var curpos_y=move.offsetTop;
+
+				if(curpos_x==0&&curpos_y==0){
+					speed_x=0;
+					speed_y=1;
+					count++;
+					show.innerHTML="还剩"+(realCir-count)+"圈";
+					if(count==realCir){
+						clearInterval(movefunc);
+					}	
+				}
+				if(curpos_x==0&&curpos_y>=wrap.clientWidth-move.offsetWidth){
+					speed_x=1;
+					speed_y=0;
+				}
+				if(curpos_x>=wrap.clientWidth-move.offsetWidth&&curpos_y>wrap.clientHeight-move.offsetHeight){
+					speed_x=0;
+					speed_y=-1;
+				}
+				if(curpos_y==0&&curpos_x>=wrap.clientHeight-move.offsetHeight){
+					speed_x=-1;
+					speed_y=0;
+				}
+
+				curpos_x+=(speed_x*realSpeed);
+				curpos_y+=(speed_y*realSpeed);
+
+				move.style.left=curpos_x+"px";
+				move.style.top=curpos_y+"px";
+			},20);
+		}
+	</script>
+</body>
+</html>

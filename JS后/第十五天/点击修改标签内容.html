@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点击修改标签内容</title>
+	<style>
+		#wrap{
+			width:300px;
+			height:100px;
+			border:1px solid;
+		}
+		.change{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div class="name">名字</div>
+		<div class="tel">电话</div>
+	</div>
+	<div class="change">
+		<input type="text" id="thename">
+		<input type="text" id="tel">
+		<button id="btn">确定</button>
+	</div>
+</body>
+<script>
+	var wrap = document.getElementById("wrap");
+	var change = document.getElementsByClassName('change')[0];
+	wrap.name = document.querySelector('.name').innerHTML;
+	wrap.tel = document.querySelector('.tel').innerHTML;
+	var thename = document.getElementById('thename');
+	var tel = document.getElementById('tel');
+	var btn = document.getElementById('btn');
+	//点击进行修改
+	wrap.onclick = function(){
+		this.style.display = 'none';
+		change.style.display = 'block';
+		//将页面的值返回给输入框
+		thename.value = this.name;
+		tel.value = this.tel;
+		//给确定按钮绑定标签
+		btn.nameVal = this;
+		btn.telVal = this;
+	}
+	//确定按钮后修改页面
+	btn.onclick = function(){
+		change.style.display = 'none';
+		wrap.style.display = 'block';
+		//将输入框中的值返回给页面
+		this.nameVal.querySelector(".name").innerHTML = thename.value;
+		this.telVal.querySelector(".tel").innerHTML = tel.value;
+	}
+
+	// window.onresize = function(){
+	// 	window.innerWidth
+	// }
+</script>
+</html>
+
+<!-- 多条数据 -->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>点击修改标签内容</title>
+	<style>
+		.wrap{
+			width:300px;
+			height:50px;
+			border:1px solid;
+		}
+		.change{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="wrap">
+			<div class="name">名字1</div>
+			<div class="tel">电话1</div>
+		</div>
+		<div class="wrap">
+			<div class="name">名字2</div>
+			<div class="tel">电话2</div>
+		</div>
+	</div>
+	<div class="change">
+		<input type="text" id="thename">
+		<input type="text" id="tel">
+		<button id="btn">确定</button>
+	</div>
+</body>
+<script>
+	var box = document.getElementById('box');
+	var wrap = document.getElementsByClassName("wrap");
+	var change = document.getElementsByClassName('change')[0];
+	var thename = document.getElementById('thename');
+	var tel = document.getElementById('tel');
+	var btn = document.getElementById('btn');
+	//点击进行修改
+	for(var i=0;i<wrap.length;i++){
+		wrap[i].index = i;
+		wrap[i].onclick = function(){
+			box.style.display = 'none';
+			change.style.display = 'block';
+			//将页面的值返回给输入框
+			thename.value =this.querySelector('.name').innerHTML;
+			tel.value = this.querySelector('.tel').innerHTML;
+			//给确定按钮绑定标签
+			btn.nameVal = this;
+			btn.telVal = this;
+		}
+	}
+	//确定按钮后修改页面
+	btn.onclick = function(){
+		change.style.display = 'none';
+		box.style.display = 'block';
+		//将输入框中的值返回给页面
+		this.nameVal.querySelector(".name").innerHTML = thename.value;
+		this.telVal.querySelector(".tel").innerHTML = tel.value;
+	}
+
+	// window.onresize = function(){
+	// 	window.innerWidth
+	// }
+</script>
+</html> -->

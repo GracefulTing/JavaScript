@@ -1,0 +1,30 @@
+<!-- 需要放到服务器下 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" width="400" height="400" style="border:1px solid;"></canvas>
+    <video id="video1" style="display:none;" src="HTML5的前世今生.mp4" autoplay></video>
+</body>
+<script>
+	var canvas = document.getElementById('canvas');
+    var video = document.querySelector("#video1");
+	var ctx = canvas.getContext('2d');
+
+	function animate(){
+		if(!video.ended){
+			// 在canvas上绘制图片
+			ctx.drawImage(video,0,0,canvas.width,canvas.height);
+			window.requestAnimationFrame(animate);
+		}
+	}
+	// 视频可以播放的时候会自动调用这个函数
+	video.oncanplay = function(){
+		// animate();
+		window.requestAnimationFrame(animate);
+	}
+</script>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#wrap{
+			width:100px;
+			height:100px;
+			background: red;
+		}
+		#wrap::after{
+			content:"";
+			display: block;
+			width:30px;
+			height:30px;
+			background: green;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="first"></div>
+		<div id="second"></div>
+	</div>
+</body>
+</html>

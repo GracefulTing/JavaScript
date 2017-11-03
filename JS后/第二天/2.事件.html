@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件对象</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#wrap{
+			width:100px;
+			height:100px;
+			background: red;
+			position: absolute;
+			left:0;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="dot"></div>
+	</div>
+</body>
+<script>
+	var wrap=document.getElementById('wrap');
+
+	wrap.onmousedown=function(a){
+		var curX=a.clientX;
+		var curY=a.clientY;
+		var offX=this.offsetLeft;
+		var offY=this.offsetTop;
+		document.onmousemove=function(b){
+			var endX=b.clientX-curX;
+			var endY=b.clientY-curY;
+			// console.log(endX,endY);
+			wrap.style.left=offX+endX+"px";
+			wrap.style.top=offY+endY+"px";
+		}
+		document.onmouseup=function(){
+			document.onmousemove=null;
+		}
+	}
+	
+</script>
+</html>

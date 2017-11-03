@@ -1,0 +1,100 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享1:懒加载</title>
+	<style>
+		#wrap{
+			width:500px;
+			margin:0 auto;
+			border:1px solid;
+		}
+		#wrap img{
+			width:500px;
+			height:500px;
+			background-image:url(images/loading.gif);
+			display: inline-block;
+			background-size:100% 100%;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<img src="images/blank.gif" alt="" data-echo="images/big-1.jpg">
+		<img src="images/blank.gif" alt="" data-echo="images/big-2.jpg">
+		<img src="images/blank.gif" alt="" data-echo="images/big-3.jpg">
+		<img src="images/blank.gif" alt="" data-echo="images/big-4.jpg">
+		<img src="images/blank.gif" alt="" data-echo="images/big-5.jpg">
+		<img src="images/blank.gif" alt="" data-echo="images/big-6.jpg">
+		<img src="images/blank.gif" alt="" data-echo="images/big-7.jpg">
+	</div>
+</body>
+<script src="echo.js"></script>
+<script>
+	Echo.init({
+		offset:500,        //距离可视窗口500px以内可以加载
+		throttle:1000      //时间
+	})
+</script>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享2:页面跳转</title>
+	<style>
+		#wrap{
+			width:650px;
+			height:40px;
+			border:1px solid;
+			display: flex;
+			justify-content: space-around;
+		}
+		#wrap button{
+			height:25px;
+			background:lightblue;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<button class="but1">直接跳转</button>
+		<button class="but2">返回上一次浏览界面</button>
+		<button class="but3">IE</button>
+		<button class="but4">自身(对框架无效)</button>
+		<button class="but5">自身(对框架有效)</button>
+	</div>
+	<iframe src="http://hao123.com" frameborder="0" width="500" height="500"></iframe>
+</body>
+<script>
+	var btn1 = document.getElementsByClassName('but1')[0];
+	var btn2 = document.getElementsByClassName('but2')[0];
+	var btn3 = document.getElementsByClassName('but3')[0];
+	var btn4 = document.getElementsByClassName('but4')[0];
+	var btn5 = document.getElementsByClassName('but5')[0];
+	btn1.onclick = function(){
+		//当前页面的地址
+		console.log(window.location.href);
+		window.location.href='http://www.baidu.com';
+		//添加参数的
+		window.location.href=''+window.location.href;
+	}
+	//返回上次浏览的界面
+	btn2.onclick = function(){
+		window.history.back(-1);
+	}
+	//指定页面的跳转(ie 对框架无效)
+	// btn3.onclick = function(){
+	// 	window.navigate('http://www.baidu.com');
+	// }
+	//指定自身页面的跳转(对框架无效)
+	btn4.onclick = function(){
+		this.location = 'http://www.baidu.com';
+	}
+	//指定自身页面的跳转(对框架有效)
+	btn5.onclick = function(){
+		top.location = 'http://www.baidu.com';   //top-window
+	}
+</script>
+</html>

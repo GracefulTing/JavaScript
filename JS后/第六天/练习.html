@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		// m条数据,每页最多n条,计算有多少页
+		//  var a = count(20,8);
+		//  console.log(a);
+		//  function count(m,n){
+			
+		// 	var c = m/n;
+		// 	return Math.ceil(c);
+
+		// 	var c = Math.floor(m/n);
+		// 	if(m%n != 0){
+		// 		c += 1;
+		// 	}
+		// 	return c;
+		//  }
+
+		//给定一个字符串,查找任意字符的个数
+		// var str = "aajkjlieiwo";
+		// var re = find(str,'i');
+		// console.log(re);
+		// function find(s,letter){
+		// 	var c = 0;
+		// 	for(var i = 0;i< s.length;i++){
+		// 		var val = s.charAt(i);
+		// 		if(val == letter){
+		// 			c++;
+		// 		}
+		// 	}
+		// 	return c;
+		// }
+
+		//判断数组中重复元素的个数(元素为字符串)
+		var array = ["a","ab","a","ab","bb"];
+
+		var val = judge(array);
+		console.log(val);
+
+		function judge(arr){
+			var temp = [];
+			
+			for(var i = 0; i < arr.length; i ++){
+				var count = 1;
+				for(var k = i+1; k < arr.length; k++){
+					if(arr[i] == arr[k]){
+						count++;
+					}
+				}
+				
+				var flag = 0;    //没有重复元素
+				for(var j = 0; j<temp.length;j++){
+					if(temp[j]==arr[i]){
+						flag = 1;
+						break;
+					}
+				}
+				if(flag == 0){
+					temp.push(arr[i]);
+				}else{
+					continue;
+				}
+
+				
+				console.log(arr[i]+":"+count);
+			}
+		return temp;
+		}
+
+		
+		//去重
+		// var array = ["a","aa","ab","ab","bb"];
+
+		// var val = qc(array);
+		// console.log(val);		
+
+		// function qc(arr){
+		// 	var arr1 = [];
+		// 	for(var i = 0 ;i < arr.length; i++){
+		// 		// arr1.push(arr[i]);
+		// 		var flag = 0;   //标记arr1中是否有重复的元素,0表示没有重复元素,1表示有重复元素
+		// 		for(var j = 0;j < arr1.length;j++){
+		// 			if(arr1[j] == arr[i]){
+		// 				flag = 1;
+		// 				break;
+		// 			}
+		// 		}
+		// 		if(flag == 0){
+		// 			arr1.push(arr[i]);
+		// 		}
+		// 	}
+		// 	return arr1;
+		// }
+	</script>
+</body>
+</html>

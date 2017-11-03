@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>练习二</title>
+</head>
+<body>
+	<!-- 
+	2.去除一个字符串中的重复字符
+	-->
+	<!-- 往空字符串中添加元素的方法? -->
+	<script>
+		var str = 'helloworld';
+
+		var obj = qc(str);
+		console.log(obj);
+
+		function qc(a){
+			var str1 = '';
+			for(var i=0;i<a.length;i++){
+				var flag = false;
+				for(var j=0;j<str1.length;j++){
+					if(a[i] == str1[j]){
+						flag = true;
+						break;
+					}
+				}
+				if(flag == false){
+					str1 += a[i];
+				}
+			}
+			return str1;
+		}
+		
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包</title>
+	<style>
+		ul{
+			background: grey;
+			margin:50px auto;
+			text-align: center;
+			padding-right:10px;
+		}
+		li{
+			background: orange;
+			padding: 10px 30px;
+			display: inline-block;
+			margin-left:10px;
+			margin-bottom: 30px;
+			border:1px solid #fff;
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		var aLi=document.getElementsByTagName('li');
+		// for(var i=0;i<aLi.length;i++){
+		// 	aLi[i].onclick=function(){
+		// 		console.log(i);
+		// 	}
+		// }
+
+		//onclick事件的运行机制:在不点击相应的变量之前不执行onclick后面的function,function(){}相当于没写;
+		// 题目分析:先执行5次循环,i++,给aLi[i]分别添加onclick,但不执行后面的function,i最终变成了5,在100年以后,鼠标点击aLi,此时执行onclick后面的function.把function添加到onclick事件里.
+		// (注意:function相当于写在了for循环的外面)
+
+		for(var i=0;i<aLi.length;i++){
+			aLi[i].onclick=(function(index){
+				return function()
+				{
+					console.log(index);
+				};
+			}(i))
+		}
+
+		// 返回值:
+		// function(){
+		// 	console.log(i);
+		// }
+
+		// 分析:
+		// 第一步:自执行外层函数把i这个实参传进来,代替所有形参;
+		// 第二步:确定了返回值是一个函数;
+		// 500年以后点击了aLi,把返回值里的函数添加到点击事件.
+
+		//闭包:闭包可以实现将值存储起来.
+
+		//变量作用域的特性是出了该变量的域就失去作用,如何让变量的值保存起来?
+		// function init(){
+		// 	var age=20;
+		// 	function displayAge(){
+		// 		console.log(age);
+		// 	}
+		// 	displayAge();
+		// }
+		// init();
+		//console.log(age);   //报错
+
+		//使用闭包将变量值持久化.
+		function closure_func(){
+			var age=20;
+			function displayAge(){
+				//console.log(age); 
+				console.log(age++);
+				return age;
+				//console.log(age); 
+			}
+			//displayAge();
+			return displayAge;
+		}        
+		var myfun=closure_func();
+		myfun();  //20
+		myfun();  //21
+		var a=myfun();
+		console.log(a);
+
+		/*
+			闭包的必要条件:
+			1.一个函数嵌套另一个函数,并且被嵌套的函数访问了父级的变量;
+			2.要将内部函数返回给父级函数.
+			闭包的作用:
+			1.防止变量名冲突;
+			2.变量持久化;
+			3.闭包可以成为外层函数内部与外层函数外部的桥梁.
+		*/
+
+		//示例1:
+		function makeAdder(y){
+			return function(y){
+				alert(y);
+			}			
+		}
+		var adder5=makeAdder(10);   //未运行
+		adder5(5);    //5
+
+
+		
+	</script>
+</body>
+</html>

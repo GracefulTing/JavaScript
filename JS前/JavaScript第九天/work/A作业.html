@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#wrap{
+			width:400px;
+			height:500px;
+			border:1px solid;
+			margin:20px auto;
+		}
+		#select{
+			list-style: none;
+			text-align: center;
+			margin:25px auto;
+		}
+		#select li{
+			float:left;
+			width:58px;
+			height:20px;
+			/*border:1px solid;*/
+			margin-left:8px;
+			background: #ccc;
+		}
+		#cansee{
+			width:400px;
+			height:400px;
+			/*border:1px solid red;*/
+			margin-top:70px;
+			overflow: hidden;
+			position: relative;
+
+		}
+		img{
+			width:400px;
+			height:400px;
+		}
+		#oUl{
+			width:1600px;
+			list-style: none;
+			position: absolute;
+			transition:all 1s;
+			left:0;
+			top:-40px;
+		}
+		#oUl li{
+			float:left;
+		}
+		.active{
+			background:grey;
+		}
+		#select span{
+			width:58px;
+			height:20px;
+			/*border:1px solid;*/
+			margin-left:8px;
+			background: #ccc;
+		}
+		#prev{
+			float:left;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<ul id="select">
+			<span id="prev">上一页</span>
+			<li class="num">1</li>
+			<li class="num">2</li>
+			<li class="num">3</li>
+			<li class="num">4</li>
+			<span id="next">下一页</span>
+		</ul>
+		<div id="cansee">
+			<ul id="oUl">
+				<li><img src="img/1.jpg" alt=""></li>
+				<li><img src="img/2.jpg" alt=""></li>
+				<li><img src="img/3.jpg" alt=""></li>
+				<li><img src="img/4.jpg" alt=""></li>
+			</ul>
+		</div>
+	</div>
+	<script src="tween.js"></script>
+	<script>
+		var select=document.getElementById('select');
+		var selectLi=select.getElementsByTagName('li');
+		var oUl=document.getElementById('oUl');
+		var prev=document.getElementById('prev');
+		var next=document.getElementById('next');
+
+		var t=0,
+			b=0,
+			c=-1200,
+			d=3;
+
+		var iTimer;
+		var index;
+
+		//图片移动的函数
+		function move(){
+			t++;
+			if(t>d){
+				t=0;
+			}
+			oUl.style.left=Tween.Linear(t,b,c,d)+"px";
+		}
+
+		//上一页
+		prev.onclick=function(){
+			t--;
+			if(t<0){
+				t=3;
+			}
+			oUl.style.left=Tween.Linear(t,b,c,d)+"px";
+			change(t);
+		}
+
+		//下一页
+		next.onclick=function(){
+			move();
+			change(t);
+		}
+
+		//图片与页数对应
+		for(var i=0;i<selectLi.length;i++){
+			selectLi[i].onclick=(function(t){
+				return function(){
+					oUl.style.left=Tween.Linear(t,b,c,d)+"px";
+					for(var i=0;i<selectLi.length;i++){
+						selectLi[i].style.background='';
+					}
+					this.style.background='grey';
+					change(t);
+				}
+			})(i)
+		}
+		
+		//改变鼠标点击前后的样式
+		function change(obj){
+			for(var i=0;i<selectLi.length;i++){
+				selectLi[i].style.background='';
+			}
+			selectLi[obj].style.background='grey';
+		}
+
+		//自动轮播
+		play();
+		function play(){
+			iTimer=setInterval(function(){
+				move();
+				change(t);
+			},1000)
+		}
+	</script>
+</body>
+</html>

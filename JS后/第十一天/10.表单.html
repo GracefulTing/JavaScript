@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单</title>
+</head>
+<body>
+	<form action="">
+		<input type="text" disabled="disabled">
+		<input type="button">
+		<input type="file">
+		<input type="radio">
+		<input type="password">
+		<input type="checkbox" checked="checked">
+		<input type="hidden">
+		<input type="image">
+		<input type="submit">
+		<input type="reset">
+		<select name="" id="">
+			<option value="">option</option>
+			<option value="" selected="selected">11</option>
+		</select>
+		<textarea name="" id="" cols="30" rows="10"></textarea>
+		<button>button</button>
+	</form>
+
+	<div id="wrap"></div>
+
+	<div class="notme"><div class="notme"></div></div>
+	<div class="box"><div class="box"></div></div>
+	<div class="box"><span class="box"></span></div>
+	
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+<script>
+	//:input---匹配所有input,textarea,select,button元素
+	var obj = $(":input");
+	console.log(obj);
+
+	var obj1 = $(":text");
+	console.log(obj1,obj1[0]);
+
+	var obj2 = $(":password");
+	console.log(obj2,obj2[0]);
+
+	var obj3 = $(":radio");
+	console.log(obj3,obj3[0]);
+
+	var obj4 = $(":checkbox");
+	console.log(obj4,obj4[0]);
+
+	var obj5 = $(":submit");
+	console.log(obj5,obj5[0]);
+
+	var obj6 = $(":image");
+	console.log(obj6,obj6[0]);
+
+	var obj7 = $(":reset");
+	console.log(obj7,obj7[0]);
+
+	var obj8 = $(":button");
+	console.log(obj8,obj8[0]);
+
+	var obj9 = $(":file");
+	console.log(obj9,obj9[0]);
+
+	//:enabled:匹配所有可用元素
+	var obj10 = $("input:enabled");
+	console.log(obj10);
+
+	//:disabled:匹配所有可用元素
+	var obj11 = $("input:disabled");
+	console.log(obj11,obj11[0]);
+
+	//:checked--被选中元素:单选框/复选框
+	var obj12 = $("input:checked");
+	console.log(obj12,obj12[0]);
+
+	//:selected--查找所有选中的选项元素
+	var obj13 = $("select option:selected");
+	console.log(obj13,obj13[0]);
+
+	//混淆选择器
+	//:escapeSelector---用于类选择器或者ID选择器中包含一些CSS特殊字符的时候,支持所有浏览器
+	// var o1 = $.escapeSelector('#wrap');
+	// console.log(o1);
+
+	// var o2 = $("div").find("."+$.escapeSelector(".box"));
+	// console.log(o2,o2[0],o2[1]);
+</script>
+</html>

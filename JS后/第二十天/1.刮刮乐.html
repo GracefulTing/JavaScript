@@ -1,0 +1,89 @@
+<!-- 需要在服务器 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>刮刮乐</title>
+	<style>
+		#canvas{
+			/*background:gray;*/
+			position: absolute;
+			z-index:5;
+		}
+		#box{
+			width:300px;
+			height:500px;
+			/*background:red;*/
+			background:url(./img/1.jpg) no-repeat;
+			background-size:100% 100%;
+			position: absolute;
+			z-index: 1;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<canvas id="canvas"  width="300" height="500"></canvas>
+</body>
+<script>
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+
+	//灰色背景
+	ctx.beginPath();
+	ctx.fillStyle = 'gray';
+	ctx.fillRect(0,0,300,500);
+	ctx.fill();
+	ctx.closePath();
+
+	ctx.globalCompositeOperation = 'destination-out';
+
+	//白线
+	// drawLine(0,0,1);
+	function drawLine(sx,sy,ex,ey){
+		ctx.restore();
+		ctx.beginPath();
+		ctx.moveTo(sx,sy);
+		ctx.lineTo(ex,ey);
+		ctx.lineCap = "round";
+		ctx.strokeStyle = 'white';
+		ctx.lineWidth = "15";
+		ctx.stroke();
+		ctx.closePath();
+		ctx.save();
+	}
+
+	canvas.onmousedown = function(ev){
+		var e = ev || window.event;
+		var bx = e.offsetX;
+		var by = e.offsetY;
+		canvas.onmousemove = function(ev){
+			var e = ev || window.event;
+			var ex = e.offsetX;
+			var ey = e.offsetY;
+			drawLine(bx,by,ex,ey);
+			bx = ex;
+			by = ey;
+			var val = scale();
+			if(val > 0.7){
+				canvas.style.display = 'none';
+			}
+		}
+		canvas.onmouseup = function(){
+			canvas.onmousemove = null;
+		}
+	}
+
+	function scale(){
+		var data = ctx.getImageData(0,0,canvas.width,canvas.height);
+		var count = 0;
+		var allcount = data.data.length/4;
+		for(var i=0;i<data.data.length;i+=4){
+			if(data.data[i+3] < 128) {    //半透明
+				count++;
+			}
+		}
+		return count/allcount;
+	}
+</script>
+</html>

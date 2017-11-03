@@ -1,0 +1,197 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		#wrap{
+			width:100px;
+			height:100px;
+			background:red;
+			margin-left:50px;
+			border:5px solid blue;
+			position: absolute;
+		}
+		#wrap0{
+			width:300px;
+			height:300px;
+			border:10px solid green;
+			margin-left:50px;
+			position: relative;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap0">
+		<div id="wrap"></div>	
+	</div>
+</body>
+<script>
+	var wrap0 = document.getElementById('wrap0');
+	var wrap = document.getElementById('wrap');
+	wrap.onclick= function(ev){
+		var e = ev || window.event;
+		console.log(e.clientX);
+		console.log(e.offsetX);
+		console.log(e.screenX);
+	}
+	console.log(wrap.clientWidth);
+	console.log(wrap.offsetWidth);
+	console.log(wrap.clientLeft);
+	console.log(wrap.offsetLeft);
+</script>
+</html> -->
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		/*#wrap{
+			width:100px;
+			height:100px;
+			background:red;
+		}*/
+		*{
+			margin:0;
+			padding:0;
+			list-style: none;
+		}
+		li{
+			width:50px;
+			height:50px;
+			border-radius: 50%;
+			background: orange;
+			margin-left:5px;
+			float:left;
+			text-align: center;
+			line-height: 50px;
+			color:white;
+		}
+		ul{
+			overflow: hidden;
+			width:275px;
+			margin:100px auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"></div>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+	<script>
+		//var wrap = document.getElementById('wrap');
+
+		// function test(){
+		// 	console.log(this);
+		// }
+		// // test();
+
+		// wrap.onclick = test;
+			
+			// console.log(this);
+		
+
+		var lis = document.getElementsByTagName('li');
+		for(var i=0;i<lis.length;i++){
+			lis[i].onclick = function(){
+				for(var i=0;i<lis.length;i++){
+					lis[i].style.background = '';
+				}
+				this.style.background = 'red';
+			}
+		}
+	</script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>碰撞检测</title>
+	<style>
+		#aa{
+			width:100px;
+			height:100px;
+			background:pink;
+			position: absolute;
+			top:0;
+			left:0;
+		}
+		#bb{
+			width:100px;
+			height:100px;
+			background: lightgreen;
+			position: absolute;
+			top:200px;
+			left:200px;
+		}
+	</style>
+</head>
+<body>
+	<div id="aa"></div>
+	<div id="bb"></div>
+</body>
+<script>
+	var aa = document.getElementById('aa');
+	var bb = document.getElementById('bb');
+
+	move(aa);
+	move(bb);
+
+	function move(a){
+		a.onmousedown = function(ev){
+			var e = ev || window.event;
+			var curX = e.clientX;
+			var curY = e.clientY;
+			var offX = a.offsetLeft;
+			var offY = a.offsetTop;
+			document.onmousemove = function(ev){
+				var e = ev || window.event;
+				var endX = e.clientX - curX + offX ;
+				var endY = e.clientY - curY + offY ;
+				a.style.left = endX + "px";
+				a.style.top = endY + "px";
+
+				judge(aa,bb,function(){
+					console.log("碰撞");
+				},function(){
+
+				});
+			}
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			}
+		}
+	}
+	function judge(a,b,fn1,fn2){
+		var offLeft = a.offsetLeft - b.offsetWidth;
+		var offRight = a.offsetLeft + a.offsetWidth;
+		var offTop = a.offsetTop - b.offsetHeight;
+		var offBottom = a.offsetTop + a.offsetHeight;
+
+		if(b.offsetLeft >= offLeft && b.offsetLeft <= offRight && b.offsetTop >= offTop && b.offsetTop <= offBottom){
+			// return true;
+			if(fn1){
+				fn1();
+			}
+		}else{
+			if(fn2){
+				fn2();
+			}
+		}
+		// return false;
+	}
+</script>
+</html>

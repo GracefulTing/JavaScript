@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>function函数</title>
+</head>
+<body>
+	<script>
+		// alert('hello');
+		// document.write(1);
+		// console.log(5+5);
+
+		//函数:具有一定功能的代码段.
+		//函数的组成部分:关键字function 函数名myFunction(){要执行的语句}
+		//声明函数/函数定义
+		// function myFunction(){
+		// 	alert('calling a function');
+		// }
+		//函数调用
+		//myFunction();
+
+		//函数的4种形式:由参数和返回值决定
+
+		//1.无参数,无返回值
+		// function buywater(){
+		// 	alert('谁去买水');
+		// }
+
+		//2.无参数,有返回值:return的结果就是函数的返回值
+		// function buywater2(){
+		// 	return 'dede去买水';
+		// }
+		// var a=buywater2();
+		// console.log(a);
+
+		//3.有参数,无返回值
+		// function buyrice(obj){
+		// 	console.log('我给'+obj+'买饭');
+		// }
+		// buyrice('dede');
+
+		//4.有参数,有返回值
+		// function buysoup(obj){
+		// 	return ('我给'+obj+'买粥');
+		// 	alert(1);	
+		// }
+		// var a=buysoup('dede');
+		// console.log(a);
+		// console.log(buysoup('dede'));
+
+		/*
+			return两个作用:
+			1.返回需要的值
+			2.终止了
+
+			参数有两个:形参   实参
+			实参:实际参数,也就代表具体的值.
+			形参:形式参数,可以理解为变量.
+		*/
+
+		//练习:使用函数求出两个数的最大值(5,6    10,8)
+		// function max(a,b){
+		// 	return (a>b?a:b);
+		// }
+		// var a=max(5,6);
+		// console.log(a);
+		// var b=max(10,8); 
+		// console.log(b);
+
+		//使用函数求三个数的最大值,要求有返回值
+		
+		// function max(a,b,c){
+		// 	if(a>b&&b>c)  return a;
+		// 	if(b>c&&c>a)  return b;
+		// 	if(c>a&&a>b)  return c;
+		// }
+		// console.log(max(2,1,5));
+
+		// var max=0;
+		// function maxof(a,b,c){
+		// 	max=a>b?a:b;
+		// 	return max>c?max:c;
+		// }
+		// console.log(maxof(1,4,9));
+
+		//函数的嵌套调用/函数回调
+		// function maxValue(a,b){
+		//  	return (a>b?a:b);
+		// }
+		// var max=0;
+		// function maxthree(a,b,c){
+		// 	max1=maxValue(a,b);
+		// 	return max1>c?max1:c;
+		// 	// max2=maxValue(max,c);
+		// 	// return max2;
+		// }
+		// console.log(maxthree(2,5,7));
+
+		
+		
+	</script>
+</body>
+</html>

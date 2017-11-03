@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则常用函数</title>
+</head>
+<body>
+	<script>
+		var reg = /a/g;
+		var str = 'helloabsajk';
+		//正则函数1:test()
+		var val = reg.test(str);
+		console.log(val);
+
+		//正则函数2:exec()
+		var val = reg.exec(str);
+		console.log(val);
+		console.log(val.index);
+	</script>
+</body>
+</html>

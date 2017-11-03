@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas</title>
+</head>
+<body>
+	<canvas id="canvas" width="120" height="40"></canvas>
+	<a href="#" id="change">看不清,换一张</a>
+</body>
+<script>
+	var change = document.querySelector('#change');
+
+	//随机函数
+	function random(min,max){
+		return parseInt(Math.random()*(max-min)+min);
+	}
+
+	//生成随机颜色
+	function randomColor(min,max){
+		var r = random(min,max);
+		var g = random(min,max);
+		var b = random(min,max);
+		return "rgb("+r+","+g+","+b+")";
+	}
+
+	drawPic();
+	change.onclick = function(){
+		drawPic();
+	}
+	//绘图函数
+	function drawPic(){
+		var canvas = document.querySelector('#canvas');
+		var ctx = canvas.getContext('2d');
+		var width = canvas.width;
+		var height = canvas.height;
+		// ctx.textBaseline = 'bottom';
+
+		//背景色
+		ctx.fillStyle = randomColor(180,240);   //颜色太深可能看不清
+		ctx.fillRect(0,0,width,height);
+
+		//文字
+		var str = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM0123456789';
+		for(var i=0;i<4;i++){
+			var text = str[random(0,str.length)];
+			ctx.font = random(15,40)+'px SimHei';
+			ctx.fillStyle = randomColor(50,160);
+			var x = 10+i*25;
+			var y = random(25,45);
+			var deg = random(-45,45);
+			//修改坐标原点和旋转角度
+			ctx.translate(x,y);
+			ctx.rotate(deg*Math.PI/180);
+			ctx.fillText(text,0,0);
+			//恢复坐标原点和旋转角度
+			ctx.rotate(-deg*Math.PI/180);
+			ctx.translate(-x,-y);
+		}
+		//干扰线
+		for(var i=0;i<6;i++){
+			ctx.beginPath();
+			ctx.strokeStyle = randomColor(40,180);
+			ctx.moveTo(random(0,width),random(0,height));
+			ctx.lineTo(random(0,width),random(0,height));
+			ctx.stroke();
+			ctx.closePath();
+		}
+		//干扰点
+		for(var i=0;i<100;i++){
+			ctx.beginPath();
+			ctx.arc(random(0,width),random(0,height),1,0,Math.PI*2);
+			ctx.fillStyle = randomColor(0,255);
+			ctx.fill();
+			ctx.closePath();
+		}
+	}
+
+</script>
+</html>

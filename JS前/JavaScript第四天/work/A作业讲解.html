@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>排序</title>
+</head>
+<body>
+	<script>
+		var arr=['a','c','e','h','i','c','a','h','e'];
+
+		//排序
+		arr.sort();
+		console.log(arr);
+
+		var res=[arr[0]];
+		var res02=[arr[0]];
+		var res03=[arr[0]];
+
+		//去重
+		for(var i=1;i<arr.length;i++){
+			if(arr[i]!=res[res.length-1]){
+				res.push(arr[i]);
+				res02.push(arr[i]);
+				res03.push(arr[i]);
+			}
+			else{
+				res.splice(res.length-1,1);
+			}
+		}
+		
+		for(var i=0;i<res02.length;i++){
+			if(res[0]==res02[i]){
+				res02.splice(i,1);
+				res03.splice(i,1);
+				res02.push(res[0]);
+			}
+		}
+		// res03.reverse();
+		// for(var i=0;i<res03.length;i++){
+		// 	res02.push(res03[i]);
+		// }
+		
+		for(var i=res03.length-1;i>=0;i--){
+			res02.push(res03[i]);
+		}
+		console.log(res);
+		console.log(res02);
+		console.log(res03);
+	</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+	var oDiv=document.getElementById('oDiv');
+	oDiv.onclick=(function()
+		{
+			console.log(this);     //window
+		})();
+	var iTimer=setTimeout(function()
+	{
+		
+		oDiv.onclick=function()
+		{
+			(function(){console.log(this)})(); //Uncaught TypeError: Cannot set property 'onclick' of null
+    at 6.html:11
+		}
+	},1000)
+
+	</script>
+</body>
+</html>

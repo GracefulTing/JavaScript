@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>打飞机</title>
+	<link rel="stylesheet" href="./css/layout.css">
+</head>
+<body>
+	<div id="wrap">
+		<div class="back"></div>
+		<canvas id="canvas" width="320" height="568"></canvas>
+	</div>
+</body>
+<script type="text/javascript"
+src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="./js/back.js"></script>
+<script src="./js/hero.js"></script>
+<script>
+	//创建飞机
+	var hero;
+	var loadNum = 0;
+	var bulletArray = [];
+	var memoryArray = [];     //将超出范围的元素放到此数组中
+	var enemyArr = [];
+	var memoryArr = [];
+
+	var heroImg = new Image();
+	heroImg.src = './img/herofly.png';
+	heroImg.onload = function(){
+		loadNumChange();
+	}
+
+	var bulletImg = new Image();
+	bulletImg.src = './img/bullet1.png';
+	bulletImg.onload = function(){
+		loadNumChange();
+	}
+
+	var enemyImg = new Image();
+	enemyImg.src = './img/enemy1.png';
+	enemyImg.onload = function(){
+		loadNumChange();
+	}
+
+	function loadNumChange(){
+		loadNum++;
+		if(loadNum == 3){
+			createHero();
+			createBullet();
+			createEnemy();					
+			refresh();
+		}
+	}
+
+	//创建飞机
+	function createHero(){
+		hero = new HeroFly({
+			canvas:$("#canvas"),
+			img:heroImg,
+			num:5,
+			cx:($("#canvas")[0].width - (heroImg.width/5))/2,
+			cy:$("#canvas")[0].height - heroImg.height
+		})
+	}
+
+	//创建子弹
+	function createBullet(){
+		var timer = setInterval(function(){
+			if(memoryArray.length > 0){
+				var b = memoryArray[0];
+				b.cx = hero.cx + (hero.imgWidth - bulletImg.width)/2;
+				b.cy = hero.cy - bulletImg.height;
+				memoryArray.shift();
+				bulletArray.push(b);
+			}else{
+				var bullet = new HeroFly({
+					canvas:$("#canvas"),
+					img:bulletImg,
+					num:1,
+					// cx:子弹绘制位置:飞机的cx+(飞机.width - 子弹.width)/2
+		        	// cy:飞机cy-子弹.height
+					cx:hero.cx + (hero.imgWidth - bulletImg.width)/2,
+					cy:hero.cy - bulletImg.height,
+					vy:-3
+				})
+				bulletArray.push(bullet);				
+			}
+		},1000)
+	}
+
+	function random(min,max){
+		return parseInt(Math.random()*(max-min)+min);
+	}
+
+	//创建敌机
+	function createEnemy(){
+		var Timer = setInterval(function(){
+			if(memoryArr.length > 0){
+				var m = memoryArr[0];
+				m.cx = random(0,$("#canvas")[0].width - (heroImg.width/5));
+				m.cy = 0;
+				memoryArr.shift();
+				enemyArr.push(m);
+			}else{
+                // console.log("create bullet");
+				var enemy = new HeroFly({
+					canvas:$("#canvas"),
+					img:enemyImg,
+					num:5,
+					cx:random(0,$("#canvas")[0].width - (heroImg.width/5)),
+					cy:0,
+					vy:4
+				})
+				enemyArr.push(enemy);
+			}
+		},600)
+	}
+
+	//判断边界
+	function judgeBorder(){
+		if(hero.cx <= 0){
+			hero.cx = 0;
+		}
+		if(hero.cx >= ($("#canvas")[0].width - (heroImg.width/5))){
+			hero.cx = ($("#canvas")[0].width - (heroImg.width/5));
+		}
+		if(hero.cy <= 0){
+			hero.cy = 0;
+		}
+		if(hero.cy >= ($("#canvas")[0].height - heroImg.height)){
+			hero.cy = ($("#canvas")[0].height - heroImg.height);
+		}
+	}
+
+
+	//刷新
+	function refresh(){
+		hero.ctx.clearRect(0,0,$('#canvas')[0].width,$('#canvas')[0].height);
+		judgeBorder();
+		hero.drawFly();
+		for(var i=0;i<bulletArray.length;i++){
+			bulletArray[i].drawFly();
+			if(bulletArray[i].cy < -bulletArray[i].imgHeight){
+				memoryArray.push(bulletArray[i]);
+				bulletArray.splice(i,1);
+				i--;
+			}
+		}
+		for(var i=0;i<enemyArr.length;i++){
+			enemyArr[i].drawFly();
+			if(enemyArr[i].cy > $("#canvas")[0].height){
+				memoryArr.push(enemyArr[i]);
+				enemyArr.splice(i,1);
+				i--;
+			}
+		}
+		window.requestAnimationFrame(refresh);
+	}
+
+	//键盘操作
+	window.onkeydown = function(ev){
+		var e = ev || window.event;
+		// console.log(e.keyCode);
+		switch(e.keyCode){
+			case 38:        //上
+				hero.vy = -5;
+				break;
+			case 40:        //下
+				hero.vy = 5;
+			 	break;
+			case 37:        //左
+				hero.vx = -5;
+				break;
+			case 39:        //右
+				hero.vx = 5;
+				break;
+		}
+	}
+	window.onkeyup = function(){
+		hero.vx = 0;
+		hero.vy = 0;
+	}
+</script>
+</html>

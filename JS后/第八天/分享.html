@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#wrap{
+			width:60%;
+			margin:100px auto;
+			text-align: center;
+		}
+		span{
+			width:50px;
+			height:20px;
+			margin-left:20px;
+			display: inline-block;
+			border:1px solid;
+			background:pink;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<span>1</span>
+		<span>2</span>
+		<span>3</span>
+		<span>4</span>
+		<span>5</span>
+	</div>
+	<script>
+		var span = document.getElementsByTagName('span');
+		// for(var i=0;i<span.length;i++){
+		// 	span[i].onclick = (function(a){
+		// 		return function(){
+		// 			console.log(a);
+		// 		}
+		// 	})(i)
+		// }
+		for(var i=0;i<span.length;i++){
+			(function(i){
+				span[i].onclick = function(){
+					console.log(i);
+				}
+			})(i)
+		}
+
+
+		// var now = new Date();
+		// console.log(now);
+
+		// var d1 = new Date("2017 September 9");
+		// console.log(d1);
+
+		// var d2 = new Date(2017,8,10,11,30);
+		// console.log(d2);
+
+		// var d3 = new Date(1500000000000);
+		// console.log(d3);
+
+		// var leftTime = d2.getTime() - now.getTime();
+		// var time = Math.floor(leftTime/(24*60*60*1000));
+		// console.log(time);
+		// var hour = Math.floor((leftTime - time*1000*60*60*24)/(1000*60*60));
+		// console.log(hour);
+
+
+
+		// var x = 0;
+		// var day = new Date().getDay();
+		// switch(day){
+		// 	case 0:
+		// 		x = '星期日';
+		// 		break;
+		// 	case 1:
+		// 		x = '星期一';
+		// 		break;
+		// 	case 2:
+		// 		x = '星期二';
+		// 		break;
+		// 	case 3:
+		// 		x = '星期三';
+		// 		break;
+		// 	case 4:
+		// 		x = '星期四';
+		// 		break;
+		// 	case 5:
+		// 		x = '星期五';
+		// 		break;
+		// 	case 6:
+		// 		x = '星期六';
+		// 		break;
+		// }
+		// console.log(x);
+	</script>
+</body>
+</html>

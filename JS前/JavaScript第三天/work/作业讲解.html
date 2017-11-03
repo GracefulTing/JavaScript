@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			text-align: center;
+		}
+		div{
+			width:50px;
+			height:50px;
+			background: red;
+			display: inline-block;
+			margin: 5px;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		// 输出上半区
+		for(var i=0;i<7;i++){
+			for(var j=0;j<2*i+1;j++){  //具体的每行div个数
+				//i=0 j=0 1个div
+				//i=0 j=0 j=1 j=2 3个div
+				//i=0 j=0 j=1 j=2 j=3 j=4 5个div
+				document.write("<div></div>");
+			}
+			document.write("</br>");
+		}
+		//输出下半区
+		for(var i=5;i>=0;i--){    //行
+			for(var j=0;j<2*i+1;j++){			//具体的每行div个数
+				//i=5 j=11
+				//i=4 j=9
+				document.write("<div></div>");
+			}
+			document.write("</br>");
+		}
+	</script>
+</body>
+</html>

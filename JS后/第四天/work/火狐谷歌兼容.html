@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#a{
+			width:100px;
+			height:600px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="a"></div>
+</body>
+<script>
+	// var a =  document.getElementById('a');
+	
+	// mouse(a,function(){
+	// 	a.style.background = "yellow";
+	// },function(){
+	// 	a.style.background = "green";
+	// })
+
+	// function mouse(obj,fn1,fn2){
+	// 	var type = window.navigator.userAgent.indexOf('Firefox')!=-1?"DOMMouseScroll":"mousewheel";
+	// 	obj.addEventListener(type,function(ev){
+	// 		var e  = ev || window.event;
+	// 		if(e.detail){
+	// 			if(e.detail>0){
+	// 				if(fn2){
+	// 					fn2();
+	// 				}
+	// 			}else{
+	// 				if(fn1){
+	// 					fn1();
+	// 				}
+	// 			}
+	// 		}else{
+	// 			if(e.wheelDelta>0){
+	// 				if(fn1){
+	// 					fn1();
+	// 				}
+	// 			}else{
+	// 				if(fn2){
+	// 					fn2();
+	// 				}
+	// 			}
+	// 		}
+	// 	})
+	// }
+
+	var a =  document.getElementById('a');
+	
+	mouse(a,function(value){
+		console.log(this);          //window
+		if(value){
+			a.style.background = "yellow";
+		}else{
+			a.style.background = "green";
+		}
+	})
+	
+
+	function mouse(obj,fn){
+		var type = window.navigator.userAgent.indexOf('Firefox') != -1 ? "DOMMouseScroll" : "mousewheel";
+		obj.addEventListener(type,function(ev){
+			var e  = ev || window.event;
+			var down = e.wheelDelta ? e.wheelDelta < 0 : e.detail > 0;
+			if(fn){
+			//	fn.call(obj,down);
+				fn(down);
+			}
+		})
+	}
+
+
+</script>
+</html>

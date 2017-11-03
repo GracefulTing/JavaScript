@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery使用</title>
+</head>
+<body>
+	<div id="wrap"></div>
+	<!-- <script src='jquery.js'></script> -->
+	<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+	<script>
+		// console.log(window);
+		//在window中存在两个新的属性,一个是$,一个是jQuery,可以通过这两个属性直接使用jQuery里面的函数.
+
+		//1.获得标签,获得一个jquery对象,本质上是一个数组
+		var obj = $("#wrap");
+		// console.log(obj);
+
+		obj.css({
+			width:"100px",
+			height:"100px",
+			background:"red"
+		})
+
+		$("wrap").css({
+			width:"100px",
+			height:"100px",
+			background:"red"
+		})
+	</script>
+</body>
+</html>

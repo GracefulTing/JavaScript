@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>十五二十猜拳游戏</title>
+</head>
+<body>
+	<p>美女:</p>
+	<input type="text" placeholder="美女的手指数"  id="finger" disabled="disabled">
+	<input type="text" placeholder="美女说的数"  id="say" disabled="disabled">
+	<p>帅哥:</p>
+	帅哥的手指数:
+	<select name="" id="op1">
+		<option value="0">0</option>
+		<option value="5">5</option>
+		<option value="10">10</option>
+	</select>
+	帅哥说的数:
+	<select name="" id="op2">
+		<option value="0">0</option>
+		<option value="5">5</option>
+		<option value="10">10</option>
+		<option value="15">15</option>
+		<option value="20">20</option>
+	</select><br>
+	<button onclick="dianji()">Come On!</button>
+
+	<script>
+		function dianji() {
+	        var num1=[0,5,10];
+	        var num2=[0,5,10,15,20];
+	        var rand1=num1[Math.floor(Math.random() * 3)];
+	       	var rand2=num2[Math.floor(Math.random() * 5)];
+	       	document.getElementById('finger').value=rand1;
+	       	document.getElementById('say').value=rand2;
+			var	op1=document.getElementById('op1').value;
+			var	op2=document.getElementById('op2').value;
+			var result=parseInt(rand1+op1);
+
+			if(result==rand2&&result!=op2){
+				alert('美女赢!');
+			}
+			if(result==op2&&result!=rand2){
+				alert('帅哥赢!');
+			}
+			if(result==rand2&&result==op2){
+				alert('平局!');
+			}
+			if(result!=rand2&&result!=op2){
+				alert('再来一局!');
+			}
+		}
+		/*
+			do{
+				num1=Math.floor(Math.random()*3)*5;
+				num2=Math.floor(Math.random()*5)*5;
+			}
+			while(num1>num2||num2-num1>10)
+		*/
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas创建</title>
+</head>
+<body>
+	<canvas id="canvas" width="300" height="300" style="border:1px solid lightgray;">
+		您的浏览器不支持H5,请升级浏览器
+	</canvas>
+</body>
+<script>
+	//1.获得标签
+	var canvas = document.querySelector('#canvas');
+	//2.获取绘制环境(获取上下文)
+	var ctx = canvas.getContext("2d");
+	//3.开始绘制
+	ctx.beginPath();
+	//4.移动到起始点
+	ctx.moveTo(30,50);
+	//5.移动到的下一个点
+	ctx.lineTo(150,120);
+	//绘制样式设置
+	//(1)颜色设置
+	ctx.strokeStyle = 'pink';
+	ctx.lineWidth = '5';
+	//绘制线
+	ctx.stroke();
+	//6.结束绘制
+	ctx.closePath();
+</script>
+</html>

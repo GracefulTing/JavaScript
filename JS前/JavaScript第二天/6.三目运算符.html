@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>三目运算符</title>
+</head>
+<body>
+	<input type="text" id="num1">
+	<input type="text" id="num2">
+	<button id="com">比较</button>
+	<script>
+		//判断两个值的大小,然后输出较大的值.
+		// var a=10;
+		// var b=20;
+		// if(a>b)
+		// {
+		// 	alert(a);
+		// }
+		// else
+		// {
+		// 	alert(b);
+		// }
+
+
+		// var a=10;
+		// var b=30;
+		// var c=a>b?a:b;
+		// alert(c);
+
+
+
+		//题目:随便输入两个数,求较小的那个数并弹出.
+		// var a=prompt('输入数字a:');
+		// var b=prompt('输入数字b:');
+		// var c=a>b?b:a;
+		// alert(c);
+
+
+		var com=document.getElementById("com");
+		com.onclick=function(){
+			var num1=parseInt(document.getElementById("num1").value);
+			var num2=parseInt(document.getElementById("num2").value);
+			var num3=num1>num2?num2:num1;
+			alert(num3);
+		}
+		
+
+
+	</script>
+</body>
+</html>

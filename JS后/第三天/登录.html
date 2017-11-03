@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	账号:<input type="text" id="user"><br>
+	密码:<input type="password" id="psw"><br>
+	<button id="btn">登录</button>
+
+	<script>
+		var user = document.getElementById('user');
+		var psw = document.getElementById('psw');
+		var btn = document.getElementById('btn');
+
+		window.onkeydown = function(ev){
+			var e = ev || window.event;
+			// if(e.key == 'Shift'){
+			// 	psw.focus();
+			// }
+			// else if(e.key == 'Enter'){
+
+			// 	//btn.focus();
+			// 	if(user.value == 'yt' && psw.value == '123'){
+			// 		alert('登录成功');
+			// 	}
+			// }
+			switch(e.keyCode){
+				case 16:
+					psw.focus();
+					break;
+				case 13:
+					if(user.value == 'yt' && psw.value == '123'){
+			 		alert('登录成功');
+			 		}
+					break;
+				default:
+					break;
+			}
+		}
+	</script>
+</body>
+</html>

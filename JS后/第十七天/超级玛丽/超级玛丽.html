@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>超级玛丽</title>
+	<link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+	<div id="wrap">
+		<div class="content">
+			<div class="hero"></div>
+		</div>
+		<div class="road"></div>
+	</div>
+</body>
+<script src="./js/hero.js"></script>
+<script src="./js/index.js"></script>
+<script>
+	var myHero = new Hero({
+		selector:'.hero',
+		moveFn:function(){
+			//每次移动调用该函数
+			judgeBorder(this.element,document.querySelector('.content'));
+		},
+		// maxTop:200
+	});
+
+	pressKey();
+	function pressKey(){
+		window.onkeydown = function(ev){
+			var e = ev || window.event;
+			// console.log(e.keyCode);
+			switch(e.keyCode){
+				case 65:         //A键 向左
+					myHero.direction = "left";
+					myHero.move();
+					break;
+				case 68:         //D键 向右
+					myHero.direction = "right";
+					myHero.move();
+					break;
+				case 32:        //空格  跳动
+					myHero.jump();
+					break;
+				default:
+					break;
+			}
+			return false;
+		}
+		window.onkeyup = function(ev){
+			var e = ev || window.event;
+			switch(e.keyCode){
+				case 65:
+				case 68:
+					myHero.stop();
+					break;
+				default:
+					break;
+			}
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>节奏大师</title>
+	<style>
+		*{
+			margin:0;
+			padding:0
+		}
+		#wrap{
+			width:440px;
+			height:700px;
+			border:1px solid;
+			margin:0 auto;
+			text-align: center;
+		}
+		.line{
+			display: inline-block;
+			width:100px;
+			height:700px;
+			background:black;
+			color:white;
+			font-size:30px;
+			position: relative;
+			top:0;
+			left:0;
+		}
+		.le{
+			width:100px;
+			height:50px;
+			border:1px solid red;
+			position: absolute;
+			bottom:0;
+			left:0;
+		}
+		.active{
+			width:90px;
+			height:50px;
+			border:1px solid;
+			background:lightblue;
+			margin:0 auto;
+			position: absolute;
+			left:3px;
+		}
+		p{
+			width:100px;
+			height:50px;
+			border:1px solid;
+			margin:10px auto;
+			text-align: center;
+			font-size:30px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div class="line"><div class="le">S</div></div>
+		<div class="line"><div class="le">D</div></div>
+		<div class="line"><div class="le">J</div></div>
+		<div class="line">
+			<div class="le">K</div>
+			<!-- <div class="active"></div> -->
+		</div>
+	</div>
+	<p id="sc">0</p>
+	<script>
+		var lines = document.getElementsByClassName('line');
+		var boxs = document.getElementsByClassName('active');
+		var sc = document.getElementById('sc');
+		var score = 0;
+		
+		create();
+		function create(){
+			clearInterval(timer);
+			var timer = setInterval(function(){
+				for(var i = 0; i < lines.length; i ++){
+					var div = document.createElement('div');
+					div.className = "active";
+					var index = rand(0,lines.length);
+					lines[index].appendChild(div);
+				}	
+			},1000)
+		}
+		
+		
+		// for(var i = 0 ; i < boxs.length ;i++){	
+		// 	boxs[i].onclick = function(){	
+		// 		var offTop = 0;
+		// 		var m = this;
+		// 		var Timer = setInterval(function(){
+		// 			offTop ++ ;
+		// 			m.style.top = offTop + "px";
+		// 		},20)
+		// 	}
+		// }
+		
+		var offTop = 0;
+		var Timer = setInterval(function(){
+			for(var i = 0;i < boxs.length ;i++){
+				offTop ++ ;
+				m = boxs[i];
+				m.style.top = offTop + "px";
+				// if(offTop>700){
+				// 	clearInterval(Timer);
+				// }
+			}
+		},20)
+		
+
+		function rand(min,max){
+			return parseInt(Math.random()*(max-min+1)+min);
+		}
+		
+		window.onkeydown = function(ev){
+			var e = ev || window.event;
+		//	console.log(e.keyCode);
+			if(e.keyCode == 83 || e.keyCode == 68 || e.keyCode == 74 || e.keyCode == 75){
+				score++;
+				sc.innerHTML=score;
+			}
+		}
+	</script>
+</body>
+</html>

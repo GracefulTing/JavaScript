@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+		#box{
+			width: 960px;
+			margin: 0 auto;
+		}
+		#box ul{
+			float: left;
+			width: 300px;
+			margin: 0 10px;
+		}
+		#box ul li img{
+		 	width: 300px;
+		 	margin-bottom: 20px;
+
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul></ul>
+		<ul></ul>
+		<ul></ul>
+	</div>
+	<script>
+		createLi();
+		function createLi(){
+			var oUl = document.getElementsByTagName('ul');
+			for(var i=1;i<=18;i++){
+				var oImg = document.createElement('img');
+				oImg.src = 'img/'+i+".jpg";
+				var oli = document.createElement('li');
+				oli.appendChild(oImg);
+				var min_index = checkHeight(oUl);
+				oUl[min_index].appendChild(oli);
+			}
+		}
+		//获取最小的ul的索引
+		function checkHeight(oUl){
+			var height = 100000000000;
+			var index = 0;
+			for(var i=0;i<oUl.length;i++){
+				var now_height = oUl[i].offsetHeight;
+				if(now_height < height){
+					height = now_height;
+					index = i;
+				}
+			}
+			return index;
+		}
+
+		window.onscroll = function(){
+			var vH = document.documentElement.clientHeight;
+			var sH = document.documentElement.scrollTop || document.body.scrollTop;
+			//滚动条滚动的高度+浏览器窗口的高度=body高度
+			if(sH+vH >= document.documentElement.offsetHeight-300){
+				createLi();
+			}
+
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>子元素</title>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+	<ul>
+		<li>a</li>
+		<li>b</li>
+		<li>c</li>
+	</ul>
+	<ul>
+		<li>tt</li>
+	</ul>
+
+	<div id="n1">
+		<div id="n2" class="abc">
+			<label id="n3">label1</label>
+			<span id="n4">span1</span>
+			<span id="n5" class="abc">span2</span>
+			<span id="n6">span3</span>
+		</div>
+		<div id="n7">
+			<span id="n8" class="abc">span1</span>	
+			<span id="n9">span2</span>
+		</div>
+	</div>
+
+	<div>
+		<span>John</span>
+		<b>Kim</b>
+		<span>Adam</span>
+		<b>Rafael</b>
+		<span>Oleg</span>
+	</div>
+	<div>
+		<b>Dave</b>
+		<span>Ann</span>
+	</div>
+	<div>
+		<i><span>Maurice</span></i>
+		<span>Richard</span>
+		<span>Ralph</span>
+		<span>Jason</span>
+	</div>
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+<script>
+	//:first-child:可以匹配多个,为父级元素匹配第一个子元素,相当于nth-child(1)
+	var obj = $("ul li:first-child");
+	console.log(obj,obj[0]);
+
+	//:first-of-type:结构化伪类,匹配E的父元素的第一个E类型的孩子,等价于:nth-of-type(1)
+	//查找作为父元素的span类型子元素中的长子的span标签
+	var obj1 = $("span:first-of-type");
+	console.log(obj1,obj1[0],obj1[1]);
+
+	var obj2 = $(".abc:first-of-type");
+	console.log(obj2,obj2[0],obj2[1]);
+
+	//:last-child:匹配最后一个子元素
+	var obj3 = $("ul li:last-child");
+	console.log(obj3,obj3[0]);
+
+	//:last-of-type
+
+	//:nth-child:匹配父元素下的第N个子或奇偶元素
+	//nth-child从1开始算起,eq(index)从0算起
+	var obj4 = $("ul li:nth-child(2)");
+	console.log(obj4,obj4[0],obj4[1]);
+
+	//:nth-last-child:选择所有他们父元素的第n个子元素,计数从最后一个到第一个.
+	var obj5 = $("ul li:nth-last-child(2)");
+	console.log(obj5,obj5[0]);
+
+	//:nth-last-of-type
+	var obj6 = $("ul li:nth-last-of-type(2)");
+	console.log(obj6,obj6[0]);
+
+	//:nth-of-type--选择同一个父元素下,标签名相同的子元素中的第n个
+	var obj7 = $("span:nth-of-type(2)");
+	console.log(obj7,obj7[0],obj7[1],obj7[2],obj7[3]);
+
+	//:only-child
+	var obj8 = $("ul li:only-child");
+	console.log(obj8,obj8[0]);
+
+	//:only-of-type---选择所有没有兄弟元素,且具有相同元素名称的元素,如果父元素有相同的元素名称的子元素,那么没有元素会被匹配.
+</script>
+</html>

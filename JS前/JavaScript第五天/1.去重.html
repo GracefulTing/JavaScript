@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//已知两个数组['a','d','w','a','c','a'],['w','e','d','d','f'],把这两个数组合并到一个数组并且去重.
+		var arr1=['a','d','w','a','c','a'];
+		var arr2=['w','e','d','d','f'];
+		var arr3=arr2;
+		for(var i=0;i<arr1.length;i++){
+			arr3.push(arr1[i]);
+		}
+		arr3.sort();
+		console.log(arr3);
+
+		//去重
+		var arr4=[arr3[0]];
+		console.log(arr4);
+
+		for(var i=1;i<arr3.length;i++){
+			if(arr3[i]!=arr4[arr4.length-1]){
+				arr4.push(arr3[i]);
+			}
+		}
+		console.log(arr4);
+	</script>
+</body>
+</html>

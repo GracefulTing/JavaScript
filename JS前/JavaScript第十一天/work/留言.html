@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>留言</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#wrap{
+			width:600px;
+			height:300px;
+			border:2px solid rgb(224,224,225);
+			background: rgb(241,241,240);
+			margin:0 auto;
+			border-radius:10px;
+		}
+		input{
+			width:530px;
+			height:30px;
+		}
+		.name,.content{
+			margin:20px 10px;
+			font-size:16px;
+		}
+		button{
+			width:80px;
+			height:40px;
+			font-size:18px;
+			float:right;
+			margin:-10px 20px;
+		}
+		#show{
+			width:600px;
+			margin:20px auto;
+		}
+		#list{
+			list-style: none;
+			position: relative;
+		}
+		/*#list li:nth-child(2n-1){
+			background:rgb(188,188,188);
+			/*height:30px;
+			line-height:30px;
+			padding-left:20px;*/
+		/*}
+		#list li:nth-child(2n){
+			background:rgb(241,241,240);*/
+			/*height:80px;
+			line-height: 80px;
+			padding-left: 20px;*/
+		/*}*/
+		a{
+			float:right;
+			margin-right:20px;
+		}
+		#list h3{
+			background:rgb(188,188,188);
+			height:30px;
+			line-height:30px;
+			padding-left:20px;
+		}
+		#list p{
+			background:rgb(241,241,240);
+			line-height: 80px;
+			padding-left: 20px;
+		}
+		#list li{
+			display: block;
+			margin-top:20px;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div class="name">姓名: <input type="text" id="thename"></div>
+		<div class="content">内容: <textarea name="" id="content" cols="86" rows="10"></textarea></div>
+		<button id="btn">提交</button>
+	</div>
+	<div id="show">
+		<h2>显示留言</h2>
+		<ul id="list">
+			
+		</ul>
+	</div>
+	<script src="tween.js"></script>
+	<script>
+		liuyan();
+		function liuyan(){
+			var thename=document.getElementById('thename');
+			var content=document.getElementById('content');
+			var btn=document.getElementById('btn');
+			var list=document.getElementById('list');
+			var timer=null;
+
+			//事件绑定
+			function bind(){
+				btn.onclick=function(){
+					var showName=thename.value;
+					var showCon=content.value;
+
+					// var li1=document.createElement('li');
+					// li1.innerHTML=showName;
+					// list.appendChild(li1);
+
+					// var li2=document.createElement('li');
+					// li2.innerHTML=showCon+"<a href='#'>删除</a>";
+					// list.appendChild(li2);
+					// var linkBtn=li2.getElementsByTagName('a');
+					// 	linkBtn[0].onclick=function(){
+					//  		list.removeChild(li1);
+					//  		list.removeChild(li2);
+					// }
+					var li=document.createElement('li');
+					li.innerHTML='<h3>'+showName+'</h3><p>'+ showCon+'<a href="###">删除</a>';
+					var linkBtn=li.getElementsByTagName('a');
+						linkBtn[0].onclick=function(){
+							var t=0;
+							var b=0;
+							var end=li.offsetHeight;
+							var c=end-b;
+							var d=20;
+
+							li.style.height=0;
+
+							clearInterval(timer);
+							timer=setInterval(function(){
+								t++;
+								if(t==d){
+									list.removeChild(li);
+									clearInterval(timer);
+								}
+								li.style.height=Tween.Quart.easeIn(t,b,c,d)+"px";
+							},30)
+					}
+	                if(list.children.length>0) {
+	                    list.insertBefore(li,list.children[0]);
+	                }else{
+	                    list.appendChild(li);
+	                }
+
+					var t=0;
+					var b=0;
+					var end=li.offsetHeight;
+					var c=end-b;
+					var d=20;
+
+					li.style.height=0;
+
+					clearInterval(timer);
+					timer=setInterval(function(){
+						t++;
+						if(t==d){
+							clearInterval(timer);
+						}
+						li.style.height=Tween.Bounce.easeOut(t,b,c,d)+"px";
+					},30)
+				}
+			}
+
+			init();
+			//初始化
+			function init(){
+				bind();
+			}
+		}
+	</script>
+</body>
+</html>

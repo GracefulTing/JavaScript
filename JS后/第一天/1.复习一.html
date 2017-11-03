@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	var a=10;
+	var arr=["nihao"];
+	function add(a,b){       //var a=a;var b=90
+		a=100;   //改变形参不会改变a的值
+	}
+	add(a,90);
+	console.log(a);     //10
+
+	function test(a){
+		a[0]="iiii";
+	}
+	test(arr);
+	console.log(arr[0]);        //iiii
+
+	// 分区:从上到下
+	// 栈:有名称的内存空间
+	// 堆:无名称
+	// 全局:
+	// 静态:
+	// 代码:
+
+	// 栈区
+	//number,bool------------基础类型
+	// var a=10;
+	// var b=a;
+	// var c=true;
+	// var d=c;
+	// var e="string";
+	// var f=e;
+	// f="iii";
+	// console.log(e);       //string
+
+	// 堆区:数组,标签
+	//数组,标签----------引用类型
+	// var a1=["iiii"];
+	// var b1=a1;
+	// b1.push("oooo");
+	// console.log(a1);       //iiii,oooo
+
+
+</script>
+</html>

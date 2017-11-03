@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则逻辑运算符</title>
+</head>
+<body>
+	<script>
+		//规则1:|  或语法  uh为一个整体进行替换
+		// var reg = /h((uh)|(e)|(o))/g;
+		// var str = "auhelloho";
+		// var val = str.replace(reg,"A");
+		// console.log(val);
+
+		//清空所有数字
+		// var reg = /[0-9]/g;
+		// var reg = /0|1|2|3|4|5|6|7|8|9/g;
+		// var str = "jaljd342392";
+		// var val = str.replace(reg,"");
+		// console.log(val);
+
+		//规则2:[]  或语法,不是整体替换
+		var reg = /[ljd]/g;
+		var str = "jaljdDLJ342392";
+		var val = str.replace(reg,"");
+		console.log(val);
+
+		//数字写法:[0-9]
+		//字母写法:[a-zA-Z]
+		//数字和字母:[0-9a-zA-Z~@#$%^&*]
+		//汉字:[\u4e00-\u9fa5]
+
+		var reg = /[\u4e00-\u9fa5]/g;
+		var str = "你好我玩开了好人卡金六福看了skljldjfl";
+		var val = str.replace(reg,"");
+		console.log(val);
+	</script>
+</body>
+</html>

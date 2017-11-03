@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#btn,#list{
+			width:200px;
+			height:200px;
+			display: block;
+		}
+		#list{
+			list-style: none;
+		}
+		#list li{
+			margin-top:10px;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" value="btn" id="btn">
+	<ul id="list"></ul>
+	<script>
+		listAdd();
+		function listAdd(){
+			var btn=document.getElementById('btn');
+			var list=document.getElementById('list');
+			var index=0;
+
+			init();
+			//事件绑定
+			function bind(){
+				btn.onclick=function(){
+					index++;
+					var li=document.createElement('li');
+					li.innerHTML="我是li"+index+"<a href='#'>删除</a>";
+					list.appendChild(li);
+					var linkBtn=li.getElementsByTagName('a');
+					linkBtn[0].onclick=function(){
+						list.removeChild(li);
+					}
+				}
+			}
+
+			//初始化
+			function init(){
+				bind();
+			}
+		}
+	</script>
+</body>
+</html>

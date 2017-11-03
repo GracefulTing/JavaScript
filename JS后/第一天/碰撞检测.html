@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>碰撞检测</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		div{
+			width:100px;
+			height:100px;
+			position: absolute;
+		}
+		#first{
+			background:pink;
+			top:0;
+			left:0;
+		}
+		#second{
+			background:yellow;
+			top:200px;
+			left:300px;
+		}
+	</style>
+</head>
+<body>
+	<div id="first"></div>
+	<div id="second"></div>
+	<script>
+		var first= document.getElementById('first');
+		var second=document.getElementById('second');
+
+		judge(first,second);
+
+		function judge(a,b){
+			var xoffLeft=a.offsetLeft-b.offsetWidth;
+			var xoffRight=a.offsetLeft+a.offsetWidth;
+			var yoffTop=a.offsetTop-b.offsetHeight;
+			var yoffBottom=a.offsetTop+a.offsetHeight;
+			if(b.offsetLeft>=xoffLeft
+				&&b<=xoffRight
+				&&b.offsetTop>=yoffTop
+				&&b.offsetTop<=yoffBottom){
+				return true;	
+			}
+			return false;	
+		}
+		
+	</script>
+</body>
+</html>

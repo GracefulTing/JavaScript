@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>localstorage</title>
+</head>
+<body>
+	<script>
+		//存储
+		window.localStorage.hello = "你好";
+		window.localStorage.sp = 'hello';
+		localStorage.n = 'll';
+
+		//取
+		var a = window.localStorage.hello;
+		console.log(a);
+
+		var b = localStorage.n;
+		console.log(b);
+
+		// cookie:存储在用户本地终端上的数据.
+		// localStorage:没有时间限制的数据存储.
+		// sessionStorage:针对一个session的数据存储,当用户关闭浏览器窗口后,数据会被删除.
+		// 共同点:都是保存在浏览器端,且同源.
+		// 区别:
+		// 1.cookie在浏览器和服务器间来回传递,可以限制只属于某个路径下,存储数据不能超过4K.
+		// 2.sessionStorage和localStorage仅在本地保存.有内存限制,但比cookie大得多.
+		// 3.数据有效期不同:sessionStorage仅在当前浏览器窗口关闭前有效.localStorage始终有效,窗口或浏览器关闭也一直保存.cookie只在设置的cookie过期时间之前一直有效,即使窗口或浏览器关闭.
+		// 4.作用域不同:sessionStorage不在不同的浏览器窗口中共享,即使同一个页面.localStorage在所有同源窗口中都是共享的.cookie也是在所有同源窗口中都是共享的.
+
+	</script>
+</body>
+</html>

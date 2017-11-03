@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#nav{
+			width:600px;
+			height:30px;
+			border:1px solid;
+		}
+		.num{
+			width:130px;
+			height:30px;
+			text-align: center;
+			border:1px solid;
+			float:left;
+			/*display: inline-block;*/
+			color:white;
+			line-height: 30px;
+			background:black;
+			padding:0 9px;
+		}
+		#con{
+			width:600px;
+			/*height:350px;*/
+			border:1px solid;
+			background:#272831;
+		}
+		img{
+			width:250px;
+		}
+		.con1{
+			vertical-align: top;
+			display: inline-block;
+			margin-left:30px;
+			margin-top:20px;
+		}
+		.tit{
+			width:250px;
+			text-align: center;
+			color:grey;
+		}
+	</style>
+</head>
+<body>
+		<div id="nav">
+			<!-- <div class="num">1</div>
+			<div class="num">2</div>
+			<div class="num">3</div>
+			<div class="num">4</div> -->
+		</div>
+		<div id="con">
+			<!-- <div class="con1">
+				<img src="img/1.jpg" alt="">
+				<div class="state"></div>
+				<div class="tit">kfjdadk</div>
+			</div>
+			<div class="con1">
+				<img src="img/1.jpg" alt="">
+				<div class="state"></div>
+				<div class="tit">kfjdadk</div>
+			</div>
+			<div class="con1">
+				<img src="img/1.jpg" alt="">
+				<div class="state"></div>
+				<div class="tit">kfjdadk</div>
+			</div>
+			<div class="con1">
+				<img src="img/1.jpg" alt="">
+				<div class="state"></div>
+				<div class="tit">kfjdadk</div>
+			</div> -->
+		</div>
+	
+	<script>
+		var str = '[{"title":"官方活动","data":[{"img":"img/1.jpg","state":1,"detail":"新战役推出"},{"img":"img/2.jpg","state":2,"detail":"神秘商店的夏夜秘赠"},{"img":"img/3.jpg","state":2,"detail":"T17神秘商店开张"},{"img":"img/4.jpg","state":2,"detail":"破泞之战推出"}]},{"title":"赛事活动","data":[{"img":"img/1.jpg","detail":"2017国际邀请赛线上观战"},{"img":"img/2.jpg","detail":"2017国际邀请赛线下观战活动"},{"img":"img/3.jpg","detail":"2017国际邀请赛预选"},{"img":"img/4.jpg","detail":"2017国际邀请赛中国区"}]},{"title":"推广活动","data":[{"img":"img/1.jpg","detail":"贴吧电竞"},{"img":"img/2.jpg","detail":"联想拯救者"},{"img":"img/3.jpg","detail":"京东游戏玩家惠"},{"img":"img/4.jpg","detail":"亚洲邀请赛"}]},{"title":"商城特选","data":[{"img":"img/1.jpg","state":1,"detail":"新战役推出"},{"img":"img/2.jpg","state":2,"detail":"神秘商店的夏夜秘赠"}]}]';
+		var arr = JSON.parse(str);
+		// console.log(arr);
+		fn(arr);
+		function fn(array){
+			var nav = document.getElementById('nav');
+			for(var i = 0;i < array.length; i++){
+				var obj = array[i];
+				var div = createEle("div",nav);
+				div.innerHTML = obj.title;
+				div.className = 'num';
+				div.len = array[i].data;
+				// console.log(div.len);
+				create(array[0].data);
+				div.onmouseover = function(){
+					create(this.len);
+					// console.log(this);
+				}
+
+				
+			}
+		}
+
+		function create(len){
+			con.innerHTML = '';
+			for(var j=0;j<len.length;j++){
+				var con1 = createEle("div",con);
+				con1.className = 'con1';
+				var img = createEle("img",con1);	
+				var tit = createEle("div",con1);
+				tit.className = 'tit';
+				img.src = len[j].img;
+				tit.innerHTML = len[j].detail;	
+			}	
+		}
+
+		function createEle(name,parent){
+			var n = document.createElement(name);
+			parent.appendChild(n);
+			return n;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>逻辑运算符</title>
+</head>
+<body>
+	<script>
+		var a=5&&6;
+		console.log(a);
+		var b=5&&0;
+		console.log(b);
+		var c=0&&5;
+		console.log(c); 
+		// if(a){
+		// 	alert(1);
+		// }
+		/*逻辑运算符:&&
+		  &&(与):符号两边的结果都为真,整个表达式才为真.
+		*/
+		var d=5>6&&4<5;
+		console.log(d);
+
+		var e=0==0&&5>3;  //true
+		console.log(e);
+
+		var x=5||0;
+		console.log(x);
+
+		var y=0||0;
+		console.log(y);
+
+		var z=5>4&&5<2||3;
+		console.log(z);
+
+		/*
+			||(或):符号两边任意一边的结果为真,整个表达式即为真.
+		*/
+
+		//短路现象
+		var x=y=z=0;
+		console.log(x,y,z);
+		var answer=++x&&++y||++z;
+		console.log(answer);
+
+		var a=0;
+		if(!a){
+			alert(1);
+		}
+
+		// !(非):对整个表达式的值进行取反.
+	</script>
+</body>
+</html>

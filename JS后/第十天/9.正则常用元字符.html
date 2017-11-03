@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>正则常用元字符</title>
+</head>
+<body>
+	<script>
+		// var reg = /[0-9]/g;
+		// \d:[0-9]
+		// \D:非数字
+		// \w:[0-9a-zA-Z_]
+		// \W:非数字,字母,下划线
+		// \s:空格或者tab
+		// \S:非空格
+		// \u:中文[\u4e00-\u9fa5]
+
+
+		// var reg = /\d/g;
+		// var str = "jslkja243874628lj";
+		// var val = reg.test(str);
+		// console.log(val);
+
+		// var reg = /\D/g;
+		// var str = "jslkja243874628lj";
+		// var val = str.replace(reg,"");
+		// console.log(val);
+
+		//^符号如果写在[]里面,代表中括号里面内容整体取反
+		// var reg = /[^0-9\u4e00-\u9fa5]/g;
+		// var str = "aa你24好吉会计法懒得发";
+		// var val = str.replace(reg,"");
+		// console.log(val);
+
+	</script>
+</body>
+</html>

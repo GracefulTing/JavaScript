@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>筛选</title>
+</head>
+<body>
+	<p>hello</p>
+	<p>你好</p>
+	<div class="has">123</div>
+	<div>tt</div>
+
+	<form action="">
+		<input type="text">
+	</form>
+
+	<div class="sp">
+		<span><a href="">我是子元素1</a></span>
+		<span>我是子元素2</span>
+	</div>
+
+	<p>
+		<span>hello world!</span>
+		<h3>how are you ?</h3>
+	</p>
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+<script>
+	//eq(index):
+	//index:从0开始算起,正数
+	//-index:从-1算起,倒数
+	var obj = $("p").eq(0);
+	console.log(obj[0]);
+	var obj1 = $("p").eq(-1);
+	console.log(obj1[0]);
+
+	//first():获取第一个元素
+	var obj2 = $("p").first();
+	console.log(obj2[0]);
+	//last():获取最后一个元素
+	var obj3 = $("p").last();
+	console.log(obj3[0]);
+
+	//hasClass():检查当前的元素是否含有某个特定的类,有返回true.
+	$("div").click(function(){
+		if($(this).hasClass("has")){
+			$(this).css({
+				color:"red"
+			})
+		}
+	})
+
+	//is():只有有一个元素符合给定的表达式就返回true.
+	console.log($("input[type='text']").parent().is("form"));
+
+	//children():找出每一个元素的所有子元素的元素集合.
+	//注:parents()将查找所有祖辈元素,而children()只考虑子元素而不考虑所有后代元素.
+	var child = $("div").children();
+	console.log(child[0],child[1]);
+
+	//find():搜索所有与指定表达式匹配的元素.适合找出正在处理的后代元素
+	var f = $("p").find("span");
+	console.log(f[0])
+
+	//parent():取得一个包含着所有匹配元素的唯一父元素的元素集合.
+	var s = $("span").parent(".sp");
+	console.log(s[0]);
+
+	//parents():取得一个包含着所有匹配元素的祖先元素的元素集合(不包括根元素).
+	var par = $("span").parents();
+	console.log(par);
+	var par = $("span").parents("p");
+	console.log(par);
+	
+	//filter():筛选出与指定表达式匹配的元素集合.
+	var filter = $("div").filter(".has");
+	console.log(filter[0]);
+</script>
+
+
+</html>

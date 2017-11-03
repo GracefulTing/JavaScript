@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分组选择</title>
+</head>
+<body>
+	<dl class="area">
+		<dt>地区</dt>
+		<dd>东城</dd>
+		<dd>西城</dd>
+		<dd>朝阳</dd>
+		<dd>昌平</dd>
+	</dl>
+	<dl class="position">
+		<dt>职位</dt>
+		<dd>美工设计</dd>
+		<dd>前端工程师</dd>
+		<dd>后台开发</dd>
+	</dl>
+	<dl class="salary">
+		<dt>薪资</dt>
+		<dd>4000</dd>
+		<dd>5000</dd>
+		<dd>6000</dd>
+	</dl>
+	<ul class="selected">
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+	<script>
+		// var area=document.querySelectorAll('.area dd');
+		// var posi=document.querySelectorAll('.position dd');
+		// var sala=document.querySelectorAll('.salary dd');
+		var seleLi=document.querySelectorAll('.selected li');
+		var dls=document.querySelectorAll('dl');
+		// var dlsdd=document.querySelectorAll('dl dd');
+
+
+		//事件绑定
+		function fnclick(obj,index){
+			var objChil=obj.children;
+			for(var i=1;i<objChil.length;i++){
+				objChil[i].onclick=function(){
+					// console.log(this.innerHTML);
+					// console.log(index);
+					//seleLi[index].innerHTML=this.innerHTML;
+					fnpush(index,this.innerHTML);
+				}
+			}
+		}
+
+		//插入数据
+		function fnpush(num,html){
+			seleLi[num].innerHTML=html;
+		}
+
+		//为dl添加事件(当前项,当前项的索引)
+		for(var i=0;i<dls.length;i++){
+			fnclick(dls[i],i);
+		}
+		
+	</script>
+</body>
+</html>

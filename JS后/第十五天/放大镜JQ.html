@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#wrap{
+			overflow: hidden;
+		}
+		.small{
+			float: left;
+			width: 400px;
+			height: 400px;
+			background: url(img/taobao.jpeg) no-repeat;
+			position: relative;
+			background-size: 100% 100%;
+		}
+		.big{
+			float: left;
+			width: 400px;
+			height: 400px;
+			background: url(img/taobao.jpeg) no-repeat;
+			display: none;
+			background-size: 1600px 1600px;
+		}
+		.meng{
+			width: 100px;
+			height: 100px;
+			background: black;
+			opacity: 0.3;
+			position: absolute;
+			display: none;
+		}
+		/*.p{
+			width:100px;
+			height:100px;
+			background: red;
+			border:1px solid;
+		}*/
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div class="small">
+			<div class="meng"></div>
+		</div>
+		<div class="big"></div>
+	</div>
+	<!-- <div class="p"></div> -->
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script>
+	$(".small").mouseover(function(){
+		$(".meng").show();
+		$(".big").show();
+
+		$(this).mousemove(function(ev){
+			var x = ev.clientX - $(".meng").width()/2 - $(this).offset().left;
+			var y = ev.clientY - $(".meng").height()/2 - $(this).offset().top;
+			if(x < 0){
+				x = 0;
+			}
+			if(x > $(this).width()-$(".meng").width()){
+				x = $(this).width()-$(".meng").width();
+			}
+			if(y < 0){
+				y = 0;
+			}
+			if(y > $(this).height()-$(".meng").height()){
+				y = $(this).height()-$(".meng").height();
+			}
+			$(".meng").css({
+				left:x,
+				top:y
+			})
+
+			//修改大图
+			var scale = ($(".big").width())/ ($(".meng").width());
+			var bigX = x * scale;
+			var bigY = y * scale;
+			$(".big").css({
+				backgroundPosition:-bigX+"px " + -bigY+"px"
+			})
+		})
+	})
+	$(".small").mouseout(function(){
+		$(".meng").hide();
+		$(".big").hide();
+	})
+
+	// var a = $(".p").position().left;
+	// var b = $(".p").position().top;
+	// console.log(a,b);
+	// var a1 = $(".p").offset().left;
+	// var b1 = $(".p").offset().top;
+	// console.log(a1,b1);
+</script>
+</html>

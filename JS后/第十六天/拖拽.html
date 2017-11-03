@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>移动拖拽</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#wrap{
+			width:100px;
+			height:100px;
+			background: red;
+			position: absolute;
+			left:0;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"></div>
+</body>
+<script>
+
+	move({
+		tag:document.getElementById('wrap'),
+	})
+	function move(box){
+		box.tag.onmousedown = function(ev){
+			var e = ev || window.event;
+			var curX = e.clientX;
+			var curY = e.clientY;
+			var offX = this.offsetLeft;
+			var offY = this.offsetTop;
+			document.onmousemove = function(ev){
+				var e = ev || window.event;
+				var endX = e.clientX - curX;
+				var endY = e.clientY - curY;
+				box.tag.style.left = endX + offX + "px";
+				box.tag.style.top = endY + offY + "px";
+			}
+			document.onmouseup = function(){
+				document.onmousemove = null;
+			}
+		}
+	}
+</script>
+</html>

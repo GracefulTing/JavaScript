@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div{
+			width:50px;
+			height:50px;
+			background:red;
+			margin:-12px 2px;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<script>
+		for(var i=1;i<=7;i++){
+			for(var j=1;j<=i;j++){
+				document.write('<div></div>');
+				if(i==j) document.write('<br></br>');
+			}
+		}
+	</script>
+</body>
+</html>

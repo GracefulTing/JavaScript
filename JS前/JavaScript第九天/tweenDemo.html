@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tweenDemo</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		div{
+			height:100px;
+			width:100px;
+			position: absolute;
+			left:0;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	<!-- 引入tween.js文件 -->
+	<script src="tween.js"></script>
+	<script>
+		var box=document.getElementById('box');
+		var timer=null;
+
+		var t=100,
+			b=0,
+			c=1000,
+			d=600;
+
+		Run();
+		//执行动画
+		function Run(){
+			box.style.left=Tween.Quad.easeOut(t,b,c,d)+"px";
+			if(t<d){
+				t++;
+				setTimeout(Run,1000);
+			}
+		}
+
+		//b是begin的缩写,代表位置轴里开始的地方,决定了开始的位置.
+
+		//t是时间轴里开始的位置,t的变化相当于时间的变化,一般情况下均匀变化,每次变化都增加一个步长,当t从0递增(或递减)到d时,运动就结束了.
+
+		//c是change,代表变化的时间,也就是播放的快慢,或是动画效果的运动幅度.
+
+		//d是时间轴的结束位置,d的设置比较灵活,只要符合t从0向d递增(或递减)就可以了.d跟步长配合使用来设置持续时间,例如d设置为100,如果设置步长是1,那么从0到100就有100步,即代表分100次来完成此过程,步数越多,持续时间越长. 
+	</script>
+</body>
+</html>

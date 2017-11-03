@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>练习三</title>
+	<style>
+		#wrap{
+			width:180px;
+			height:160px;
+			/*border:1px solid;*/
+			text-align: center;
+		}
+		input{
+			margin-top:10px;
+		}
+		button{
+			padding:5px 70px;
+			margin-top:10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<!-- <span>账号:</span><input type="text"><br>
+		<span>密码:</span><input type="password"><br>	
+		<button id="btn">注册</button>  -->
+	</div>
+	<!-- 
+	3.创建一个注册界面，点击注册，将数据存储到cookie中，并且进入登录界面，将账号和密码输入，和cookie中的内容进行判断是否登录成功
+	-->
+	<script>
+		var wrap = document.getElementById('wrap');
+		wrap.id = "wrap";
+		var span1 = createEle("span",wrap);
+		span1.innerHTML = "账号:";
+		var user = createEle("input",wrap);
+		user.id = "user";
+		var span2 = createEle("span",wrap);
+		span2.innerHTML = "密码:";
+		var psw = createEle("input",wrap);
+		psw.id = "psw";
+		var btn = createEle("button",wrap);
+		btn.innerHTML = "注册";
+		btn.id = "btn";
+
+		function setCookie(cname,cvalue,exdays){
+			var d = new Date();
+			d.setTime(d.getTime()+(exdays*24*60*60*1000));
+			var expires = "expires="+d.toGMTString();
+			document.cookie = cname+"="+cvalue+"; "+expires;
+		}
+		function getCookie(cname){
+			var name = cname + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0; i<ca.length; i++) {
+				var c = ca[i].trim();
+				if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+			}
+			return "";
+		}
+		
+		//点击注册
+		btn.onclick = function(){
+			var userVal = user.value;
+			var pswVal = psw.value;
+			
+			setCookie("name",userVal,30);
+			setCookie("psw",pswVal,30);
+		
+			window.open('login.html');
+		}
+
+		function createEle(name,parent){
+			var n = document.createElement(name);
+			parent.appendChild(n);
+			return n;
+		}
+	</script>
+</body>
+</html>

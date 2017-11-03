@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+</body>
+<script>
+	var canvas = document.querySelector("#canvas");
+    var str = '[{"name":"1月","value":100,"color":"red"},{"name":"2月","value":300,"color":"blue"},{"name":"2月","value":200,"color":"orange"},{"name":"2月","value":500,"color":"green"}]';
+    var arr = JSON.parse(str);
+    var pie = new Pie({
+    	array:arr,
+    	canvas:canvas,
+    	r:100
+    })
+    function Pie(obj){
+    	this.canvas = obj.canvas;
+    	this.ctx = this.canvas.getContext('2d');
+    	this.array = obj.array;
+    	this.scale = 0;
+    	this.r = obj.r;
+    	this.per = function(){
+    		var values = 0;
+    		for(var i=0;i<this.array.length;i++){
+    			values += this.array[i].value;
+    		}
+    		this.scale = 360/values;
+    	}
+    	this.draw = function(start,end,color){
+    		var deg = Math.PI / 180;
+    		var x = this.canvas.width/2;
+		    var y = this.canvas.height/2;
+		    this.ctx.beginPath();
+		    this.ctx.moveTo(x,y);
+		    this.ctx.arc(x,y,this.r,start*deg,end*deg);
+		    this.ctx.fillStyle = color;
+	        this.ctx.fill();
+	        this.ctx.closePath();
+    	}
+    	this.deg = function(){
+    		this.per();
+    		var lastValue = 0;
+    		for(var i=0;i<this.array.length;i++){
+    			var real_deg = this.array[i].value * this.scale;
+    			this.draw(lastValue,real_deg+lastValue,this.array[i].color);
+    			lastValue = real_deg + lastValue;
+    		}
+    	}
+    	this.deg();
+    }
+</script>
+</html>

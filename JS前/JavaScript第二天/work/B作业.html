@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+</head>
+<body>
+	账号:<input type="text" id="name"><br>
+	密码:<input type="text" id="psw"><br>
+	<button id="btn">登录</button>
+	<script>
+		var btn=document.getElementById('btn');
+		btn.onclick=function(){
+			var name=document.getElementById('name').value;
+			var psw=document.getElementById('psw').value;
+			if(name=='yangting'&&psw=='123')
+			{
+				window.open('success.html');
+			}
+			else if(name!='yangting')
+			{
+				document.getElementById('name').value='你填写的账号错误';
+				if(psw!='123'){
+					document.getElementById('psw').value='你填写的密码错误';
+				}
+			}
+			else if(psw!='123')
+			{
+				document.getElementById('psw').value='你填写的密码错误';
+			}
+			else
+			{
+
+			}
+		}
+	</script>
+</body>
+</html>

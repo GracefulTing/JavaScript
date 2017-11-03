@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>滚轮</title>
+	<style>
+		#wrap{
+			width:200px;
+			height:300px;
+			/*border:10px solid pink;*/
+			position: relative;
+			overflow: hidden;
+		}
+		#wrap::after{
+			content:"";
+			display: block;
+			clear:both;
+		}
+		#con{
+			width:170px;
+			float:left;
+			position: absolute;
+			left:0;
+			top:0;
+		}
+		#roll{
+			width:30px;
+			float:right;
+			height:100%;
+			background:#ccc;
+			position: relative;
+		}
+		#move{
+			width:100%;
+			border-radius:10px;
+			background:lightgreen;
+			height:40px;
+			position: absolute;
+			left:0 ;
+			top:0;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="con">
+			秋日，收获的歌，静秋，蓝天一般的灿烂。轻轻道一声：秋日安好!远方的你亦安好如初!此刻，我仿佛听见窗外的风呢喃着心事，九月天的浪漫，正踏过我的指尖，一幅生命的静美图，在灯火阑珊的夜，温暖而璀璨地铺展开来.又一个任思绪飞扬的夜晚，记忆带走了我无法入眠的睡意，走出窗门仰望天空，夜空中闪烁的星星，能否知道那仰望的人，心底的孤独和叹息，想起你曾与我同行，消失在风里的身影，我是多么希望能拥有一颗透明的心灵和一双会流泪的眼睛，每当我找不到存在的意义，每当我迷失在黑夜里，夜空中都仿佛有一颗最亮的星指引我找到你.突然想写一封信，给我最思念的你，看着你这么多年对困苦的无畏惧，一股傻傻的倔强，有时真的怜惜。又是一个无眠的夜里，无声眼泪惊天动地，我牵挂你，为何如此坚强和执迷，半梦半醒之中，回想着你说过，再多打击，也不放弃，只要我们心是想念的，再多困难险阻，也不畏惧，只要我们走在一起。回想这些年，也曾失望伤过心，你总相信，那片心灵的乌云会散去，从没变得孩子气，常让我生气而变得放弃，那些年，就算冷眼伤了你，可你也从不曾逃避，坚信，我会守护你那颗炽热的心，永远不分离。
+		</div>
+		<div id="roll">
+			<div id="move"></div>
+		</div>
+	</div>
+</body>
+<script>
+	var move = document.getElementById('move');
+	var roll = document.getElementById('roll');
+	var con = document.getElementById('con');
+	var wrap = document.getElementById('wrap');
+
+	//计算比例
+	function scale(){
+		var ch = con.offsetHeight - wrap.offsetHeight;
+		var rh = roll.offsetHeight - move.offsetHeight;
+		var r = ch / rh;
+		return r;
+	}
+
+	move.onmousedown = function(ev){
+		var e = ev || window.event;
+		var curY = e.clientY;
+		var offY = this.offsetTop;
+		document.onmousemove = function(ev){
+			var e = ev || window.event;
+			move.style.top = e.clientY - curY + offY + "px";
+			//判断边界
+			if(move.offsetTop < 0){
+				move.style.top = 0;
+			}
+			if(move.offsetTop > roll.offsetHeight - move.offsetHeight){
+				move.style.top = roll.offsetHeight - move.offsetHeight + "px";
+			}
+
+			var r = scale();
+			var val = r * move.offsetTop;
+			con.style.top = -val + "px";
+		}
+		document.onmouseup = function(){
+			document.onmousemove = null;
+		}
+	}
+
+	// var r = scale();
+	// var offY = move.offsetTop;
+	// window.onkeydown = function(ev){
+	// 	var e = ev || window.event;
+	// 	//上键
+	// 	if(e.keyCode == 38){
+	// 		move.style.top = offY + "px";
+
+	// 		if(move.offsetTop < 0){
+	// 			move.style.top = 0;
+	// 		}
+	// 		if(move.offsetTop > roll.offsetHeight - move.offsetHeight){
+	// 			move.style.top = roll.offsetHeight - move.offsetHeight + "px";
+	// 		}
+	// 		offY -= 10;
+
+	// 		var val = r * move.offsetTop;
+	// 		con.style.top = -val + "px";
+	// 	}
+	// 	//下键
+	// 	if(e.keyCode == 40){
+	// 		move.style.top = offY + "px";
+
+	// 		if(move.offsetTop < 0){
+	// 			move.style.top = 0;
+	// 		}
+
+	// 		if(move.offsetTop > roll.offsetHeight - move.offsetHeight){
+	// 			move.style.top = roll.offsetHeight - move.offsetHeight + "px";
+	// 		}
+	// 		offY += 10;
+			
+	// 		var val = r * move.offsetTop;
+	// 		con.style.top = -val + "px";
+	// 	}
+	// }
+
+	function mo(){
+		if(move.offsetTop < 0){
+			move.style.top = 0;
+		}
+		if(move.offsetTop > roll.offsetHeight - move.offsetHeight){
+			move.style.top = roll.offsetHeight - move.offsetHeight + "px";
+		}
+
+		var r = scale();
+		var val = r * move.offsetTop;
+		con.style.top = -val + "px";
+	}
+	var offY = move.offsetTop;
+	window.onkeydown = function(ev){
+		var e = ev || window.event;
+		switch(e.keyCode){
+			case 38:    //上键
+				offY -= 10;
+				if(offY<=0){
+					offY=0;
+				}
+				move.style.top = offY + "px";
+				mo();
+				break;
+			case 40:  //下键
+				offY += 10;
+				if(offY>=roll.offsetHeight - move.offsetHeight){
+					offY=roll.offsetHeight - move.offsetHeight;
+				}
+				move.style.top = offY + "px";
+				mo();
+				break;
+		}
+	}
+
+	var scrollFunc = function(ev){
+		var e = ev || window.event;
+		if(e.wheelDelta){
+			if(e.wheelDelta == 120){
+			//	alert(e.wheelDelta + "向上");
+				offY -= 10;
+				move.style.top = offY + "px";
+				mo();
+
+			}else{
+			//	alert(e.wheelDelta + "向下");
+				offY += 10;
+				move.style.top = offY + "px";
+				mo();
+			}
+		}
+		else if(e.detail){
+			if(e.detail == -3){
+				//alert(e.detail + "向上");
+				move.style.top = offY + "px";
+				offY -= 10;
+				mo();
+			}else{
+				//alert(e.detail + "向下");
+				move.style.top = offY + "px";
+				offY += 10;
+				mo();
+			}
+		}	
+
+	}
+	if(document.addEventListenner){
+		document.addEventListenner("DOMMouseScroll",scrollFunc,false);
+	}
+	window.onmousewheel = document.onmousewheel = scrollFunc;
+</script>
+</html>

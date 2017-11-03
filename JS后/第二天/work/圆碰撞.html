@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>圆碰撞检测</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		div{
+			width:100px;
+			height:100px;
+			border-radius:50%;
+			position: absolute;
+		}
+		#cir1{
+			background:pink;
+			top:0;
+			left:0;
+		}
+		#cir2{
+			background:lightblue;
+			top:100px;
+			left:300px;
+		}
+	</style>
+</head>
+<body>
+	<div id="cir1"></div>
+	<div id="cir2"></div>
+	<script>
+		var cir1 = document.getElementById('cir1');
+		var cir2 = document.getElementById('cir2');
+
+		move(cir1);
+		move(cir2);
+
+		//运动函数
+		function move(cir){
+			cir.onmousedown = function(a){
+				var curX = a.clientX;
+				var curY = a.clientY;
+				var offX = this.offsetLeft;
+				var offY = this.offsetTop;
+
+				document.onmousemove = function(b){
+					var endX = b.clientX - curX;
+					var endY = b.clientY - curY;
+					cir.style.left = endX + offX + "px";
+					cir.style.top = endY + offY + "px";
+
+					var val = comp(cir1,cir2);
+					// console.log(val);
+					if(val){
+						document.onmousemove = null;
+						alert('警告!');
+					}
+		
+				}
+
+				document.onmouseup = function(){
+					document.onmousemove = null;
+				}
+
+			}
+		}
+
+		//判断函数
+		function comp(k1,k2){
+			var k1_cenX = k1.offsetLeft + k1.offsetWidth * 0.5;
+			var k1_cenY = k1.offsetTop + k1.offsetHeight * 0.5;
+			var k2_cenX = k2.offsetLeft + k2.offsetWidth * 0.5;
+			var k2_cenY = k2.offsetTop + k2.offsetHeight * 0.5;
+			var x = k2_cenX - k1_cenX;
+			var y = k2_cenY - k2_cenY
+			var xx = Math.pow(x,2);
+			var yy = Math.pow(y,2);
+			var z = Math.sqrt(xx + yy);
+			var r = k1.offsetWidth * 0.5 + k2.offsetWidth * 0.5;
+
+			if(z <= r){
+				return true;
+			}
+			return false;
+			
+
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>roll</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		#btn{
+			margin:20px auto;
+			width:400px;
+			padding:10px;
+		}
+		span{
+			border:1px solid;
+			font-size:20px;
+			padding:10px;
+		}
+		.active{
+			width:70px;
+			height:8px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="btn">
+		<span>按钮1</span>
+		<span>按钮2</span>
+		<span>按钮3</span>
+		<span>按钮4</span>
+		<span>按钮5</span>
+	</div>
+	<script>
+		var aSpan=document.getElementsByTagName('span');
+
+		for(var i=0;i<aSpan.length;i++){
+			//aSpan[i].onmouseover=change;
+			aSpan[i].onmouseover = function(){
+				for(var i=0;i<aSpan.length;i++){
+					aSpan[i].className = '';
+				}
+				this.className = 'active';
+			}
+		}
+
+		// function change(){
+		// 	for(var i=0;i<aSpan.length;i++){
+		// 		aSpan[i].className='';
+		// 	}
+		// 	this.className='active';
+		// }
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图像处理</title>
+	<style>
+		#canvas{
+			background: pink;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="520" height="690" style="border:1px solid pink;"></canvas>
+</body>
+<script>
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	//1.绘制图片
+	var img = new Image();
+	img.src = 'img/1.jpg';
+	img.onload = function(){
+		ctx.beginPath();
+		ctx.drawImage(img,10,10);
+		ctx.closePath();
+
+		// ctx.beginPath();
+		// ctx.drawImage(img,10,10,400,500);
+		// ctx.closePath();
+
+		//ctx.drawImage(img,sx,sy,swidth,sheight,x,y,width,height);
+		//sx/sy:开始剪切的x/y坐标位置  swidth/sheight:被剪切图像的宽度/高度 
+		//x/y:在画布上放置图像的x/y坐标位置      width/height:要使用的图像的宽/高度
+		// ctx.beginPath();
+		// ctx.drawImage(img,200,50,400,500,10,10,300,300);
+		// ctx.closePath();
+	}
+</script>
+</html>

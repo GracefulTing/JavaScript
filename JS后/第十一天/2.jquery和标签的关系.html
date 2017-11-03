@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery和标签的关系</title>
+</head>
+<body>
+	<div class="wrap2"></div>
+	<div class="wrap1"></div>
+	<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+	<script>
+		//1.jquery中如果有多个标签,那么这个jQuery对象调用函数的时候相当于所有标签都在调用.
+		// var obj = $(".wrap");
+		// console.log(obj);
+
+		// obj.css({
+		// 	width:"100px",
+		// 	height:"100px",
+		// 	background:"pink",
+		// 	marginTop:"20px"
+		// })
+		
+
+		//2.通过jquery获得标签的方式,数组下标
+		// var m = $('.wrap');
+		// var obj = m[0];
+		// console.log(obj);
+
+
+		//3.创建标签的方式
+		// var m = $("<div>");
+		// $(".wrap").append(m);   //两个同时添加
+		
+
+		var m = $("<div class=a>");
+		var n = $(".wrap")[0];   
+		$(n).append(m);             //只给第一个添加
+
+
+	</script>
+</body>
+</html>

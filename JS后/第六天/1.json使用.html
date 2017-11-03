@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JSON</title>
+</head>
+<body>
+	<script>
+		var str = "tt|21|女|1564648789";
+
+		// var arr = str.split("|");
+		// var arr1 = ["name","age","sex","ID"];
+		// for(var i = 0; i < arr.length ; i++){
+		// 	console.log(arr1[i]+":"+arr[i]);
+		// }
+
+		
+		//json:
+		//中括号:[]---数组
+		//大括号:{}---一条数据,有多个属性  必须以"key":value形式存储
+		//数据格式:字符串,bool,number,null
+		//"key":value
+		var s = '{\
+			"name":"tt";\
+			"age":21;\
+			"sex":"女";\
+			"ID":"1564648789";\
+			"婚否":false;\
+			"记录":null;\
+		}';
+
+		// var tel1 = '{\
+		// 	"name":"爪爪",\
+		// 	"tel":"135454674848",\
+		// 	"photo":"img/1.jpg"\
+		// }';
+
+		var tel1 = '[{"name":"爪爪","tel":"135454674848","photo":"img/1.jpg"},{"name":"tt","tel":"46546546465","photo":"img/2.jpg"}]';
+
+		//学校有3个班级,每个班级有3个人,每个人属性:姓名,年龄,性别
+		var arr = '[\
+			{\
+				"class":1,\
+				"students":\
+				[{"name":"qq","age":20,"sex":"男"},\
+				{"name":"ww","age":20,"sex":"男"},\
+				{"name":"rr","age":20,"sex":"男"}]\
+			},{\
+				"class":2,\
+				"students":\
+				[{"name":"qq","age":20,"sex":"男"},\
+				{"name":"ww","age":20,"sex":"男"},\
+				{"name":"rr","age":20,"sex":"男"}]\
+			},{\
+				"class":3,\
+				"students":\
+				[{"name":"qq","age":20,"sex":"男"},\
+				{"name":"ww","age":20,"sex":"男"},\
+				{"name":"rr","age":20,"sex":"男"}]\
+			}\
+		]';
+	</script>
+</body>
+</html>

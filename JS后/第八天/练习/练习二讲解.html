@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		var str = "helloworld";
+
+		for(var i=0;i<str.length;i++){
+			var a = str[i];
+			for(var j=i+1;j<str.length;j++){
+				if(a == str[j]){
+					str = str.slice(0,j)+str.slice(j+1,str.length);
+					j--;
+				}
+			}
+		}
+		console.log(str);
+	</script>
+</body>
+</html>

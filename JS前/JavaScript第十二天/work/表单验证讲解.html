@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单验证</title>
+	<style>
+		.agepar .sp{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<span>*</span><span>姓名:</span><input type="text" placeholder="请输入姓名" class="thename must"><br>
+	<span>*</span><span>年龄:</span><input type="text" placeholder="请输入年龄" class="theage must"><br>
+	<div class="agepar">
+	<span>*</span><span>性别:</span><input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0" class="sex must">男
+	<input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_1" class="sex must">女&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sp">此项为必填</span></div>
+	<span>地址</span><input type="text" placeholder="请输入地址" class="address"><br>
+	<span>*</span><span>邮箱</span><input type="text" placeholder="请输入邮箱" class="email must"><br>
+	<input type="button" value="提交" class="but">
+
+	<script>
+		var thename=document.querySelector('.thename');
+		var theage=document.querySelector('.theage');
+		var agesex=document.querySelectorAll('.agepar .sex');
+		var address=document.querySelector('.address');
+		var email=document.querySelector('.email');
+		var but=document.querySelector('.but');
+		var agesp=document.querySelector('.agepar .sp');
+		var iBtn;
+
+		but.onclick=function(){
+			iBtn=true;
+			butval(thename);
+			butval(theage);
+			butval(email);
+			rad(agesex);
+			if(iBtn){
+				alert('提交成功');
+			}
+		}
+
+		//判断value
+		function butval(obj){
+			var pla=obj.placeholder;
+			if(obj.value==''){
+				obj.placeholder='此项为必填';
+				iBtn=false;
+			}
+			obj.onclick=function(){
+				obj.placeholder=pla;
+			}
+		}
+
+		//判断radio
+		function rad(obj){
+			var num=0;
+			for(var i=0;i<obj.length;i++){
+				if(obj[i].checked!=false){
+					num++;
+				}
+			}
+			if(num==0){
+				agesp.style.display="block";
+				iBtn=false;
+			}	
+			else{
+				agesp.style.display="none";
+			}
+		}
+	</script>
+</body>
+</html>

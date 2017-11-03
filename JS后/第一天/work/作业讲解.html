@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#wrap{
+			width:600px;
+			min-height:350px;
+			border:1px solid;
+			margin:0 auto;
+		}
+		span{
+			font-size:20px;
+			color:lightblue;
+			margin-left:10px;
+		}
+		input{
+			width:220px;
+			height:30px;
+			border-radius:5px;
+		}
+		button{
+			background:lightblue;
+			border-radius:5px;
+			padding:5px 20px;
+		}
+		table{
+			width:560px;
+			border:1px solid;
+			margin:0 auto;
+			border-collapse: collapse;
+			margin:20px;
+			text-align: center;
+		}
+		tr,th{
+			border:1px solid;
+		}
+		td{
+			border:1px solid;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<span>添加</span>
+		<input type="text" placeholder="姓名" id="thename" class="thename">
+		<input type="text" placeholder="年龄" id="theage">
+		<button id="add">添加</button>
+		<table id="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>姓名</th>
+					<th>年龄</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- <tr>
+					<td>1</td>
+					<td>a</td>
+					<td>33</td>
+					<td><a href="">删除</a></td>
+				</tr> -->
+			</tbody>
+		</table>
+		<span>搜索</span>
+		<input type="text" placeholder="姓名" id="thename1">
+		<button id="find">搜索</button>
+		<span>排序</span>
+		<button id="rank">年龄从小到大</button>
+	</div>
+	<script>
+		var tbody=document.querySelector('tbody');
+		var add=document.querySelector('#add');
+		var index=0;
+
+
+		add.onclick=function(){
+			var thename=document.querySelector("#thename").value;
+			var theage=document.querySelector("#theage").value;
+			index++;
+			tbody.innerHTML+="<tr>\
+					<td>"+index+"</td>\
+					<td>"+thename+"</td>\
+					<td>"+theage+"</td>\
+					<td><a href='#' onclick='del(this)'>删除</a></td>\
+				</tr>";
+		}
+		function del(obj){
+			var par=obj.parentNode;
+			var tr=par.parentNode;
+			tbody.removeChild(tr);
+		}
+
+
+		var find=document.querySelector("#find");
+		var thename1=document.querySelector("#thename1");
+		find.onclick=function(){
+			var trs=tbody.querySelectorAll("tr");
+			for(var i=0;i<trs.length;i++){
+				var tr=trs[i];
+				var tdname=tr.querySelectorAll('td')[1].innerHTML;
+				if(thename1.value==tdname){
+					tr.style.background='pink';
+				}
+				else{
+					tr.style.background='';
+				}
+			}
+		}
+
+		var rank=document.querySelector("#rank");
+		rank.onclick=function(){
+			var trs=tbody.querySelectorAll('tr');
+			for(var i=0;i<trs.length-1;i++){
+				for(var j=0;j<trs.length-1-i;j++){
+					var a=Number(trs[j].querySelectorAll('td')[2].innerHTML);
+					var b=Number(trs[j+1].querySelectorAll('td')[2].innerHTML);
+					if(a>b){
+						var first=trs[j];
+						var second=trs[j+1];
+						tbody.insertBefore(second,first);
+						trs=tbody.querySelectorAll('tr');
+					}
+				}
+			}
+		}
+
+
+		 // 排序
+    // var sort = document.querySelector("#sort");
+    // sort.onclick = function () {
+    //     var trs = tbody.getElementsByTagName("tr");
+    //     for (var i = 0; i < trs.length - 1; i++) {
+    //         for (var j = 0; j < trs.length - i - 1; j++) {
+    //             var a = Number(trs[j].getElementsByTagName("td")[2].innerHTML);
+    //             var b = Number(trs[j + 1].getElementsByTagName("td")[2].innerHTML);
+    //             if(a > b) {
+
+    //                 var first = trs[j];
+    //                 var second = trs[j + 1];
+    //                 // 父级标签调用插入函数
+    //                 // 将第一个参数标签提到第二个参数标签之前
+    //                 tbody.insertBefore(second,first);
+    //                 // trs = tbody.querySelectorAll("tr");
+    //             }
+    //         }
+    //     }
+    // }
+	</script>
+</body>
+</html>

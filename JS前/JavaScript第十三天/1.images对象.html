@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>images对象</title>
+</head>
+<script>
+	window.onload=function(){
+		var body=document.getElementsByTagName('body')[0];
+		var img=new Image("300","200");   //接收两个参数,设置宽高
+		
+		//图片加载成功
+		img.onload=function(){
+			console.log('当图片加载完成时出现');
+			console.log('height:'+img.height);
+		}
+		//图片加载失败
+		img.onerror=function(){
+			console.log('加载失败');
+		}
+		body.appendChild(img);
+		img.src="https://img3.doubanio.com/view/photo/photo/public/p2344520401.jpg";
+		/*
+		由于我们这个事件的目的是在图片加载完之后显示某些信息,但是图片下载并不是把image对象添加到DOM中才开始下载,而是赋予src的时候就开始下载了,所以为了避免网速过快,src已经加载完毕,事件还没有被触发的这种极端情况.
+		结论:要将src放在事件之后添加.
+		*/
+	}
+</script>
+<body>
+
+</body>
+</html>

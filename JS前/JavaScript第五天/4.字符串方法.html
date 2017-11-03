@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串方法</title>
+</head>
+<body>
+	<script>
+		//创建字符串
+		var text='my value';
+		var anotherText='anotherText';
+
+		//转义字符(\n:换行符;\r:换页符;)
+		var str='first\nsecond\nthird\nfourth';
+		console.log(str);
+		var str='first\rsecond\rthird\rfourth';
+		console.log(str);
+		
+		//特殊转义字符(\':' ;  \\:\)
+		var str='i\'m a student';
+		console.log(str);
+		var str2='hello\\world';
+		console.log(str2);
+
+		//字符串属性
+		var str='first\nsecond';
+		console.log(str.length);
+
+		//字符串方法
+		var str='catty';
+		console.log(str.charAt(4));
+		console.log(str[4]);
+
+		//练习:通过charAt()方法将字符串'string'改变成ring.
+		var str='string';
+		str=str.charAt(2)+str.charAt(3)+str.charAt(4)+str.charAt(5);
+		console.log(str);
+
+		//toUpperCase()
+		var str='Banana';
+		str=str.toUpperCase();
+		console.log(str);
+
+		//toLowerCase()
+		str=str.toLowerCase();
+		console.log(str);
+
+		//indexOf()
+		var str='baby or baby or baby';
+		console.log(str.indexOf('baby'));
+		console.log(str.indexOf('baby',9));
+
+		//substring()
+		var str='fantanstic';
+		str=str.substring(1,4);
+		console.log(str);
+
+		//练习:使用substring将string改为ring.
+		var str='string';
+		str=str.substring(2);
+		console.log(str);
+
+		//substr()
+		var str='stringify';
+		console.log(str.substr(2,4));
+
+		//slice()
+		var str="stringify";
+		console.log(str.slice(2,6));
+
+		//substring和slice本质区别在于处理负数.
+		var str='text me';
+		console.log(str.substring(-2));
+		console.log(str.slice(-4));  //从右到左
+
+		console.log('z'>'a');   //true
+		console.log('bob'>'bar');  //true
+		console.log('aa'>'a');  //true
+		console.log('A'>'a');  //false
+		console.log('2'>'14')  //true
+		console.log('2'>'1')  //true
+		console.log(2>'14')  //false
+
+
+		/*
+			转义字符:是一种特殊字符,具有自身存在的意义.
+			字符串的属性:length 长度
+			字符串方法:
+				charAt():返回指定索引的字符.
+				toUpperCase():将所有字符串转换成大写.
+				indexOf():查找字符串
+					第一个参数:要查找的内容;
+					第二个参数:开始查找的下标;
+				substring():获取子字符串
+					第一个参数:开始位置
+					第二个参数:结束位置
+				substr():获取子字符串
+					第一个参数:起始位置
+					第二个参数:获取长度
+				slice():获取子字符串
+					第一个参数:起始位置
+					第二个参数:结束位置
+				substring中的负数,没有意义.
+				slice中的负数,是倒数.
+		*/
+	</script>
+</body>
+</html>

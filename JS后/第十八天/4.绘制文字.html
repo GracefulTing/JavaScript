@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>绘制文字</title>
+	<style>
+		#canvas{
+			background:pink;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="300" height="300" style="border:1px solid lightgray"></canvas>
+</body>
+<script>
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	ctx.beginPath();
+	ctx.strokeStyle = 'yellow';
+	//字体大小
+	ctx.font = '55px SimSun';
+	ctx.strokeText("hello",100,150);
+	ctx.closePath();
+</script>
+</html>

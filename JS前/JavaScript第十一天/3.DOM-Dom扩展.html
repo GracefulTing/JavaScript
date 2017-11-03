@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM-Dom扩展</title>
+</head>
+<body>
+	<ul id="list">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+	</ul>
+	<button id="btn"  onfocus="thefn()">按钮</button>
+	<script>
+		var list=document.getElementById('list');
+		var lis=document.getElementsByTagName('li');
+		var btn=document.getElementById('btn');
+
+		//这一组属性ie9以下不兼容.
+
+		//childElementCount:只包含元素的个数,不包括换行和空格等其他节点.
+		console.log(list.childElementCount);
+
+		//children:只获取所有的子元素,但是ie9以下会包含注释节点.
+		console.log(list.children);
+
+		console.log(list.childNodes);
+
+		//firstElementChild:获取第一个子元素,ie9以下不兼容
+		console.log(list.firstElementChild);
+
+		//lastElementChild:
+		console.log(list.lastElementChild);
+
+		//previousElementSibling:获取当前节点的上一个元素节点,ie9以下不兼容
+		console.log(lis[1].previousElementSibling);
+
+		//nextElementSibling:
+		console.log(lis[1].nextElementSibling);
+
+	// 	btn.onfocus();     //focus:代表btn获得焦点
+	//  btn.onblur();      //blur:代表btn失去焦点
+
+	// 	activeElement:代表页面中获取了焦点的元素.
+	// 	console.log(document.activeElement);
+
+		function thefn(){
+			console.log('获取焦点');
+		}	
+		btn.onblur=function(){
+			console.log('失去焦点');
+		}
+
+		console.log(list.innerHTML);   //所有子元素
+		console.log(list.outerHTML);   //自身及所有子元素
+
+	</script>
+</body>
+</html>

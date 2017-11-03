@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		
+	</style>
+</head>
+<body>
+	<canvas id="canvas"  width="300" height="500"></canvas>
+</body>
+<script>
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+
+	//灰色背景
+	ctx.beginPath();
+	ctx.fillStyle = 'gray';
+	ctx.fillRect(0,0,300,500);
+	ctx.fill();
+	ctx.closePath();
+
+	//清除画布
+	ctx.clearRect(0,0,100,100);
+</script>
+</html>

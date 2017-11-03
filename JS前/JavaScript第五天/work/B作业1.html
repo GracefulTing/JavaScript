@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>双色球</title>
+</head>
+<body>
+	<script>
+		function rand(){
+			var rand1=[];
+			for(var i=0;i<6;i++){
+				rand1[i]=Math.floor(Math.random()*33+1);
+				if(rand1[i]<10){
+					rand1[i]="0"+rand1[i];
+				}
+				 document.write(rand1[i]+',');
+			}
+
+			var rand2=Math.floor(Math.random()*16+1);
+			if(rand2<10){
+				rand2="0"+rand2;
+			}
+			 document.write(rand2);
+			
+
+			var rand12=rand1;
+			rand12.push(parseInt(rand2));
+		
+			if(i>=0&&i<7){
+				if(rand1[i]==rand12[i]&&i<6){
+					alert('恭喜您中了二等奖!');
+				}
+				else if(rand2==rand12[6]){
+					alert('恭喜您中了三等奖!');
+				}
+				else if(rand1[i]==rand12[i]&&rand2==rand12[6]){
+					alert('恭喜您中了一等奖!');
+				}
+				else{
+					alert('很遗憾,您没有中奖!');
+				}
+			}
+		}	
+	</script>
+	<!-- 中奖号码:<input type="text" id="zj"><br>
+	随机号码: <input type="text" id="sj"><br> -->
+	<button onclick="rand()">随机一注</button>
+</body>
+</html>

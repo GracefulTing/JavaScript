@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>移动封装</title>
+	<style>
+		.a{
+			width:100px;
+			height:100px;
+			background: red;
+			position: absolute;
+			left:0;
+		}
+		.a:nth-child(1){
+			top:0;
+		}
+		.a:nth-child(2){
+			top:200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="a">1</div>
+	<div class="a">2</div>
+	<script>
+		var as=document.querySelectorAll('.a');
+
+		for(var i=0;i<as.length;i++){
+			var a=as[i];
+			a.onclick=function(){
+				click(this,"left",1000,100,50);
+			}
+		}
+
+		function click(c,direction,beginValue,endValue,perTime){
+			var left=beginValue;
+			var perValue=beginValue>endValue?-1:1;
+			var timer=setInterval(function(){
+				left+=perValue;
+				c.style[direction]=left+"px";
+				if(perValue>0){
+					if(left>=endValue){
+						clearInterval(timer);
+					}
+				}
+				else{
+					if(left<=endValue){
+						clearInterval(timer);
+					}
+				}
+			},perTime)
+		}
+	</script>
+</body>
+</html>

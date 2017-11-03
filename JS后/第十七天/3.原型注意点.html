@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型注意点</title>
+</head>
+<body>
+	
+</body>
+<script>
+	function Peo(){
+		this.name = "z";
+		this.sex = "男";
+	}
+	Peo.prototype = { //给__proto__添加属性
+		//val:"la"
+		move:function(){
+			console.log(this)
+		}
+	}
+	var p = new Peo();
+	//p.__proto__.val = 'aa';
+	//p.val = 'aa';
+	//console.log(p.__proto__.val);
+	console.log(p);
+	p.move();
+	//p.__proto__.move();
+
+
+	//原型继承
+	function People(){
+		this.name="a";
+		this.age = 18;
+		this.sex = "男";
+	}
+	function Student(score){
+		this.score = score;
+	}
+	Student.prototype = new People();
+	var s = new Student("99");
+	console.log(s);
+</script>
+</html>

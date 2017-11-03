@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		ul li{
+			width:800px;
+			height:30px;
+			border:1px solid;
+			padding:5px;
+			list-style: none;
+			/*background:black;*/
+		}
+		li:nth-child(2n-1){
+			background:black;
+		}
+		li:nth-child(2n){
+			background:gray;
+		}
+		span{
+			color:white;
+		}
+		.tit{
+			float:left;
+		}
+		.date{
+			float:right;
+		}
+	</style>
+</head>
+<body>
+	<!-- <ul>
+		<li>
+			<span class="tit">8月21日更新日志:7.06f游戏平衡性改动2017-08-21</span>
+			<span class="date">2017-08-21</span>
+		</li>
+		<li><span class="tit">8月21日更新日志:7.06f游戏平衡性改动2017-08-21</span>
+			<span class="date">2017-08-21</span></li>
+	</ul> -->
+	<script>
+		var str = '[\
+			{\
+				"title":"8月21日更新日志:7.06f游戏平衡性改动",\
+				"date":"2017-08-21"\
+			},{\
+				"title":"DOTA2 8月19日更新",\
+				"date":"2017-08-19"\
+			},{\
+				"title":"国际邀请赛勇士下架",\
+				"date":"2017-08-16"\
+			},{\
+				"title":"七夕礼物清单",\
+				"date":"2017-08-25"\
+			},{\
+				"title":"瞬间即是永恒",\
+				"date":"2017-08-18"\
+			},{\
+				"title":"不只是一场比赛",\
+				"date":"2017-08-17"\
+			},{\
+				"title":"1000万美元冠军奖金",\
+				"date":"2017-08-13"\
+			}\
+		]';
+
+		var arr = JSON.parse(str);
+		console.log(arr);
+
+		list(arr);
+		function list(array){
+			var ul = createEle("ul",document.body);
+			for(var i = 0; i < array.length; i++){
+				var obj = array[i];
+				var li = createEle("li",ul);
+				var tit= createEle("span",li);
+				tit.className = 'tit';
+				tit.innerHTML=obj.title;
+				var date= createEle("span",li);
+				date.className='date';
+				date.innerHTML=obj.date;
+
+			}
+		}
+
+		function createEle(name,parent){
+			var n = document.createElement(name);
+			parent.appendChild(n);
+			return n;
+		}
+	</script>
+</body>
+</html>

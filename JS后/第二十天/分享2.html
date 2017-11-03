@@ -1,0 +1,84 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>growl</title>
+	<link rel="stylesheet" type="text/css" href="jquery.growl.css">
+</head>
+<body>
+	<ul>
+		<li><a href="#" class="error">错误</a></li>
+		<li><a href="#" class="notice">提示</a></li>
+		<li><a href="#" class="warning">警告</a></li>
+	</ul>
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="jquery.growl.js"></script>
+<script>
+	$(function(){
+		$.growl({
+			title:'消息标题',
+			message:'消息内容'
+		})
+		$(".error").click(function(event){
+			event.preventDefault();             //取消默认事件
+			event.stopPropagation();     //阻止冒泡
+			$.growl.error({
+				title:"错误标题",
+				message:"错误内容"
+			})
+		})
+		$(".notice").click(function(event){
+			event.preventDefault();             //取消默认事件
+			event.stopPropagation();     //阻止冒泡
+			$.growl.notice({
+				title:"提醒标题",
+				message:"提醒内容"
+			})
+		})
+		$(".warning").click(function(event){
+			event.preventDefault();             //取消默认事件
+			event.stopPropagation();     //阻止冒泡
+			$.growl.warning({
+				title:"警告标题",
+				message:"警告内容"
+			})
+		})
+	})
+</script>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>小广告</title>
+	<link rel="stylesheet" href="http://www.ijquery.cn/css/ijquery.css" />	
+	<link rel="stylesheet" href="index.css">
+</head>
+<body>
+	<div id="header">
+		<h1>网页右下角小广告</h1>
+	</div>
+	<div id="container">
+		<!-- 创建小广告开始 -->
+		<div id="pop" style="display: none;">
+			<div id="popHead">
+				<a href="###" id="popClose">关闭</a>
+				<h2>赞助广告</h2>
+			</div>
+			<div id="popContent">
+				<a href="###" id="_blank">
+					<img src="imgad.jpg" alt="">
+				</a>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="http://www.ijquery.cn/js/jquery-1.7.2.min.js"></script>
+<script src="jquery.adrightbottom.js"></script>
+<script>
+	var popad = new Pop();
+</script>
+</html>

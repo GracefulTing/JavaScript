@@ -1,0 +1,46 @@
+第一题：a,b,c,d四个数，取最大值  （不能看到数字，不能用max，min）
+	var a,b,c,d;
+	var c=new Array('a','b','c','d');
+	max=c[0];
+	for(var i=0;i<c.length;i++){
+		if(c[i]>max){
+			max=c[i];
+		}
+	}
+	console.log(max);
+第二题：获取20~70之间的随机整数。
+	var random=Math.floor(Math.random()*50+20);
+	console.log(random);
+第三题：已知a,b两个数，求a%b的结果。（不可以创建变量，不能看到数字，用a,b表达出结果的值）
+	var a,b;
+	console.log(a-b*parseInt(a/b));
+第四题：用for打印出1~100之间不是7的倍数并且个位十位都不能是7
+	for(var i=1;i<=100;i++){
+		if(i%7!=0&&parseInt(i/10)!=7&&i%10!=7){
+			console.log(i);
+		}
+	}
+第五题：
+
+var rel='5'===5;
+
+console.log(rel)的结果？
+	false
+
+第六题
+
+把所有的关系运算符列举出来
+	> < == != >= <= === !==
+第七题
+
+已知a是一个随机正数，用判断的方法，输出四舍五入之后的结果，不能用math.round。
+	var a=1.9;
+	var b=parseInt(a);
+	if(a-b<0.5){
+		a=Math.floor(a);
+	}
+	else{
+		a=Math.ceil(a);
+	}
+	console.log(a);
+

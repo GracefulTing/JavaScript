@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组合方式</title>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="500" style="border:1px solid;"></canvas>
+</body>
+<script>
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	ctx.beginPath();
+	ctx.moveTo(150,150);
+	ctx.arc(150,150,100,0,Math.PI*2);
+	ctx.fillStyle = 'pink';
+	ctx.fill();
+	ctx.closePath();
+
+	//针对beginPath()
+	//1.留下重叠区域 第二个圆的颜色        只保留当前图重叠的部分
+	// ctx.globalCompositeOperation = 'source-in';
+	//2.第二个圆去除和第一个圆重叠部分后的区域       绘制不重叠部分
+	// ctx.globalCompositeOperation = 'source-out';
+	//3.第一个圆压在第二个圆上                   原图覆盖新图
+	// ctx.globalCompositeOperation = 'destination-over';
+	//4.留下重叠区域 第一个圆的颜色               绘制原图和新图重叠部分
+	// ctx.globalCompositeOperation = 'destination-in';
+	//5.第一个圆去除和第二个圆重叠部分后的区域        绘制原图和新图不重叠部分
+	// ctx.globalCompositeOperation = 'destination-out';
+	//6. 2,4组合成圆              绘制原图和新图重叠部分以及新图
+	// ctx.globalCompositeOperation = 'destination-atop';
+	//7. 2,5组合                 绘制新图和原图,重叠部分加色处理
+	// ctx.globalCompositeOperation = 'lighter';
+	//8. 绘制新图,覆盖原图
+	// ctx.globalCompositeOperation = 'copy';
+
+	ctx.beginPath();
+	ctx.moveTo(230,150);
+	ctx.arc(230,150,100,0,Math.PI*2);
+	ctx.fillStyle = 'lightgreen';
+	ctx.fill();
+	ctx.closePath();
+
+</script>
+</html>

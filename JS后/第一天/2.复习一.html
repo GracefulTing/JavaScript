@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#wrap{
+			width:100px;
+			height:100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"></div>
+</body>
+<script>
+	//写一个函数把标签传入该函数,并修改其颜色
+	// var a=document.getElementById('wrap');
+	// change(a);
+	// function change(b){
+	// 	b.style.background="yellow";
+	// }
+
+	//或语法得到的是为真的那个值
+	var a=10;
+	var b=111;
+	var c=a||b;
+	console.log(c);          //10  
+
+	var arr=[1,4,2,6];
+	for(var i=0;i<arr.length-1;i++){
+		for(var j=0;j<arr.length-1-i;j++){
+			if(arr[j]>arr[j+1]){
+				temp=arr[j+1];
+				arr[j+1]=arr[j];
+				arr[j]=temp;
+			}
+		}
+	}
+	console.log(arr);
+
+
+	var arr=[1,4,2,6];
+	pup(arr);
+	function pup(arr){
+		for(var i=0;i<arr.length-1;i++){
+			for(var j=0;j<arr.length-1-i;j++){
+				if(arr[j]>arr[j+1]){
+					temp=arr[j+1];
+					arr[j+1]=arr[j];
+					arr[j]=temp;
+				}
+			}
+		}
+	}
+	console.log(arr);
+
+
+	var arr1=[8,4,5,3];
+	pup(arr1);
+	function pup(arr){
+		for(var i=0;i<arr.length-1;i++){
+			for(var j=0;j<arr.length-1-i;j++){
+				comp(arr,j);
+			}
+		}
+	}
+	function comp(arr,j){
+		if(arr[j]>arr[j+1]){
+			temp=arr[j+1];
+			arr[j+1]=arr[j];
+			arr[j]=temp;
+		}
+	}
+	console.log(arr1);
+
+</script>
+</html>

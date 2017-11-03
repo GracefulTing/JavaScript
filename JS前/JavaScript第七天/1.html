@@ -1,0 +1,95 @@
+<!-- 
+要解决的问题
+1.处理倒计时  
+2.处理分数
+3.处理大字的文字及颜色随机
+4.处理小字的点击事件
+5.处理小字的文字和颜色随机
+6.时间归零后,点击事件失效
+需要用到的方法:
+1.定时器
+2.if分支
+3.onclick
+4.Math.random()
+5.数组
+6.alert
+7.for
+8.函数
+9.innerHTML
+步骤:
+1.写结构
+2.写样式
+3.分析需求(JS)
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.thediv{
+			width:600px;
+			height:800px;
+			margin:0 auto;
+			border:1px solid;
+			/*text-align: center;*/
+		}
+		.thediv span{
+			font-size:20px;
+			margin:100px;
+			line-height:50px;
+		}
+		.thediv2,.thediv3{
+			width:500px;
+			margin:20px auto;
+			font-size:25px;
+		}
+		#bigfont{
+			text-align: center;
+			font-size:300px;
+		}
+		.thediv3 input{
+			width:80px;
+			height:80px;
+			font-size:45px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="thediv">
+		<span>剩余时间:</span><span>完成:</span>
+		<div id="bigfont">
+			红
+		</div>
+		<div class="thediv2">
+			根据上面的字的颜色从下面选择正确的字,选择正确自动开始
+		</div>
+		<div class="thediv3">
+			<input type="text" value="黄">
+			<input type="text">
+			<input type="text">
+			<input type="text">
+			<input type="text">
+		</div>
+	</div>
+	<button onclick="dj()"></button>
+	<script>
+		function rand(){
+			return Math.floor(Math.random()*5);
+		}
+		function dj(){
+
+
+		var arr1=['红','黄','蓝','黑','绿'];
+		var arr2=['red','yellow','blue','black','green'];
+		var font=arr1[rand()];
+		var color=arr2[rand()];
+		console.log(font);
+		var bigfont=document.getElementById('bigfont');
+		bigfont.innerHTML=font;
+		bigfont.style.color=color;
+	}
+	</script>
+</body>
+</html>

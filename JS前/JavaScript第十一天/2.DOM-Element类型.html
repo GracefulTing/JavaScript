@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM-Element类型</title>
+</head>
+<body>
+	<p id="page" index="2">
+		<span id="icon"></span>
+		<i id="font" title="aa"></i>
+	</p>
+	<script>
+		var page=document.getElementById('page');
+		var icon=document.getElementById('icon');
+		var font=document.getElementById('font');
+
+		var obj={id:'theid'};
+		console.log(obj.id);
+
+		//id:获取和设置元素id
+		console.log(page.id);
+		page.id="page02";
+		console.log(page.id);
+
+		//title:
+		console.log(font.title);
+		font.title="cc";
+		console.log(font.title);
+
+		//getAttribute()
+		console.log(page.getAttribute("id"));
+		console.log(page.getAttribute('index'));
+
+		//setAttribute():设置元素的自定义属性,第一个参数是属性名,第二个参数是属性值.
+		page.setAttribute("the","the00"); 
+
+		//removeAttribute()
+		page.removeAttribute("the");
+
+		//createElement():创造元素
+		var em=document.createElement("em");
+		page.appendChild(em);
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin:0;
+			padding: 0;
+		}
+		div{
+			width:50px;
+			height:50px;
+			background:red;
+			border:1px solid;
+		}
+	</style>
+</head>
+<body>
+	<div id="move"></div>
+	<script>
+		var move=document.getElementById('move');
+
+		var speedx;
+		var speedy;
+
+		var move=setInterval(function(){
+			var curposx=move.offsetLeft;
+			var curposy=move.offsetTop;
+
+			if(curposx==0&&curposy==0){
+				speedx=0;
+				speedy+=30;
+			}
+			
+			if(curposx==0&&curposy==1000){
+				clearInterval(move);
+			}
+			curposy+=speedy;
+			move.style.top=curposy;
+		},20)
+	</script>
+</body>
+</html>

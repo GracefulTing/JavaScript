@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Math方法</title>
+</head>
+<body>
+	<script>
+		//随机数
+		var random=Math.random();
+		console.log(random);
+		//Math.random():获取0~1之间的随机数
+
+
+		//获取1~10之间的随机数
+		var random=Math.floor(Math.random()*10+1);
+		console.log(random);
+
+		//获取多个数的最大值
+		var max=Math.max(1,2,-5,87,45);
+		console.log(max);
+
+		//获取多个数的最小值
+		var min=Math.min(1,2,-5,87,45);
+		console.log(min);
+
+		//ceil向上取整:大于等于参数的最小整数
+		var ceil=Math.ceil(10/3);
+		console.log(ceil);      //4
+
+		//floor向下取整:小于等于参数的最大整数
+		var floor=Math.floor(5/2);
+		console.log(floor);     //2
+
+		//parseInt:舍去参数的小数部分的整数
+		//用于解析一个字符串,并返回一个整数(number);
+		var par=parseInt('-1.2');
+		console.log(typeof(par));
+		console.log(par);
+
+		//Math.round():四舍五入
+		var round=Math.round(5/2);
+		console.log(round); 
+	</script>
+</body>
+</html>

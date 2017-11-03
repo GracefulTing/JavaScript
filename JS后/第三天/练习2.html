@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>练习二:函数回调</title>
+	<style>
+		#wrap{
+			width:100px;
+			height:100px;
+			background: red;
+			position: absolute;
+		}
+		#a{
+			width:100px;
+			height:100px;
+			background: yellow;
+			position: absolute;
+			top:200px;
+			left:0;
+		}
+		#p{
+			width:100px;
+			height:100px;
+			background: pink;
+			position: absolute;
+			top:400px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"></div>
+	<a id="a"></a>
+	<p id="p"></p>
+</body>
+<script src="leftMove.js"></script>
+<script>
+	var wrap = document.getElementById('wrap');
+	var a = document.getElementById('a');
+	var p = document.getElementById('p');
+	wrap.onclick = function(){
+		// move(100,300,this,50);
+		move(this,function(){
+			wrap.style.background = "blue";
+		});
+	}
+	a.onclick = function(){
+		move(this,function(){
+			alert('stop');
+		})
+	}
+	p.onclick = function(){
+		move(this);
+	}
+
+</script>
+</html>

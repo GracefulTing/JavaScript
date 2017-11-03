@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>兼容事件监听</title>
+	<style>
+		#wrap{
+			width:100px;
+			height:100px;
+			background: red;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"></div>
+	<script src="listener.js"></script>
+	<script>
+
+		function func(){
+			console.log("hello");
+		}
+
+		addhandle(wrap,"click",func);
+		removehandle(wrap,"click",func);
+
+		// function addhandle(obj,type,fun){
+		// 	if(obj.addEventListener){
+		// 		obj.addEventListener(type,fun);
+		// 	}else{
+		// 		obj.attachListener("on"+type,fun);
+		// 	}
+		// }
+
+		// function removehandle(obj,type,fun){
+		// 	if(obj.removeEventListener){
+		// 		obj.removeEventListener(type,fun);
+		// 	}else{
+		// 		obj.detachListener("on"+type,fun);
+		// 	}
+		// }
+	</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#first{
+			width:100px;
+			height:600px;
+			background: red;
+			position:absolute;
+			top:0;
+			left:0;
+		}
+		#second{
+			width:200px;
+			height:700px;
+			background: yellow;
+			position:absolute;
+			top:0;
+			left:200px;
+		}
+	</style>
+</head>
+<body>
+	<div id="first"></div>
+	<div id="second"></div>
+	<script src="compa.js"></script>
+	<script>
+		var first = document.getElementById('first');
+		var second = document.getElementById('second');
+
+		// var type = (/Firefox/.test(navigator.userAgent))?"DOMMouseScroll": "mousewheel";
+		
+		add(first);
+		add(second);
+
+		// function mouse(ev){
+		// 	var e = ev || window.event;
+
+		// 	if(e.detail){      //火狐
+		// 		if(e.detail > 0){
+		// 			console.log("火狐向下");
+		// 		}else{
+		// 			console.log("火狐向上");
+		// 		}
+		// 	}
+		// 	else if(e.wheelDelta){         //谷歌
+		// 		if(e.wheelDelta < 0){
+		// 			console.log("谷歌向下");
+		// 		}else{
+		// 			console.log("谷歌向上");
+		// 		}
+		// 	}
+		// }
+		
+		
+		// function add(obj){
+		// 	if(obj.attachEvent){          //IE        
+		// 		obj.attachEvent("on"+type,function(e){
+		// 			mouse(e);
+		// 		});
+		// 	}else{                   //非IE
+		// 		obj.addEventListener(type,function(e){
+		// 			mouse(e);
+		// 		});
+		// 	}
+		// }
+	</script>
+</body>
+</html>

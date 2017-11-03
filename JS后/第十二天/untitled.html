@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+        .item{
+            margin-left:25px;
+            width:248px;
+            min-height:400px;
+            border:1px solid #ccc;
+            float:left;
+            overflow: hidden;
+            display: inline-block;
+            margin-right:10px;
+        }
+        .pic{
+            width:100%;
+            height:100%;
+        }
+        .detail{
+            width:248px;
+            height:30px;
+            /*border:1px solid;*/
+        }
+        .name{
+            height:50px;
+            margin-top:10px;
+            font-size:15px;
+            /*border:1px solid;*/
+        }
+        .bot{
+            height:20px;
+            margin-top:10px;
+            /*border:1px solid;*/
+        }
+        .pri{
+            float:left;
+            color:red;
+            margin-left:10px;
+        }
+        .num{
+            float:right;
+            margin-right:10px;
+            color:#ccc;
+        }
+        #wrap{
+
+            width:1150px;
+            border:1px solid;
+            margin:0 auto;
+            overflow: hidden;
+        }
+        #pages{
+            width:1150px;
+            height:30px;
+            margin:20px auto;
+            /*border:1px solid;*/
+            text-align: center;
+        }
+        button{
+            width:30px;
+            height:30px;
+            text-align: center;
+            margin-left:10px;
+        }
+    </style>
+</head>
+<body>
+	<div id="wrap"></div>
+	<div id="pages"></div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js" charset="utf-8"></script>
+<script>
+	var data = '[{"img":"img/qun.png","price":"¥79.00","num":"1人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"2人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"3人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"4人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"5人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"6人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"7人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"8人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"},{"img":"img/qun.png","price":"¥79.00","num":"9人付款","name":"秋冬打底连衣裙秋装2017新款长袖收腰显瘦冬季可爱女装蓬蓬裙裙子","compony":"galay店","address":"浙江"}]';
+    var arr = JSON.parse(data);
+
+    var wrap = $("#wrap");
+    var pages = $("#pages");
+
+    page(arr,4);
+    function page(myarr,perNum){
+        var count = Math.ceil(myarr.length/perNum);
+        for(var i=0;i<count;i++){
+            var btn = createTag("button",pages,"");
+            btn.html(i+1);
+            btn.click(function(){
+                var index = $(this).html()-1;
+                createArr(myarr,index,perNum);
+            })
+        }
+    }
+
+    createArr(arr,0,4);
+    function createArr(myarr,index,perNum){
+        var newArr = [];
+        newArr = myarr.slice(index*perNum,(index+1)*perNum);
+        createItem(newArr);
+    }
+
+    function createItem(myarr){
+        wrap.html('');
+        $.each(myarr,function(i,obj){
+            var item = createTag("div",wrap,"item");
+            var img = createTag("img",item,"pic");
+            var detail = createTag("div",item,"detail");
+            var pri = createTag("span",detail,"pri");
+            var num = createTag("span",detail,"num");
+            var name = createTag("div",item,"name");
+            var bot = createTag("div",item,"bot");
+            var com = createTag("span",bot,"name");
+            var addr = createTag("span",bot,"num");
+            img.attr("src",obj.img);
+            pri.html(obj.price);
+            num.html(obj.num);
+            com.html(obj.compony);
+            addr.html(obj.address);
+        })
+    }
+
+    function createTag(name,parent,classname){
+    	var n = $("<"+name+">").appendTo(parent);
+    	n.addClass(classname);
+    	return n; 
+    }
+</script>
+</html>

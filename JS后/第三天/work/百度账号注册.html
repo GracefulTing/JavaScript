@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百度账号注册</title>
+	<style>
+		input{
+			margin-top:20px;
+			width:200px;
+			height:30px;
+			margin-left:10px;
+		}
+		button{
+			width:270px;
+			height:35px;
+			margin-top:20px;
+			background:lightblue;
+		}
+		p{
+			font-size:14px;
+			line-height:10px;
+			color:#ccc;
+		}
+		.one{
+			width:530px;
+			height:60px;
+			/*border:1px solid;*/
+		}
+		.tishi{
+			float:right;
+			margin-top:10px;
+		}
+		.t2{
+			margin-top:-20px;
+		}
+		.last{
+			height:120px;
+		}
+		.t2,.t3{
+			display: none;
+		}
+		.t3{
+			border:1px solid #ccc;
+		}
+		.al{
+			margin-top:-30px;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div class="one">	
+			用户名:<input type="text" id="user" placeholder="请设置用户名">
+			<div id="tishi" class="tishi t1">
+				<p>设置后不可更改</p>
+				<p>中英文均可,最长14个英文或7个汉字</p>
+			</div>
+		</div>
+		<div class="one">
+			手机号:<input type="text" id="tel" placeholder="可用于登录和找回密码">	
+			<p class="tishi t2" id="tishi">请输入中国大陆手机号,其他用户不可见</p>
+		</div>
+		<div class="one last">
+			验证码:<input type="text" id="test" placeholder="请输入验证码"><br><div class="tishi al"></div>
+			密&nbsp;&nbsp;&nbsp;码:<input type="password" id="psw" placeholder="请设置登录密码">
+			<div id="tishi" class="tishi t3">
+				<p class="p">长度为6~14个字符</p>
+				<p >支持数字,大小写字母和标点符号</p>
+				<p class="p">不允许有空格</p>
+			</div>
+		</div>
+		<button id="btn">注册</button>
+	</div>
+	<script>
+		var user = document.getElementById('user');
+		var tel = document.getElementById('tel');
+		var test = document.getElementById('test');
+		var btn = document.getElementById('btn');
+		var t1 = document.getElementsByClassName('t1');
+		var t2 = document.getElementsByClassName('t2');
+		var t3 = document.getElementsByClassName('t3');
+		var ps = document.getElementsByClassName('p');
+		var al = document.getElementsByClassName('al');
+		var flag;
+		var flag1;
+
+		//默认光标在用户名输入框中显示
+		user.focus();
+		user.onclick = function(){
+			user.oninput = function(){
+				var len = user.value.length;
+				if(len == 0){
+					flag1 = false;
+				}
+				if(len > 14 || len >7){
+					flag = false;
+				}
+				if(len > 7 && len < 14){
+					flag = true;
+				}
+			}
+		}
+
+		//手机号输入框
+		tel.onclick = function(){
+			t2[0].style.display = 'block';
+			tel.oninput = function(){
+				var len = tel.value.length;
+				if(len > 11){
+					this.value = this.value.substring(0,11);
+				}
+			}
+			if(user.value != ''){
+				if(!flag){
+					t1[0].innerHTML = '用户名不能超过14个英文或7个汉字';
+					t1[0].style.color = 'red';
+					t1[0].style.marginTop = '25px';
+				}
+				t2[0].style.marginTop = '30px';
+			}else{
+				t2[0].style.marginTop = '-20px';
+			}
+			
+		}
+
+		//验证码输入框
+		test.onclick = function(){
+			test.oninput = function(){
+				var len = test.value.length;
+				if(len > 6){
+					this.value = this.value.substring(0,6);
+				}
+			}
+			if(tel.value != ''){
+				if (!check(test.value)) {
+					t2[0].innerHTML = '手机号码格式不正确';
+					t2[0].style.color = 'red';
+				 	return false;
+				}
+			}
+		}
+
+		//密码输入框
+		psw.onclick = function(){
+			t3[0].style.display = 'block';
+			psw.oninput = function(){
+				var len = psw.value.length;
+				if(len < 6 || len > 14){
+					ps[0].innerHTML = '长度不能少于6或者多于14';
+					ps[0].style.color = 'red';
+					ps[0].style.border = 'red';
+					ps[0].style.marginTop = '25px';
+				}
+				if(len >6 && len < 14){
+					ps[0].innerHTML='输入的密码长度满足条件';
+				}
+				window.onkeydown = function(ev){
+					var e = ev || window.event;
+					switch(e.keyCode){
+						case 32:
+							ps[1].innerHTML = '不能输入空格';
+							ps[1].style.color = 'red';
+							ps[1].style.border = 'red';
+							ps[1].style.marginTop = '25px';
+							break;
+					}
+				}
+			}
+			if(test.value != ''){
+				if (!check(test.value)) {
+					al[0].innerHTML = '只能输入数字';
+					al[0].style.color = 'red';
+				 	return false;
+				}
+			}
+		}
+
+		//注册按钮
+		btn.onclick = function(){
+			if(user.value == '' && tel.value == '' && test.value == '' && psw.value == ''){
+				t1[0].innerHTML ='请输入用户名';
+				t1[0].style.color ='red';
+				t1[0].style.marginTop = '25px';
+				t2[0].style.display = 'block';
+				t2[0].innerHTML = '请输入手机号';
+				t2[0].style.color ='red';
+				t2[0].style.marginTop = '30px';
+				al[0].innerHTML = '请输入验证码';
+				al[0].style.color ='red';
+				t3[0].style.display = 'block';
+				t3[0].innerHTML = '请输入密码';
+				t3[0].style.color ='red';
+				t3[0].style.border ='red';
+				t3[0].style.marginTop = '25px';
+			}
+		}
+
+		//验证字符串是否是数字
+		function check(obj) {
+			var reg = /^[0-9]+.?[0-9]*$/;
+			if (reg.test(obj)) {
+			   	return true;
+			}
+			return false;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自定义滚动条</title>
+	<style>
+		#wrap{
+			width:300px;
+			height:400px;
+			/*border:1px solid;*/
+			overflow: hidden;
+			position: relative;
+		}
+		#con{
+			width:270px;
+			height:600px;
+			float:left;
+			font-size:18px;
+			position: absolute;
+		}
+		#roll{
+			float:right;
+			width:30px;
+			height:400px;
+			background:pink;
+			position: relative;
+		}
+		#move{
+			width:30px;
+			height:50px;
+			background: lightgreen;
+			border-radius:10px;
+			position: absolute;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="con">
+			你好你好你好你好你好你哈还贷款哈佛快捷键可见的理发店技术开发就就开了房间打开来发掘的快乐积分克鲁塞德看你 叫对方考虑建安费快了但是付了款那分开看了愤怒的时刻三等奖咖啡里看到近两年水电费来看你打开了分内事你看了荆防颗粒第三方卡拉胶圣诞快乐非叫我一我热污染 你好你好你好你好你好你哈还贷款哈佛快捷键可见的理发店技术开发就就开了房间打开来发掘的快乐积分克鲁塞德看你 叫对方考虑建安费快了但是付了款那分开看了愤怒的时刻三等奖咖啡里看到近两年水电费来看你打开了分内事你看了荆防颗粒第三方卡拉胶圣诞快乐非叫我一我热污染术开发就就开了房间打开来发掘的快乐积分克鲁塞德看你 叫对方考虑建安费快了但是付了款那分开看了愤怒的时刻三等奖咖啡里看到近两年水电费来看你打开了分内事你看了荆防颗粒第三方卡拉胶圣诞快乐非叫我一我热污染 
+		</div>
+		<div id="roll">
+			<div id="move"></div>
+		</div>
+	</div>
+</body>
+<script>
+	//获取元素
+	var wrap = document.getElementById('wrap');
+	var con = document.getElementById('con');
+	var roll = document.getElementById('roll');
+	var move = document.getElementById('move');
+
+	//鼠标拖拽
+	move.onmousedown = function(ev){
+		var e = ev || window.event;
+		var curY = e.clientY;
+		var offY = move.offsetTop;
+		document.onmousemove = function(ev){
+			var e = ev || window.event;
+			move.style.top = e.clientY - curY + offY + "px";
+			fn(move,roll,con);
+		}
+		document.onmouseup = function(){
+			document.onmousemove = null;
+		}
+	}
+
+	//键盘控制
+	var offY = move.offsetTop;
+	window.onkeydown = function(ev){
+		var e = ev || window.event;
+		//console.log(e.keyCode);
+		switch(e.keyCode){
+			case 38:  //上键
+				offY -= 20;
+				if(offY <= 0){
+					offY = 0;
+				}
+				move.style.top = offY + "px";
+				fn(move,roll,con);
+
+				break;
+			case 40:  //下键
+				offY += 20;
+				if(offY >= roll.offsetHeight - move.offsetHeight){
+					offY = roll.offsetHeight - move.offsetHeight;
+				}
+				move.style.top = offY + "px";
+				fn(move,roll,con);
+				break;
+		}
+	}
+
+	//判断滚动块的边界以及内容的移动
+	function fn(m,r,c){
+		//上边界
+		if(m.offsetTop < 0){
+			m.style.top = 0;
+		}
+		//下边界
+		if(m.offsetTop > r.offsetHeight - m.offsetHeight){
+			m.style.top = r.offsetHeight - m.offsetHeight + "px";
+		}
+
+		var result = scale(con,wrap,roll,move);
+		var dis = result * m.offsetTop;
+		c.style.top = -dis + "px";
+	}
+
+	//计算比例
+	function scale(a,b,c,d){
+		var ch = a.offsetHeight - b.offsetHeight;
+		var rh = c.offsetHeight - d.offsetHeight;
+		var val = ch / rh;
+		return val;
+	}
+</script>
+</html>

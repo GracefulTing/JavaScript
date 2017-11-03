@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>创建对象</title>
+</head>
+<body>
+	<script>
+		//1.创建方式1
+		// var obj = {
+
+		// };
+
+		//2.创建方式2
+		// var obj = new Object();
+		// obj.letter = "aa";
+		// obj.arr = ["a","ww"];
+		// console.log(obj);
+
+		var obj1 = {name:"张然",tel:"122",letter:"Z"};
+		var obj2 = {name:"游洲",tel:"122",letter:"Y"};
+		var obj3 = {name:"苗婕",tel:"122",letter:"M"};
+		var obj4 = {name:"张乐",tel:"122",letter:"Z"};
+		var obj5 = {name:"宇文斌杰",tel:"122",letter:"Y"};
+
+		var arr = [obj1,obj2,obj3,obj4,obj5];
+		
+		var a = fn(arr);
+		console.log(a);
+
+		function fn(array){
+			var newArr = [];
+			for(var i=0;i<array.length;i++){
+				var fir = array[i];
+				//遍历结果数组中是否存在了相同的字母
+				var flag = false;
+				for(var j = 0;j<newArr.length;j++){
+					var sec = newArr[j];
+					if(fir.letter == sec.letter){
+						sec.arr.push(fir);
+						flag = true;
+					}
+				}
+				if(flag == false){
+					var obj = new Object();
+					obj.letter = fir.letter;
+					obj.arr = [fir];
+					newArr.push(obj);
+				}
+			}
+			return newArr;
+		}
+
+	</script>
+</body>
+</html>

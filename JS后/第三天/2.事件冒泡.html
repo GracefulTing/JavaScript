@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>事件冒泡</title>
+	<style>
+		#wrap{
+			width:300px;
+			height:300px;
+			background:pink;
+		}
+		#con{
+			width:100px;
+			height:100px;
+			background: lightblue;
+		}
+	</style>
+</head>
+<body>
+	<div id = "wrap">
+		<div id = "con"></div>
+	</div>
+	<script>
+		var wrap = document.getElementById('wrap');
+		var con = document.getElementById('con');
+
+		wrap.onclick = function(a){
+			console.log("wrap");
+			console.log(a);
+			console.log(a.srcElement);
+		}
+		con.onclick = function(b){
+			var e = b || window.event;
+			console.log("con");
+			console.log(e);
+			console.log(e.srcElement);
+			e.cancelBubble = true;
+
+		}
+		// 阻止事件冒泡方法
+		// IE:event.stopPropagation()
+		// 非IE:window.event.cancelBubble = true;
+		// 兼容写法:
+		// if(event.stopPropagation){
+		// 	event.stopPropagation();
+		// }else{
+		// 	event.cancelBubble = true;
+		// }
+	</script>
+</body>
+</html>

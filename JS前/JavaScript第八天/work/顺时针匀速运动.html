@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>顺时针匀速运动</title>
+	<style>
+		#wrap{
+			width:500px;
+			height:400px;
+			border:1px solid;
+			margin:0 auto;
+			position: relative;
+		}
+		#move{
+			width:50px;
+			height:50px;
+			border:1px solid;
+			background: red;
+			position: absolute;
+			top:0;
+			left:0;
+		}
+		#show{
+			width:50px;
+			height:50px;
+			border:1px solid;
+			border-radius: 50%;
+			text-align: center;
+			margin:-220px auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="move"></div>
+	</div>
+	<div id="show"></div>
+	<script>
+		var wrap=document.getElementById('wrap');
+		var move=document.getElementById('move');
+		var show=document.getElementById('show');
+
+		var speed_x;
+		var speed_y;
+
+		var count=-1;
+
+		var movefunc=setInterval(function(){
+			var curpos_x=move.offsetLeft;
+			var curpos_y=move.offsetTop;
+
+			if(curpos_x==0&&curpos_y==0){
+				speed_x=5;
+				speed_y=0;
+				count++;
+				show.innerHTML=count+"圈";
+				if(count==10){
+					clearInterval(movefunc);
+				}	
+			}
+			if(curpos_y==0&&curpos_x>=wrap.clientWidth-move.offsetWidth){
+				speed_x=0;
+				speed_y=5;
+			}
+			if(curpos_x>=wrap.clientWidth-move.offsetWidth&&curpos_y>wrap.clientHeight-move.offsetHeight){
+				speed_x=-5;
+				speed_y=0;
+			}
+			if(curpos_x==0&&curpos_y>=wrap.clientHeight-move.offsetHeight){
+				speed_x=0;
+				speed_y=-5;
+			}
+
+			curpos_x+=speed_x;
+			curpos_y+=speed_y;
+
+			move.style.left=curpos_x+"px";
+			move.style.top=curpos_y+"px";
+		},20);
+	</script>
+</body>
+</html>

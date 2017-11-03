@@ -1,0 +1,57 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#but,#ul{
+			width:100px;
+			display: block;
+			margin: 20px auto;
+		}
+		#ul{
+			list-style: none;
+		}
+		#ul li{
+			margin-top:10px;
+		}
+	</style>
+</head>
+<body>
+	<input type="button" id="but">
+	<ul id="ul"></ul>
+</body>
+<script>
+	var but = document.getElementById('but');
+	var ul = document.getElementById('ul');
+
+	but.onclick = function(){
+		var li = document.createElement('li');
+		li.innerHTML = '我是li'+"<a>删除</a>";
+		ul.appendChild(li);
+		var a = li.getElementsByTagName('a');
+		a[0].onclick = function(){
+			ul.removeChild(li);
+		}	
+	}
+</script>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	//运算符
+	//1.算术运算符
+	//2.赋值运算符
+	//  ==  ===
+	console.log(false == '0');
+	console.log(false === '0');
+</script>
+</html>

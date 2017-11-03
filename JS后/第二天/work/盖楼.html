@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>盖楼</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		#wrap{
+			width:600px;
+			min-height:350px;
+			border:1px solid red;
+			margin:0 auto;
+			position: relative;
+		}
+		li{
+			width:20px;
+			height:20px;
+			border:1px solid;
+			background: #ccc;
+			list-style: none;
+			float:left;
+		}
+		.oUl{
+			/*width:440px;*/
+			display: inline-block;
+			position: absolute;
+			bottom:0;
+			left:100px;
+		}
+		#count{
+			width:50px;
+			height:50px;
+			/*border:1px solid;*/
+			margin:0 auto;
+			font-size:35px;
+			text-align: center;
+			color:red;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="count">0</div>
+		<ul class="oUl">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		
+	</div>
+	<script>
+		var wrap = document.getElementById('wrap');
+		var oUl = document.getElementsByClassName('oUl')[0];
+		var uls = document.getElementsByTagName('ul');
+		var lis = document.getElementsByTagName('li');
+		var count = document.getElementById('count');
+		var speedX = 1;
+		var timer;
+		var j = 0;
+
+		//点击创建
+		wrap.onclick = function(){
+			j++;
+			count.innerHTML = j;
+			var ul = document.createElement('ul');
+			ul.className = "oUl";
+			for(var i=0;i<20;i++){
+				var li = document.createElement('li');
+				ul.appendChild(li);
+				ul.style.bottom = 20*j+2+"px";	
+			}
+			wrap.appendChild(ul);
+			move(ul);
+
+		}
+		
+		for(var i=0;i<uls.length;i++){
+			var left = uls[i].offsetLeft;
+			uls[i].style.width = 22 * lis.length + "px";
+
+			// if(left<100){
+			// 	var m=(100-left)/20;
+			// 	console.log(m);
+			// 	uls[i].removeChild(li);
+			// }
+		}
+
+		//移动的函数
+		function move(ul){
+			clearInterval(timer);
+			timer = setInterval(function(){
+				var curX = wrap.clientWidth - oUl.offsetWidth;
+				if(left > curX){
+					speedX = -1;
+				}
+				if(left < 0){
+					speedX = 1;
+				}
+				left += speedX;
+				ul.style.left = left + "px";
+			},10)
+		}
+
+	</script>
+</body>
+</html>

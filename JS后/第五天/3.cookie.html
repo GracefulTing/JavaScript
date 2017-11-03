@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>cookie</title>
+</head>
+<body>
+	<script>
+	//cname:将要存储的cookie的名称
+	//cvalue:名称对应的值
+	//exdays:过期时间,天
+	setCookie("li",1232,30);
+	setCookie("aa",233,1);
+	var name = getCookie("li");
+	console.log(name);
+//	var the = getCookie("aa");
+//	console.log(the);
+	function setCookie(cname,cvalue,exdays)
+	{
+		var d = new Date();
+		console.log(d);
+		d.setTime(d.getTime()+(exdays*24*60*60*1000));
+		console.log(d.getTime());  
+		console.log(exdays*24*60*60*1000);
+		var expires = "expires="+d.toGMTString();
+		console.log(expires);
+		document.cookie = cname + "=" + cvalue + "; " + expires;
+		console.log(cname + "=" + cvalue + "; " + expires)
+		console.log(cname,cvalue,expires);
+		console.log(document.cookie);
+	}
+	function getCookie(cname)
+	{
+		var name = cname + "=";
+		console.log(name);
+		console.log(document.cookie);
+		var ca = document.cookie.split(';');
+		console.log(ca);
+		for(var i=0; i<ca.length; i++) 
+		{
+		    var c = ca[i].trim();
+		    console.log(c);
+		    console.log(c.indexOf(name));
+		    console.log(name.length,c.length);
+		    if (c.indexOf(name)==0) 
+		    	return c.substring(name.length,c.length);
+			//name.length:起始下标
+			//c.length:结束下标
+		}
+		return "";
+	}
+	//indexOf:没有找到返回-1;
+	//get函数都是获得当前日期对象中的值.
+	//var d = new Date();
+	//var t = d.getTime();       //时间戳
+	//返回1970年1月1日到现在的毫秒数.
+	
+//	http://www.baidu.com/index.html
+//	http:网络协议  https,ftp,svn;
+//	www.baidu.com:域名;
+//	ip地址
+//	index.html:文件名
+//	存储时,cookie--域名必须一致才能取出.
+	
+	</script>
+</body>
+</html>

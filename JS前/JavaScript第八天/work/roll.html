@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>roll</title>
+	<style>
+		.k{
+			width:500px;
+			height:50px;
+			position: relative;
+			margin:0 auto;
+		}
+		#btn{
+			width:800px;
+			margin-top: 20px;
+		}
+		span{
+			display: inline-block;
+			width:80px;
+			/*border:1px solid;*/
+			text-align: center;
+			font-size:30px;
+			padding:5px 15px;
+		}
+		#line{
+			width:110px;
+			height:8px;
+			background: red;
+			position: absolute;
+			margin-top: 5px;
+			transition: all 0.5s;
+		}
+	</style>
+</head>
+<body>
+	<div class="k">
+		<div id="btn">
+			<span>按钮1</span><span>按钮2</span><span>按钮3</span><span>按钮4</span><span>按钮5</span>
+		</div>
+		<div id="line"></div>
+	</div>
+	<script>
+		var aSpan=document.getElementsByTagName('span');
+		var line=document.getElementById('line');
+
+		for(var i=0;i<aSpan.length;i++){
+			aSpan[i].onmouseover=(function(index){
+				return function()
+				{
+					line.style.left=index*aSpan[0].offsetWidth+'px';				
+				}
+			}(i));	
+		}
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组</title>
+</head>
+<body>
+	<script>
+		//声明数组/创建数组  特点:数组的数据在[]
+		var fruits=['apple','banana','lemon'];
+		//访问数组
+		console.log(fruits);
+		
+		//数组的属性 length
+		console.log(fruits.length);
+
+		//数组的方法
+		//pop():删除数组的最后一个元素并返回新的长度.
+		fruits.pop();
+		console.log(fruits);
+
+		//push():向数组的末尾添加一个或多个元素并返回新的长度.
+		fruits.push('orange','watermelon','strawberry');
+		console.log(fruits);
+
+		//shift():删除并返回数组的第一个元素,并返回新的长度.
+		var del_f=fruits.shift();
+		console.log(del_f);
+		console.log(fruits);
+
+		//unshift():向数组的开头添加一个或多个元素,并返回新长度.
+		fruits.unshift('grape','peach');
+		console.log(fruits);
+
+		//splice():从数组中添加或删除元素
+		var array=['go','to','home'];
+		//参数1:下标   参数2:长度
+		array.splice(1,1);   //删除元素
+		console.log(array);
+
+		//先删除再添加
+		var array02=['go','to','home','now'];
+		array02.splice(0,3,'come','here');
+		console.log(array02);
+
+		//不删除但添加
+		array02.splice(2,0,'my','sweet');
+		console.log(array02);
+
+		//当第一个参数为负值时,下标从结尾算起.
+		var array03=[1,2,5];
+		array03.splice(-1,0,3,4);
+		console.log(array03);
+
+		//slice():选取数组中的一部分返回一个新的数组.
+		var array04=['why','learn','javascript'];
+		//参数1:开始位置   参数2:结束位置
+		var temp=array04.slice(0,2);
+		console.log(temp);
+		console.log(array04);
+
+		//如果不写第二个参数,代表从给定位置到最后.
+		var temp01=array04.slice(1);
+		console.log(temp01);
+
+		//join():将数组中的所有元素转换成字符串.
+		var array05=[1,2,3,4,5];
+		var newArray=array05.join();
+		console.log(array05);
+		console.log(newArray);  //字符串
+		console.log(typeof(newArray));
+		console.log(array05[0]);   //number
+		console.log(newArray[0]);	//string
+		console.log(array05[0]===newArray[0]);  //false
+
+		//reverse():将数组中的所有元素倒置.
+		var array06=['abc','def','ghi'];
+		console.log(array06.reverse());
+	</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>字符串函数中使用正则</title>
+</head>
+<body>
+	<script>
+		//g:全局搜索
+		var reg = /h/g;
+		var str = "nihahoh";
+		//search,match,replace
+		var val = str.search(reg);
+		console.log(val);
+
+		var val = str.match(reg);
+		console.log(val);
+
+		var val = str.replace(reg,"H");
+		console.log(val);
+	</script>
+</body>
+</html>

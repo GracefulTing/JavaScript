@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		function a(obj)
+		{
+			obj++;
+			if(obj<10)
+		    {
+		    	return;
+		    }
+		    else{
+			console.log(obj);
+			return c(obj);
+		    }
+		}
+
+		function b(obj)
+		{
+			
+			(function c(obj)
+			{
+				a(obj);
+			})(obj);
+			return a(obj);
+		}
+
+		b(1);
+</script>
+</body>
+</html>

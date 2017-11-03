@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获得计算后样式</title>
+	<style>
+		#div{
+			float:left;
+			animation:all 2s;
+			animation-delay:2s;
+			margin-top:20px;
+			padding:10px;
+			font-weight:300;
+			width:200px;
+			height:100px;
+			background: pink;
+			border:5px solid yellow;
+
+		}
+	</style>
+</head>
+<body>
+	<div id="div"></div>
+	<script>
+		var oDiv = document.getElementById('div');
+		//获取计算后的font-size
+		//console.log(getComputedStyle(oDiv,null));
+		//var sFs = getComputedStyle(oDiv,null).getPropertyValue('font-size');//推荐使用
+		//或者
+		// var sFs= getComputedStyle(oDiv,null).fontSize; //不推荐使用
+
+		// console.log(sFs);
+
+		// var o=getComputedStyle(oDiv,null);
+		// var value=o.float;
+		// console.log(value);
+
+		//驼峰命名
+		// var obj=getComputedStyle(oDiv,null);
+		// var objVal=obj.animation;
+		// console.log(objVal);
+		// var objVal1=obj.animationDelay;
+		// console.log(objVal1);
+		// var objVal2=obj.marginTop;
+		// console.log(objVal2);
+		// var objVal3=obj.padding;
+		// console.log(objVal3);
+		// var objVal4=obj.fontWeight;
+		// console.log(objVal4);
+		// var objVal5=obj.width;
+		// console.log(objVal5);
+		// var objVal6=obj.height;
+		// console.log(objVal6);
+		// var objVal7=obj.background;
+		// console.log(objVal7);
+		// var objVal8=obj.border;
+		// console.log(objVal8);
+
+		//-
+		// var a=getComputedStyle(oDiv,null);
+		// var a1=a.getPropertyValue('float');
+		// console.log(a1);
+		// var b1=a.getPropertyValue('animation');
+		// console.log(b1);
+		// var c1=a.getPropertyValue('animation-delay');
+		// console.log(c1);
+		// var d1=a.getPropertyValue('margin-top');
+		// console.log(d1);
+		// var e1=a.getPropertyValue('padding');
+		// console.log(e1);
+		// var f1=a.getPropertyValue('font-weight');
+		// console.log(f1);
+		// var g1=a.getPropertyValue('width');
+		// console.log(g1);
+		// var h1=a.getPropertyValue('height');
+		// console.log(h1);
+		// var i1=a.getPropertyValue('background');
+		// console.log(i1);
+		// var j1=a.getPropertyValue('border');
+		// console.log(j1);
+
+		//var i=oDiv.currentStyle.样式名;
+		
+
+		//封装函数
+		var a=getCssValue(oDiv,"float");
+		console.log(a);
+		function getCssValue(obj,cssName){
+			if(obj.currentStyle){
+				return obj.currentStyle[cssName];
+			}
+			else{
+				return getComputedStyle(obj,null).getPropertyValue(cssName);
+			}
+		}
+	</script>
+</body>
+</html>

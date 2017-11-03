@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>双色球</title>
+	<script>
+		var zj1=[];
+		for(var i=0;i<6;i++){
+			zj1[i]=Math.floor(Math.random()*33+1);
+			if(zj1[i]<10){
+				zj1[i]="0"+zj1[i];
+			}
+		}
+
+		var zj2=Math.floor(Math.random()*16+1);
+		if(zj2<10){
+			zj2="0"+zj2;
+		}
+
+		function look(){
+			var zj11=document.getElementById('zj').value=zj1[i]+',';
+			var zj12=document.getElementById('zj').value=zj2;
+			var zj=document.getElementById('zj');
+			zj.value=zj1+","+zj12;
+		}
+
+		function rand(){
+			var rand1=[];
+			for(var i=0;i<6;i++){
+				rand1[i]=Math.floor(Math.random()*33+1);
+				if(rand1[i]<10){
+					rand1[i]="0"+rand1[i];
+				}
+				var rand11=document.getElementById('sj').value=rand1[i]+',';
+				//console.log(rand11);
+			}
+
+			var rand2=Math.floor(Math.random()*16+1);
+			if(rand2<10){
+				rand2="0"+rand2;
+			}
+			var rand12=document.getElementById('sj').value=rand2;
+			//console.log(rand12);
+			var sj=document.getElementById('sj');
+			sj.value=rand1+","+rand12;
+
+			var count=0;
+			for(var i=0;i<6;i++)
+			{
+				if(zj1[i]==sj[i]){
+					count++;
+				}
+			}
+			var count1=0;
+			if(zj[6]==parseInt(rand12)){
+				count1==1;
+			}
+			//console.log(count1);
+			if(count==6){
+				alert('恭喜您中了二等奖!');
+			}
+			else if(count1==1){
+				alert('恭喜您中了三等奖!');
+			}
+			else if(count==6&&count1==1){
+				alert('恭喜您中了一等奖!');
+			}
+			else{
+				alert('很遗憾,您没有中奖!');
+			}
+		}
+	</script>
+</head>
+<body>
+	中奖号码:<input type="text" id="zj">
+	<button onclick="look()">查看中奖号码</button><br>
+	随机号码: <input type="text" id="sj">
+	<button onclick="rand()">随机一注</button>
+
+</body>
+</html>

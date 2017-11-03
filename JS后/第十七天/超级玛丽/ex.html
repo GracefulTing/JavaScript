@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		#wrap{
+			width:900px;
+			height:500px;
+			border:1px solid;
+			margin:0 auto;
+		}
+		.content{
+			height:400px;
+			background: url(./img/background.jpg);
+			background-position: 0 -95px;
+			background-size:100% 140%;
+			position: relative;
+		}
+		.hero{
+			width:50px;
+			height:50px;
+			position: absolute;
+			left:0;
+			bottom:0;
+			background: url(./img/ma.jpg) no-repeat;
+			background-size:100% 100%;
+		}
+		.road{
+			height:100px;
+			background:url(./img/road.png);
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div class="content">
+			<div class="hero"></div>
+		</div>
+		<div class="road"></div>
+	</div>
+</body>
+<script>
+	var myHero = new Hero({
+		selector:".hero",
+		moveFn:function(){
+			judge(this.element,document.querySelector('.content'));
+		}
+	})
+	function judge(son,father){
+		if(son.offsetLeft <=0){
+			son.style.left = 0;
+		}
+		if(son.offsetLeft >= 500){
+			son.style.left = 500 + "px";
+			changePosition(father);
+		}
+	}
+	press();
+	function press(){
+		window.onkeydown = function(ev){
+			var e = ev || window.event;
+			switch(e.keyCode){
+				case 65:
+					myHero.direction = "left";
+					myHero.move();
+					break;
+				case 68:
+					myHero.direction = "right";
+					myHero.move();
+					break;
+				case 32:
+					myHero.jump();
+					break;
+			}
+			return false;
+		}
+		window.onkeyup = function(ev){
+			var e = ev || window.event;
+			switch(e.keyCode){
+				case 65:
+				case 68:
+					myHero.stop();
+					break;
+			}
+		}
+	}
+	function changePosition(ele){
+		var val = getValue(ele,"backgroundPosition");
+		var result = val.replace(/px/g,"");
+		var arr = result.split(" ");
+		var x = Number(arr[0]);
+		x -= 5;
+		ele.style.backgroundPosition = x + "px -95px";
+	}
+	function getValue(ele,cssname){
+		if(ele.currentStyle){
+			return ele.currentStyle[cssname];
+		}else{
+			return getComputedStyle(ele,null)[cssname];
+		}
+	}
+	function Hero(obj){
+		this.element = document.querySelector(obj.selector);
+		this.direction = "right";
+		this.timer = null;
+		this.currentTop = this.element.offsetTop;
+		this.count = 0;
+		this.maxTop = obj.maxTop ? obj.maxTop : 100;
+		this.move = function(){
+			this.stop();
+			var temp = this;
+			var value = this.direction == "right"?5:-5;
+			this.timer = setInterval(function(){
+				var offLeft = temp.element.offsetLeft;
+				temp.element.style.left = offLeft + value + "px";
+				if(obj.moveFn){
+					obj.moveFn.call(temp);
+				}
+			},10)
+		}
+		this.stop = function(){
+			clearInterval(this.timer);
+		}
+		this.jump = function(){
+			this.count++;
+			if(this.count>2){
+				return ;
+			}
+			clearInterval(this.jumpTimer);
+			var currentTop = this.element.offsetTop;
+			var temp = this;
+			var value = -1;
+			this.jumpTimer = setInterval(function(){
+				var offTop = temp.element.offsetTop;
+				temp.element.style.top = offTop + value + "px";
+				if(Math.abs(offTop-currentTop)>=temp.maxTop){
+					value = 1;
+				}
+				if(temp.element.offsetTop == temp.currentTop && value >0 ){
+					temp.count = 0;
+					clearInterval(temp.jumpTimer);
+				}
+			},10)
+		}
+	}
+</script>
+</html>

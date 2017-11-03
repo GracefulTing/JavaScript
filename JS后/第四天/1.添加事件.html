@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>添加事件</title>
+	<style>
+		#wrap{
+			width:100px;
+			height:100px;
+			background:red;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"></div>
+	<script>
+		//现代浏览器添加事件监听方法:
+		//var wrap = document.getElementById('wrap');
+
+		// wrap.addEventListener("click",function(){
+		// 	console.log(1);
+		// 	console.log(this);
+		// },false);
+		// wrap.addEventListener("click",function(){
+		// 	console.log(2);
+		// 	console.log(this);
+		// },false);
+
+		// function a(){
+		// 	console.log("hello");
+		// 	console.log(this);
+		// }
+		// function a1(){
+		// 	console.log("hellodafdf");
+		// 	console.log(this);
+		// }
+		// wrap.addEventListener("click",a,false);
+		// wrap.addEventListener("click",a1,false);
+		// wrap.removeEventListener("click",a1,false);
+		//删除事件句柄时,addEventListener()执行的函数必须使用外部函数,匿名函数是无法移除的.
+
+
+		//IE事件监听方法
+		// var wrap = document.getElementById('wrap');
+		// function a(){
+		// 	console.log(1);
+		// }
+		// wrap.attachEvent("onclick",a);
+		// wrap.detachEvent("onclick",a);
+
+		
+	</script>
+</body>
+</html>

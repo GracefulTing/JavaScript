@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大图滚动tween版</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+			list-style: none;
+		}
+		.btn_mod,.img_mod{
+			width:400px;
+			margin:20px auto 0;
+			overflow: hidden;
+		}
+		.btn_mod{
+			padding-left:10px;
+			position: relative; 
+		}
+		.btn_mod div,.btn_mod li{
+			float:left;
+			width:60px;
+			height:30px;
+			margin-right:6px;
+			line-height: 30px;
+			text-align: center;
+			font-weight: bold;
+			font-size: 14px;
+			color: #666;
+			background: #ccc;
+			cursor: pointer;
+			outline: none;
+		}
+		.btn_mod .active{
+			background: #999;
+		}
+		.img_mod{
+			position: relative;
+		}
+		.img_mod .scroll{
+			position: absolute;
+			left:0;
+			right:0;
+			overflow: hidden;
+		}
+		.img_mod .scroll img{
+			float:left;
+			width:400px;
+			height:400px;
+		}
+		.img_mod .scroll,.img_mod{
+			height:400px;
+		}
+		.wrap{
+			width:400px;
+			height:500px;
+			/*border:1px solid;*/
+			margin:0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<div class="btn_mod">
+			<div class="prev">上一页</div>
+			<ul class="btn_list">
+				<li class="active">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+			</ul>
+			<div class="next">下一页</div>
+		</div>
+		<div class="img_mod">
+			<div class="scroll">
+				<img src="img/1.jpg" alt="">
+				<img src="img/2.jpg" alt="">
+				<img src="img/3.jpg" alt="">
+				<img src="img/4.jpg" alt="">
+			</div>
+		</div>
+	</div>
+	<script src="tween.js"></script>
+	<script>
+		imgScroll();
+
+		function imgScroll(){
+		//querySelector:获取任意一个标签,通过class,id,标签名,得到的是某一个.
+		//querySelectorAll:获取任意一个或几个,通过class,id,标签名,得到的是某一个数组.
+		//var btns=document.querySelectorAll(".btn_mod");
+
+			var btnMod=document.querySelector(".btn_mod");
+			var imgMod=document.querySelector(".img_mod");
+			var scrollMod=document.querySelector(".scroll");
+			var imgs=document.querySelectorAll("img");
+			var btns=document.querySelectorAll(".btn_list li");
+			var width=imgMod.offsetWidth;
+			var maxLength=imgs.length;
+			var activeIndex=0;       //代表可视区里图片的索引
+			var scrollTimer=null;
+			var scrollTimerauto=null;
+			var theindex=0;
+			var wrap=document.querySelector(".wrap");
+			scrollMod.style.width=width*maxLength+"px";
+
+			init();
+
+			//自动滚动定时器
+			function auto(){
+				clearInterval(scrollTimerauto);
+				scrollTimerauto=setInterval(function(){
+					theindex++;
+					if(theindex>maxLength-1){
+						theindex=0;
+					}
+					switchTo(theindex);
+				},1200)
+			}
+
+			//鼠标悬停
+			function mouseover(){
+				wrap.onmouseover=function(){
+					clearInterval(scrollTimerauto);
+				}
+			}
+			//鼠标离开
+			function mouseout(){
+				wrap.onmouseout=function(){
+					auto();
+				}
+			}
+			
+			//切换到指定索引的位置
+			function switchTo(index){
+				var t=0;             //时间轴里开始的时间
+				var	b=scrollMod.offsetLeft;    //位置轴里开始的位置,这里指的是初始的left值.
+				var end=-index*width;      //目标值,最终的left值.
+				var	c=end-b;    //变化量=目标值-初始值 
+				var	d=40;
+				
+				clearInterval(scrollTimer);
+
+				scrollTimer=setInterval(function(){
+					t++;
+					if(t>=d){
+						clearInterval(scrollTimer);
+						scrollTimer=null;
+						return;
+					}
+					scrollMod.style.left=Tween.Cubic.easeOut(t,b,c,d)+"px";
+				},30)
+				activeIndex=index;
+			}
+			
+			//事件绑定
+			function bind(){
+				var next=document.querySelector('.next');
+				var prev=document.querySelector('.prev');
+				next.onclick=function(){
+					nextFn();
+				}
+				prev.onclick=function(){
+					prevFn();
+				}
+				for(var i=0;i<btns.length;i++){
+					(function(i){
+						btns[i].onclick=function(){
+							switchTo(i);
+						}
+					})(i)
+				}
+			}
+
+			//下一页切换
+			function nextFn(){
+				var index=activeIndex+1;     //代表可视区图片的索引+1
+				index=index>maxLength-1?0:index;
+				switchTo(index);
+			}
+
+			//上一页切换
+			function prevFn(){
+				var index=activeIndex-1;
+				index=index<0?maxLength-1:index;
+				switchTo(index);
+			}
+
+			//初始化
+			function init(){
+				bind();
+				auto();
+				mouseover();
+				mouseout();
+			}
+		}
+
+		/*
+		函数调用及封装顺序:(封装的函数永远写在后面)
+		1.封装每个功能函数;
+		2.封装初始化函数;
+		3.在初始化函数里调用每一个功能函数;
+		4.调用初始化函数;
+		5.把所有上述语句封装在一个整体函数里;
+		6.调用整体函数.
+		*/
+	</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.a{
+			width:100px;
+			height:100px;
+			background: red;
+			position: absolute;
+			left:0;
+		}
+		.a:nth-child(1){
+			top:0;
+		}
+		.a:nth-child(2){
+			top:200px;
+		}
+	</style>
+</head>
+<body>
+	<div class="a"></div>
+	<div class="a"></div>
+</body>
+	<script>
+		//获取元素
+		var values=document.querySelectorAll('.a');
+
+		//遍历获取到的数组
+		for(var i=0;i<values.length;i++){
+			var a=values[i];     //声明变量来接收数组的每一个值
+			//点击事件
+			a.onclick=function(){
+				click(this,"left",1000,100,10);  //调用click函数并传值
+			}
+		}
+
+		//c:移动的标签对象;
+		//direction:移动的方向,有left,right,top,bottom;
+		//beginValue:开始位置
+		//endValue:结束位置
+		//perTime:每次运动的时间,即间隔多久移动.
+		//click函数,点击后执行的函数
+		function click(c,direction,beginValue,endValue,perTime){
+			var a=beginValue;      //将开始位置赋值给a
+			var perValue=beginValue>endValue?-1:1;     //判断,如果开始位置大于结束位置,递减;否则递增
+			//定时器
+			var timer=setInterval(function(){
+				a+=perValue;    
+				c.style[direction]=a+"px";   //每次要移动的距离 
+				if(perValue>0){     //通过perValue是否大于0判断运动到什么位置停止运动
+					if(a>=endValue){     //	当移动距离大于等于结束位置时,清除定时器,停止移动
+						clearInterval(timer);
+					}
+				}else{
+					if(a<=endValue){
+						//当移动距离小于等于结束位置时,清除定时器,停止移动
+						clearInterval(timer);
+					}
+				} 
+				
+			},perTime)
+		}
+	</script>
+</html>

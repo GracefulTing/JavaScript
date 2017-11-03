@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#wrap{
+			width:100px;
+			height:100px;
+			background:red;
+			position: absolute;
+			top:0;
+			/*left:0;*/
+			left:800px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"></div>
+	<script>
+		// var now = new Date();
+		// var seto = new Date(2017,8,11,14,12,00);
+		// console.log(seto);
+		// var sett = new Date("sep 11 2017 14:10:22");
+		// console.log(sett);
+		// var sets = new Date("2017/9/11 14:10:10");
+		// console.log(sets);
+		// var snow = now.getTime();
+		// console.log(snow);
+		// var setf = new Date(1505110464342);
+		// console.log(setf);
+
+		// var birth = new Date("1996/5/8 12:00:00");
+		// var sbirth = birth.getTime();
+		// console.log(sbirth);
+		// var life = Math.floor((snow - sbirth)/1000/60/60/24);
+		// console.log(life);
+
+
+		// var arr = [1,4,2,3,5];
+		// var arr2 = [6,9,8,7,10];
+		// var arrs = [arr,arr2];
+		// console.log(arrs);
+		// var str = 0;
+		// for(var i=0;i<arrs.length;i++){
+		// 	for(var j=0;j<arrs[i].length-1;j++){
+		// 		for(var k=0;k<arrs[i].length-1-j;k++){
+		// 			if(arrs[i][k]>arrs[i][k+1]){
+		// 				str = arrs[i][k+1];
+		// 				arrs[i][k+1] = arrs[i][k];
+		// 				arrs[i][k] = str;
+		// 			}
+		// 		}
+		// 	}
+		// }
+		// console.log(arrs);
+
+		var wrap = document.getElementById('wrap');
+
+		function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			}else{
+				return getComputedStyle(obj,null).getPropertyValue(attr);
+			}
+		}
+
+		function linearMove(obj,attr,iTarget,speed,h){
+			clearInterval(obj.timer);
+			obj.timer =	setInterval(function(){
+				var attrValue = parseInt(getStyle(obj,attr));
+				if(Math.abs(iTarget - attrValue) <= Math.abs(speed)){
+					obj.style[attr] = iTarget + "px";
+				}else{
+					obj.style[attr] = attrValue + speed + "px";
+				}
+			},h)
+			
+		}
+
+		//linearMove(wrap,"left",800,10,20);
+		linearMove(wrap,"left",0,-10,20);
+	</script>
+</body>
+</html>

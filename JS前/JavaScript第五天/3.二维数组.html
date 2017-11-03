@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>二维数组</title>
+</head>
+<body>
+	<script>
+		//创建二维数组第一种方式
+		// var array1=[];
+		// array1[0]=[5];
+		// array1[0][0]=6;
+		// console.log(array1[0]);
+		// console.log(array1);
+
+		//创建二维数组第二种方式
+		var array=[[15,5,9,6,11],[2,6,8,9,16],[16,14,15]];
+		console.log(array);
+
+		//把这个数组从小到大排列顺序,完毕之后还是二维数组
+		for(var i=0;i<array.length;i++){
+			for(var j=0;j<array[i].length-1;j++){
+				for(var k=0;k<array[i].length-1-j;k++){
+					if(array[i][k]>array[i][k+1]){
+						temp=array[i][k+1];
+						array[i][k+1]=array[i][k];
+						array[i][k]=temp;
+					}
+				}
+		 	}
+		}
+		console.log(array);
+		
+		/*
+			二维数组:数组中承载另外的数组们.
+		 	第一维数组下标[]:控制的是外维数组.
+		 	第二维数组下标[]:控制的是内层数组.
+		*/
+	</script>
+</body>
+</html>

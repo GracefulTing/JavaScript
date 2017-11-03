@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>保存绘制状态</title>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="300"></canvas>
+</body>
+<script>
+	var canvas = document.querySelector('#canvas');
+	var ctx = canvas.getContext('2d');
+
+	ctx.fillStyle = 'red';
+	//save():临时保存画布坐标系统的状态
+	ctx.save();
+	ctx.fillStyle = 'green';
+	ctx.fillRect(100,100,100,100);
+	var i = 200;
+	canvas.onclick = function(){
+		//restore()用来恢复save之后设置的状态
+		ctx.restore();
+		ctx.save();
+		ctx.fillRect(i++,i++,200,200);
+	}
+</script>
+</html>

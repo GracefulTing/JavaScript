@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>练习一:函数回调</title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		div{
+			width:100px;
+			height:100px;
+			position: absolute;
+		}
+		#first{
+			background:pink;
+			top:0;
+			left:0;
+		}
+		#second{
+			background:yellow;
+			top:200px;
+			left:300px;
+		}
+	</style>
+</head>
+<body>
+	<div id="first"></div>
+	<div id="second"></div>
+	<script>
+		// function func(a){
+		// 	a();
+		// }
+		// var val=function add(){
+		// 	console.log(2);
+		// }
+		// func(val);
+
+
+
+		// function func(a){
+		// 	a();
+		// }
+		// func(function(){
+		// 	console.log(1);
+		// })
+
+	
+		var first=document.getElementById('first');
+		var second=document.getElementById('second');
+
+		function judge(a,b,fn,error){
+			var xoffLeft=a.offsetLeft-b.offsetWidth;
+			var xoffRight=a.offsetLeft+a.offsetWidth;
+			var yoffTop=a.offsetTop-b.offsetHeight;
+			var yoffBottom=a.offsetTop+a.offsetHeight;
+			if(b.offsetLeft>=xoffLeft
+				&&b<=xoffRight
+				&&b.offsetTop>=yoffTop
+				&&b.offsetTop<=yoffBottom){
+				//fn(true);
+				if(fn){    //判断形参是否存在
+					fn();
+				}
+				return ;
+			}
+			//fn(false);
+			if(error){
+				error();
+			}
+		}
+		
+
+		judge(first,second);
+		judge(first,second,function(){
+			console.log('碰撞');
+		},function(){
+			console.log('未碰撞');
+		})
+
+
+		// judge(first,second,function(value){
+		// 	if(value){
+		// 		alert('碰撞!');
+		// 	}else{
+		// 		alert('未碰撞!');
+		// 	}
+		// })
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>jquery事件注意事项</title>
+	<style>
+		#wrap{
+			width:100px;
+			height:100px;
+			background:red;
+		}
+		.a{
+			width:50px;
+			height:50px;
+			background:green;
+			margin-top:20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"></div>
+
+	<div class="a"></div>
+	<div class="a"></div>
+	<div class="a"></div>
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+<script>
+	// $("#wrap").click(function(){
+	// 	//console.log(this);   //wrap
+	// 	$(this).css({        //this指标签
+	// 		width:"200px",
+	// 		height:"200px",
+	// 		background:"yellow"
+	// 	})
+	// })
+
+	//事件对象
+	// $("#wrap").on("click",function(ev){
+	// 	console.log(ev);
+	// })
+
+	//给事件对象传参
+	// var obj = {name:"张三"};
+	// $("#wrap").click(obj,function(ev){
+	// 	console.log(ev.data.name);
+	// })
+
+	// var obj1 = ["zhangsan","lisi"];
+	// $("#wrap").click(obj1,function(ev){
+	// 	console.log(ev.data);
+	// })
+
+
+	//给jquery添加额外属性
+	//$("")---相当于创建了一个新的对象,但标签是唯一的
+	//正确
+	// var a  = $("#wrap");
+	// a.iii = 1;
+	// console.log(a.iii);
+
+	//错误例子:相当于创建新的标签
+	// $("#wrap").iii = 10;
+	// console.log($("#wrap").iii);
+
+	var arr = $('.a');
+	for(var i=0;i<arr.length;i++){
+		var cur = arr[i];
+		cur.index = i;
+		$(cur).click(function(){
+			console.log(this.index);
+		})
+	}
+
+</script>
+</html>

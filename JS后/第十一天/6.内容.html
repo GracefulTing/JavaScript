@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>内容</title>
+</head>
+<body>
+	<div>John Resig</div>
+	<div>George Martin</div>
+	<div>Malcom John Sinclair</div>
+	<div>J. Ohn</div>
+
+	<table>
+		<tr><td>value 1</td><td></td></tr>
+		<tr><td>value 2</td><td></td></tr>
+	</table>
+
+	<div><p>hello</p></div>
+	<div>hello again!</div>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+	<script>
+		//:contains--匹配包含给定文本的元素
+		var obj = $("div:contains('John')");
+		console.log(obj);
+		console.log(obj[0]);
+		console.log(obj[1]);
+
+		//:empty--匹配所有不包含子元素或者文本的空元素
+		var obj1 = $("td:empty");
+		console.log(obj1,obj1[0],obj1[1]);
+
+		//:has---匹配含有选择器所匹配的元素的元素
+		$("div:has(p)").addClass("test");
+
+		//:parent---匹配含有子元素或者文本的元素
+		var obj2 = $("td:parent");
+		console.log(obj2,obj2[0],obj2[1]);
+	</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#wrap ul{
+			float:left;
+			width:200px;
+			list-style: none;
+			padding: 0 10px;
+			box-sizing: border-box;  
+			/*代表此元素的内边距和边框不会增加它的宽度*/
+		}
+		ul li{
+			background:pink;
+			border:1px solid;
+			color:white;
+			font-size:50px;
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"></div>
+</body>
+<script>
+	var wrap = document.getElementById('wrap');
+	window.onresize = function(){
+		var cols = Math.floor(window.innerWidth/200);
+		for(var i=0;i<cols;i++){
+			var ul = document.createElement('ul');
+			var list = document.getElementsByTagName('ul');
+			wrap.appendChild(ul);
+			for(var i=0;i<10;i++){
+				var li = document.createElement('li');
+				var height = rand(100,300);
+				li.innerHTML = i+1;
+				li.style.height = height + "px";
+				var heightArr=[];
+				var minIndex=0;
+				for(var j=0;j<list.length;j++){
+					heightArr.push(list[j].offsetHeight);
+					var minHeight=heightArr[minIndex];   //先假设数组中的第一项最小
+					if(minHeight>heightArr[j]){
+						//与数组里的每一项进行比较,把最终的最小项赋给minHeight.
+						minHeight=heightArr[j];
+						//获取了最小项的索引.
+						minIndex=j;
+					}
+					// list[minIndex].appendChild(li);
+					//将li优先插入高度最小的ul中.目的在于平衡每个ul.
+				}
+				list[minIndex].appendChild(li);
+			}
+		}
+	}
+
+	function rand(min,max){
+		return parseInt(Math.random()*(max-min+1)+min);
+	}
+</script>
+</html>

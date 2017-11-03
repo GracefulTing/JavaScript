@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#wrap{
+			width:100px;
+			height:100px;
+			background:red;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap"></div>
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+<script>
+	$(function($){
+		$("#wrap").on("click",function(){
+			console.log(1);
+		});
+		$("#wrap").on("mouseover",function(){
+			console.log("kdjjhakf");
+		})
+		// $("#wrap").off("click");
+	});
+</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>apply</title>
+	<style>
+		#a{
+			width:100px;
+			height:100px;
+			background:pink;
+		}
+	</style>
+</head>
+<body>
+	<div id="a"></div>
+	<script>
+		var a = document.getElementById('a');
+		a.onclick  = function(){
+			//fn();        //window
+
+			fn.call(a,5);     //a
+			//20行和22.23行等价
+			// a.m = fn;
+			// a.m();
+
+			fnn.apply(a,[6,8]);
+
+			var c = f1.bind(a);
+			console.log(c);
+
+		}
+		// argument:参数
+		// add(标签,args);
+		// add(标签,arg1,arg2...)
+		function fn(r){
+			console.log(r);
+			console.log(this);
+		}
+		function fnn(m,n){
+			console.log(m,n);
+		}
+		function f1(val){
+			console.log(val);
+		}
+
+		//apply可以有多个参数,不同的是第二个参数必须是一个数组.
+		//call:this指向第一个参数,也就是把函数运用于哪.
+		//如果call和apply的第一个参数写的是null,this指向window.
+		//bind返回一个修改后的函数.可以有多个参数,可以执行的时候再次添加,按照形参顺序进行.
+
+		//call和apply都是改变上下文中的this并立即执行这个函数,bind可以让对应的函数想什么时候调用什么时候调用,并且将参数在执行的时候添加.
+	</script>
+</body>
+</html>

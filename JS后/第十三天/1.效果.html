@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>效果</title>
+	<style>
+		#a{
+			width: 100px;
+			height:100px;
+			background: red;
+			position: absolute;
+			left:300px;
+			/*display: none;		*/
+		}
+		p{
+			/*display: none;*/
+		}
+	</style>
+</head>
+<body>
+	<div id="a"></div>
+	<button>click</button>
+	<p>hello world!</p>
+	<p id="la">啦啦啦</p>
+
+	<button id="left">向左</button>
+	<button id="right">向右</button>
+
+	<button id="go">Go</button>
+	<button id="stop">STOP</button>
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+<script>
+	//hide(),show()中加"slow","normal","fast",1000毫秒数.
+	var a = $("#a");
+		
+	// change();
+	// function change(){
+	// 	var flag = 0;    
+	// 	$("button").click(function(){
+	// 		if(flag == 0){
+	// 			a.hide();
+	// 			flag = 1;
+	// 		}else{
+	// 			a.show("slow");
+	// 			flag = 0;
+	// 		}
+	// 	})
+	// }
+
+	// change();
+	// function change(){
+	// 	$("button")[0].flag = true;
+	// 	$("button").click(function(){
+	// 		if(this.flag){
+	// 			a.hide(2000,function(){
+	// 				alert('消失')
+	// 			});
+	// 		}else{
+	// 			a.show("slow");
+	// 		}
+	// 		this.flag = !this.flag;
+	// 	})
+	// }
+
+	// change();
+	// function change(){
+	// 	$("button").click(function(){
+	// 		a.toggle("slow");
+	// 	})
+	// }
+
+	//show(),hide():改变display
+	//slideDown(),slideUp():改变height
+	//fadeIn(),fadeOut():改变opacity
+
+	// change();
+	// function change(){
+	// 	$("button").click(function(){
+	// 		//向下滑动
+	// 		// $("p").slideDown("slow",function(){
+	// 		// 	alert("hello world")
+	// 		// });	
+
+	// 		//向上滑动
+	// 		// $("p").slideUp("slow",function(){
+	// 		// 	alert("hello world")
+	// 		// });
+
+	// 		//切换
+	// 		// $("p").slideToggle("slow");
+
+	// 		//淡入
+	// 		//$("p").fadeIn("slow");
+
+	// 		//淡出
+	// 		//$("p").fadeOut("slow");
+
+	// 		//淡入+透明度
+	// 		//$("p").fadeTo("slow",0.5);
+
+	// 		//淡入淡出切换
+	// 		// $("p").fadeToggle("slow","linear");
+	// 	})
+	// }
+
+	// change();
+	// function change(){
+	// 	// $("button").click(function(){
+	// 	// 	$("#la").animate({
+	// 	// 		width:"100px",
+	// 	// 		height:"35px",
+	// 	// 		background:"pink",
+	// 	// 		border:"3px solid yellow"
+	// 	// 	},1000)
+	// 	// })
+
+
+	// 	// $("#left").click(function(){
+	// 	// 	a.animate({left:'100px'},"slow");   //移动到的位置
+	// 	// })
+	// 	// $('#right').click(function(){
+	// 	// 	a.animate({left:'600px'},"slow");
+	// 	// })
+
+	// 	// $("button").click(function(){
+	// 	// 	$("#la").animate({
+	// 	// 		height:'toggle',
+	// 	// 		opacity:'toggle'
+	// 	// 	},"slow")
+	// 	// 	a.animate({
+	// 	// 		left:100,
+	// 	// 		opacity:0.5
+	// 	// 	})
+	// 	// })	
+	// }
+
+	// change();
+	// function change(){
+	// 	$("#go").click(function(){
+	// 		a.animate({left:"400px"},1000)
+	// 	})
+	// 	$("#stop").click(function(){
+	// 		a.stop();    //停止运动
+	// 	})
+	// }
+
+	// change();
+	// function change(){
+		//链式写法
+	// 	$("#la").slideUp(300).delay(800).fadeIn(400);
+	// }
+
+	// change();
+	// function change(){
+	// 	$("#go").click(function(){
+	// 		a.animate({left:"400px"},1000)
+	// 	})
+	// 	$("#stop").click(function(){
+	// 		a.finish();   //结束运动
+	// 	})
+	// }
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享1:分页</title>
+	<link rel="stylesheet" href="page.css">
+</head>
+<body>
+	<div id="wrap"></div>
+	<ul class="page" id="pagebtn"></ul>
+</body>
+<script src="page.js"></script>
+<script src="jquery.min.js"></script>
+<script>
+	var str = '[{"name":"第1条数据"},{"name":"第2条数据"},{"name":"第3条数据"},{"name":"第4条数据"},{"name":"第5条数据"},{"name":"第6条数据"},{"name":"第7条数据"},{"name":"第8条数据"},{"name":"第9条数据"},{"name":"第10条数据"}]';
+
+	var arr = JSON.parse(str);
+	var wrap = $('#wrap');
+
+	var options = {
+		"id":"pagebtn",     //放置按钮
+		"data":arr,         //数据
+		"maxshowpageitem":3,       //最多显示的页码个数
+		"pagelistcount":4,        //每页数据的个数
+		"callBack":function(arr){
+			wrap.html('');
+			var cont = '';
+			for(var i=0;i<arr.length;i++){
+				cont += "<div>" + arr[i].name + "</div>";
+			}
+			wrap.append(cont);
+		}
+	}
+
+	page.init(arr.length,1,options); //数据长度,当前页
+</script>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>分享2:提示输入</title>
+</head>
+<body>
+	<!-- <input type="text" list="mydata" placeholder="热门电影">
+	<datalist id="mydata">
+		<option value="大僧归来" label="Top1"></option>
+		<option value="归来" label="Top1"></option>
+		<option value="大僧" label="Top1"></option>
+	</datalist> -->
+
+	<input type="text" list="mydata">
+	<!-- <datalist id="mydata">
+		<option value="@qq.com"></option>
+		<option value="@163.com"></option>
+	</datalist> -->
+</body>
+<script src="datalist-mail.js"></script>
+<script>
+	var put = document.querySelector('input');
+	var arr = ['aa.com','bb.com'];
+	fnDatalistMail(put,{
+		email:arr
+	});
+
+	// var option = document.querySelectorAll('option');
+	// var oVal = [];
+	// for(var i=0;i<option.length;i++){
+	// 	oVal.push(option[i].value);
+	// }
+	// // console.log(oVal)
+	// var inputVal = [];
+	// put.oninput = function(e){
+	// 	inputVal.push(e.data);
+	// 	var str = inputVal.join("");
+	// 	// console.log(str);
+	// 	for(var j=0;j<option.length;j++){
+	// 		option[j].style.display = 'block';
+	// 		option[j].value = str + oVal[j];
+	// 	}
+	// }
+</script>
+</html>

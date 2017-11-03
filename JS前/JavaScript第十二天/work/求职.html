@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		#wrap{
+			width:400px;
+			height:500px;
+			background:#f4f4f4;
+			margin:0 auto;
+		}
+		#area{
+			height:120px;
+		}
+		#job{
+			height:100px;
+		}
+		#salary{
+			height:100px;
+		}
+		#area p,#job p,#salary p{
+			text-indent:50px;
+		}
+		.box{
+			height:80px;
+			/*background:pink;*/
+			margin-top:20px;
+		}
+		span{
+			list-style: none;
+			float:left;
+			width:130px;
+			height:80px;
+			/*border:1px solid ;*/
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div id="area">
+			地区
+			<p>东城</p>
+			<p>西城</p>
+			<p>朝阳</p>
+			<p>昌平</p>
+		</div>
+		<div id="job">
+			职位
+			<p>美工设计</p>
+			<p>前端工程师</p>
+			<p>后台开发</p>
+		</div>
+		<div id="salary">
+			薪资
+			<p>4000</p>
+			<p>5000</p>
+			<p>6000</p>
+		</div>
+		<div class="box">
+			<span></span>
+			<span></span>
+			<span></span>
+		</div>
+	</div>
+	<script>
+		var list=document.getElementsByTagName('span');
+		var area=document.getElementById('area');
+		var areaP=area.getElementsByTagName('p');
+		var job=document.getElementById('job');
+		var jobP=job.getElementsByTagName('p');
+		var salary=document.getElementById('salary');
+		var salaryP=salary.getElementsByTagName('p');
+
+		create();
+		function create(){
+			for(var i=0;i<areaP.length;i++){
+				areaP[i].onclick=(function(index){
+					return function(){
+						list[0].innerHTML=areaP[index].innerHTML;
+					}
+				}(i))
+			}
+			
+			for(var i=0;i<jobP.length;i++){
+				jobP[i].onclick=(function(index){
+					return function(){
+						list[1].innerHTML=jobP[index].innerHTML;
+					}
+				}(i))
+			}
+
+			for(var i=0;i<salaryP.length;i++){
+				salaryP[i].onclick=(function(index){
+					return function(){
+						list[2].innerHTML=salaryP[index].innerHTML;
+					}
+				}(i))
+			}
+
+		}
+	</script>
+</body>
+</html>

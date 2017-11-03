@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象当形参</title>
+</head>
+<body>
+	
+</body>
+<script>
+	// var obj = {
+	// 	name:"zhang",
+	// 	sex:"男",
+	// 	age:20
+	// };
+	// create(obj);
+	create({
+		name:"zhang",
+		sex:"男",
+		age:20
+	})
+	function create(myobj){
+		myobj.name;
+		myobj.sex;
+		myobj.age;
+		console.log(myobj.name,myobj.sex,myobj.age);
+	}
+</script>
+</html>

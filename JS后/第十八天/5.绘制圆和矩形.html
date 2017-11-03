@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>圆,矩形</title>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600" style="border:1px solid lightgray"></canvas>
+</body>
+<script>
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	ctx.beginPath();
+	//arc(x,y,r,start,stop); x/y:圆心所在位置,start/stop:开始角和结束角.最后一个参数false默认为顺时针.
+	ctx.arc(100,100,40,0,2*Math.PI);
+	ctx.stroke();
+	ctx.closePath();
+
+	ctx.beginPath();
+	//rect(x,y,width,height) x/y:左上角x,y坐标  width/height:矩形宽度,高度
+	ctx.rect(150,100,60,100);
+	ctx.stroke();
+	ctx.closePath();
+
+	var deg = Math.PI/180;
+	ctx.beginPath();
+	ctx.moveTo(60,200);
+	ctx.arc(60,200,40,0,270*deg);
+	ctx.stroke();
+	ctx.fill();
+	ctx.closePath();
+
+	var deg = Math.PI/180;
+	ctx.beginPath();
+	ctx.moveTo(300,200);
+	ctx.arc(300,200,60,0,160*deg);
+	ctx.fillStyle = 'pink';
+	// ctx.stroke();
+	ctx.fill();
+	ctx.closePath();
+
+	ctx.beginPath();
+	ctx.moveTo(300,200);
+	ctx.arc(300,200,60,160*deg,270*deg);
+	ctx.fillStyle = 'lightgreen';
+	// ctx.stroke();
+	ctx.fill();
+	ctx.closePath();
+
+	ctx.beginPath();
+	ctx.moveTo(300,200);
+	ctx.arc(300,200,60,270*deg,360*deg);
+	ctx.fillStyle = 'yellow';
+	// ctx.stroke();
+	ctx.fill();
+	ctx.closePath();
+
+
+	b(350,400,50,0,160,"red");
+	b(350,400,50,160,200,"green");
+	b(350,400,50,200,270,"blue");
+	function b(x,y,r,start,end,color){
+		ctx.beginPath();
+		ctx.moveTo(x,y);
+		ctx.arc(x,y,r,start*deg,end*deg);
+		ctx.fillStyle = color;
+		ctx.fill();
+		ctx.closePath();
+	}
+
+
+	m({
+		x:150,
+		y:400,
+		r:60,
+		start:20,
+		end:170,
+		color:"green"
+	})
+	m({
+		x:150,
+		y:400,
+		r:60,
+		start:170,
+		end:260,
+		color:"yellow"
+	})
+	m({
+		x:150,
+		y:400,
+		r:60,
+		start:260,
+		end:360,
+		color:"hotpink"
+	})
+	function m(obj){
+		ctx.beginPath();
+		ctx.moveTo(obj.x,obj.y);
+		ctx.arc(obj.x,obj.y,obj.r,obj.start*deg,obj.end*deg);
+		ctx.fillStyle = obj.color;
+		ctx.fill();
+		ctx.closePath();
+	}
+</script>
+</html>

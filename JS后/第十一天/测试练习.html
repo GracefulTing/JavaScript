@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<!-- <form action="">
+		<input type="radio">
+		<input type="radio">
+	</form>
+	<form action="">
+		<input type="radio">
+		<input type="text">
+	</form> -->
+	<form action=""></form>
+</body>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js""></script>
+<script>
+	// $(document.body).css("background","pink");
+	// var a = $("input:radio",document.forms[0]);
+	// var b = $("input:radio",document.forms[1]);
+	// console.log(a,b);
+
+	$("<div>hello</div>").appendTo("body");
+	$("<div>",{
+		"class":"test",
+		text:"Click me",
+		click:function(){
+			$(this).toggleClass("test");   //对设置或移除被选元素的一个或多个类进行切换.
+		}
+	}).appendTo("body");
+
+	$("<input>",{
+		type:"text",
+		val:"Test",
+		focusin:function(){
+			$(this).addClass("active");
+		},
+		focusout:function(){
+			$(this).removeClass("active");
+		}
+	}).appendTo("form");
+
+	//window.onload只能写一次,$(function(){})可以用多次.
+	$("img").each(function(i){
+   		this.src = "test" + i + ".jpg"; //this指标签  
+ 	});
+
+ 	//each原理
+   	var arr = document.querySelectorAll(".first");
+    arr.setInner = function (fn) {
+        for (var i = 0; i < this.length; i++) {
+            var m = this[i];
+            if(fn){
+                var r = fn.call(m,i);
+                if(r == true) {
+                    continue;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+    arr.setInner(function (i) {
+        console.log(this);
+        return true;
+    })
+</script>
+</html>

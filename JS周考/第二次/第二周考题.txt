@@ -1,0 +1,83 @@
+1.列举所有数组方法中，具有删除功能的方法
+	pop()  shift()  splice()
+2.有五个数组分别是[1,2,3],[3,2,1],[4,5,6],[6,7,8],[3,4,5]，
+用冒泡排序的方法分别对五个数组进行降序排序，并打印出来
+
+3.有一个div，其位置在浏览的左上角，刷新页面后该div以加速度的方式，直线降落到，距离浏览器上方1000px的地方，然后保持不动。（运行过程当中的加速度不限，不做要求，运行方向始终为平行浏览器左边）
+
+
+4.	<script>
+	var a=1;
+	function fn(obj,a)
+	{
+		a=2;
+		var a=3;
+		console.log(a);          //3
+		a=a;
+		console.log(a);         //3
+ 		console.log(obj);      //1
+		a=obj;
+		var obj=3;
+		obj=a;
+		console.log(obj);         //1
+		console.log(a);         //1
+
+
+	}
+	fn(a);
+	</script>
+请写出运行上述代码的完整结果
+
+
+
+5.<script>
+function a(obj)
+{
+	obj++;
+	if(obj<10)
+    {
+    	return;
+    }
+    else{
+	console.log(obj);
+	return c(obj);
+    }
+}
+
+function b(obj)
+{
+	
+	(function c(obj)
+	{
+		a(obj);
+	})(obj);
+	return a(obj);
+}
+
+b(1);
+</script>
+
+请写出运行上述代码的完整结果
+
+	空
+
+6
+<script>
+
+var oDiv=document.getElementById('oDiv');
+oDiv.onclick=(function()
+	{
+		console.log(this);
+	})();
+var iTimer=setTimeout(function()
+{
+	
+	oDiv.onclick=function()
+	{
+		(function(){console.log(this)})();
+	}
+},1000)
+
+</script>
+请写出运行上述代码的完整结果
+	window

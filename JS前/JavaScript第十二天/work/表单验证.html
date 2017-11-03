@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单验证</title>
+</head>
+<body>
+	<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>注册</title>
+	<style>
+		form{
+			width:500px;
+			height:340px;
+			border:1px solid;
+			margin:0 auto;
+		}
+		span{
+			font-size:18px;
+			line-height:45px;
+		}
+		.red{
+			color:red;
+			margin-left:55px;
+		}
+		.name{
+			background-color:#f4ffd7;
+			width:250px;
+			height:20px;
+		}
+		#btn{
+			background-color:green;
+			color:white;
+			margin-left:175px;
+			margin-top:10px;
+		}
+		#tishi{
+			color:red;
+		}
+	</style>
+</head>
+<body>
+	<form action="">
+		<span class="red">*</span><span>姓名:</span> 	
+		<input type="text" class="name" id="name" placeholder="请输入名字"> <br>
+		<span class="red">*</span><span>性别:</span>男<input type="radio" name="sex" value="boy" class="sex"> 女<input type="radio" class="sex" name="sex" value="girl"><span id="tishi"></span><br>
+		<span class="red">*</span><span>邮箱:</span> 	
+		<input type="text" class="name email" id="email"  placeholder="请输入邮箱号"> <br>
+		<span class="red">*</span><span>电话:</span> 	
+		<input type="text" class="name tel" id="tel" placeholder="请输入电话号码"> <br>
+		<span class="red"></span><span>地址:</span><input type="text" class="name addr" id="addr"> <br>
+		<span class="red"></span><span>邮编:</span><input type="text" class="name youbian" id="youbian"> <br>
+		<input type="button" id="btn" value="提交"></input>
+	</form>
+	<script>
+		var btn=document.getElementById('btn');
+		var thename=document.getElementById('name');
+		var email=document.getElementById('email');
+		var tel=document.getElementById('tel');
+		var addr=document.getElementById('addr');
+		var youbian=document.getElementById('youbian');
+		var sex=document.getElementsByClassName('sex');
+		var tishi=document.getElementById('tishi');
+		btn.onclick=function(){
+			var realName=thename.value;
+			var EM=email.value;
+			var Tel=tel.value;
+			var Addr=addr.value;
+			var Youbian=youbian.value;
+
+			if(realName==''){
+				thename.value="不能为空";
+			}
+			if(!sex[0].checked&&!sex[1].checked){
+				tishi.innerHTML="请选择性别";
+			}
+			if(EM==''){
+				email.value="不能为空";
+			}
+			if(Tel==''){
+				tel.value="不能为空";
+			}
+			if(realName!=''&&sex[0].checked||sex[1].checked&&EM!=''&&Tel!=''){
+				alert('提交成功!');
+			}
+
+		}
+	</script>
+</body>
+</html>
+</body>
+</html>

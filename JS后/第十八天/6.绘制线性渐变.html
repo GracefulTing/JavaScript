@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" width="300" height="300" style="border:1px solid #ccc;"></canvas>
+</body>
+<script>
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+	ctx.beginPath();
+	var text = "hello";
+	ctx.font = "100px serif";
+	var gradient = ctx.createLinearGradient(100,0,400,0);
+	gradient.addColorStop("0","red");
+	gradient.addColorStop("0.5","yellow");
+	gradient.addColorStop("1","blue");
+	ctx.strokeStyle = gradient;
+	ctx.strokeText(text,50,150);
+	ctx.closePath();
+</script>
+</html>

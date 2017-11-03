@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大图滚动基础自动版</title>
+	<style>
+		body,html{margin:0;padding:0;background:#fff;font-size:14px;font-family:Arial,Helvetica,'STHeiti','Microsoft YaHei','sans-serif'}
+		form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}
+		img{border:0;}
+		ul,li{list-style-type:none;}
+		a{color:#00007F;text-decoration:none;}
+		a:hover{text-decoration:none;}
+		#oUl{
+			height:400px;
+			margin: 0 auto;
+			position:absolute;
+			left:0;
+			top:0;
+			transition: all 1s;
+		}
+		#oUl li{
+			float:left;
+		}
+		#oUl li img{
+			width:1920px;
+			height: 400px;
+		}
+		#cansee{
+			width:1920px;
+			height:400px;
+			/*border:1px solid;*/
+			overflow: hidden;
+			margin:0 auto;
+			position: relative;
+		}
+	</style>
+</head>
+<body>
+	<div id="cansee">
+		<ul id="oUl">
+			<li><img src="img/1.jpg" alt=""></li>
+			<li><img src="img/2.jpg" alt=""></li>
+			<li><img src="img/3.jpg" alt=""></li>
+			<li><img src="img/4.jpg" alt=""></li>
+			<li><img src="img/5.jpg" alt=""></li>
+		</ul>
+	</div>
+	<script>
+		var index=0;
+		var iTimer;
+		var oUl=document.getElementById('oUl');
+		var oImg=oUl.getElementsByTagName('img');
+		var oCansee=document.getElementById('cansee');
+		oUl.style.width=oImg[0].width*oImg.length+'px';
+		function it(){
+			iTimer=setInterval(function(){
+				index++;
+				if(index>oImg.length-1){
+					index=0;
+				}
+				//获取img标签的宽度  width
+				oUl.style.left=index*-oImg[0].width+'px';
+			},2000)
+		}
+		it();
+		oCansee.onmouseover=function(){
+			clearInterval(iTimer);
+		}
+		oCansee.onmouseout=function(){
+			it();
+		}
+	</script>
+</body>
+</html>

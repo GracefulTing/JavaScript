@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>百度注册</title>
+
+	<style>
+		#wrap{
+			width:900px;
+			border:1px solid red;
+			margin:0 auto;
+		}
+		.row{
+			overflow: hidden;
+			margin-bottom:30px;
+		}
+		.preLabel{
+			width:50px;
+			height:20px;
+			font-weight:bold;
+			float:left;
+			line-height:38px;
+			margin-right:20px;
+			text-align: right;
+		}
+		.input{
+			float:left;
+			width:480px;
+			height:28px;
+			border:0.5px solid lightgray;
+			padding:5px;
+		}
+		.enter{
+			width:480px;
+			margin:0;
+			padding:0;
+			border:none;
+			outline:none;
+			font-size:16px;
+		}
+		.end-label{
+			color:#ccc;
+		}
+		.userError{
+			/*background: url('img/err_small.png') no-repeat;*/
+			color:red;
+
+		}
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div class="row">
+			<div class="preLabel">用户名</div>
+			<div class="input">
+				<input type="text" class="enter">
+			</div>
+			<div class="end-label">
+				设置后不可更改<br>
+				中英文均可,最长14个英文或7个汉字
+			</div>
+		</div>
+		<div class="row">
+			<div class="preLabel">手机号</div>
+			<div class="input">
+				<input type="text" class="enter">
+			</div>
+		</div>
+		<div class="row">
+			<div class="preLabel">验证码</div>
+			<div class="input">
+				<input type="text" class="enter">
+			</div>
+		</div>
+		<div class="row">
+			<div class="preLabel">密码</div>
+			<div class="input">
+				<input type="text" class="enter">
+			</div>
+		</div>
+		<div id="lawer">
+			
+		</div>
+		<div id="agree">
+			
+		</div>
+	</div>
+</body>
+<script>
+	//用户名
+	var aRows = document.querySelectorAll('.row');
+	var userInput = aRows[0].querySelector('.enter');
+	userInput.onchange = function(){
+		//判断内容是否超出长度
+		var len = this.value.length;
+		if(len > 14){
+			//获得输入框的父标签并修改样式
+			this.parentNode.style.borderColor = 'red';
+			var end = aRows[0].querySelector(".end-label");
+			end.style.display = 'none';
+			var span = document.createElement('span');
+			span.innerHTML = '用户名不能超过14个字符或7个汉字';
+			span.className = 'userError';
+			aRows[0].appendChild(span);
+		}
+	}
+
+	//手机号
+	var telInput = aRows[1].querySelector('.enter');
+	telInput.oninput = function(){
+		//如果长度超过11位,截取0-10,重新赋值给输入框
+		var len = this.value.length;
+		if(len > 11){
+			this.value = this.value.substring(0,11);
+		}
+	}
+	telInput.onchange = function(){
+		var re = check(this.value);
+		if(re){
+			//数字
+			console.log("都是数字");
+		}else{
+			//非数字
+			console.log("有非数字内容");
+		}
+	}
+
+	//验证码
+	var testInput = aRows[2].querySelector('.enter');
+	testInput.oninput = function(){
+		//如果长度超过11位,截取0-10,重新赋值给输入框
+		var len = this.value.length;
+		if(len > 6){
+			this.value = this.value.substring(0,6);
+		}
+	}
+	testInput.onchange = function(){
+		var re = check(this.value);
+		if(re){
+			//数字
+			console.log("都是数字");
+		}else{
+			//非数字
+			console.log("有非数字内容");
+		}
+	}
+
+	//密码
+	var pwdInput = aRows[3].querySelector('.enter');
+	pwdInput.onchange = function(){
+		//方法1:判断是否有空格的简单方法
+		var arr = this.value.split(' ');
+		if(arr.length > 1){
+			//有空格
+		}
+
+		//方法2:判断是否有空格的复杂方法
+		for(var i = 0;i < this.value.length; i++){
+			var str = this.value.charAt(i);
+			if(str == ' '){
+				//有空格
+			}
+		}
+
+		//方法3:indexof
+		var index = this.value.indexof(' ');
+		if(index >= 0){
+			//有空格
+			//==-1  没有空格	
+		}
+	}
+
+
+	//验证字符串是否是数字
+	function check(obj) {
+		var reg = /^[0-9]+?[0-9]*$/;
+		if (reg.test(obj)) {
+		   	return true;
+		}
+		return false;
+	}
+</script>
+</html>
+<!-- 
+密码:
+1.查询所有的提示内容
+2.让所有的提示内容消失
+3.让当前标签的提示内容显示
+
+注册:
+1.检测所有的input
+2.找到错误的input以后,找到对应的提示
+3.显示提示
+ -->

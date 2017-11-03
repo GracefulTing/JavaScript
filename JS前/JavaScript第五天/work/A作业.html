@@ -1,0 +1,59 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>电子时钟</title>
+</head>
+<body>
+	<div id="show"></div>
+	<script>
+		setInterval(function(){
+			var date=new Date();
+			var h=date.getHours();
+			var m=date.getMinutes();
+			var s=date.getSeconds();
+			
+			if(m<10){
+				m="0"+m;
+			}
+			if(s<10){
+				s="0"+s;
+			}
+
+			document.getElementById('show').innerHTML=h+":"+m+":"+s;
+		},1000);	
+	</script>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>电子时钟</title>
+</head>
+<body>
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<input type="text">
+	<script>
+		var inp=document.getElementsByTagName('input');
+		iTimer=setInterval(function(){
+			var oDate=new Date();
+			var h=fixNum(oDate.getHours());
+			var m=fixNum(oDate.getMinutes());
+			var s=fixNum(oDate.getSeconds());
+			var str=h+m+s;
+			for(var i=0;i<str.length;i++){
+				inp[i].value=str.charAt(i);
+			}
+		},1000)
+		function fixNum(n){
+			return n<10?'0'+n:''+n;
+		}
+	</script>
+</body>
+</html>
